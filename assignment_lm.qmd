@@ -1,0 +1,117 @@
+---
+title: "Linear regression"
+subtitle: "Last assginment!"
+author: "Alejandro Molina Moctezuma"
+format: 
+  html:
+    embed-resources: true
+editor: visual
+---
+
+# Instructions
+
+You will work with three datasets. For each dataset, you must:
+
+1.  Fit a linear model with the given response and explanatory variable(s). You need to identify which is which!
+2.  Interpret the model summary, identifying $\beta_0, \beta_1$ whether each is significant, the estimate of $\sigma$ , and $R^2$ (and interpret $R^2$ in context)
+3.  Use the four steps of NHST we covered in class, and see whether the explanatory variable has an effect on the response variable. Write a biological conclusion.
+4.  Repeat this full set of tasks for all three datasets.
+5.  All datasets (flowers, snails, wood are available on Canvas)
+6.  I help you with the first one!
+
+------------------------------------------------------------------------
+
+# Data
+
+## Dataset 1: More rain, more flowers? 🌻
+
+This dataset contains observations of flower production across multiple sites that received different amounts of rainfall. Flower production is measured as a continuous count of total flowers produced at each site.
+
+To run the model, first read the file into an object called flowers_df.
+
+Run a linear model using:
+
+**Goal:** Determine whether rainfall affects flower production.
+
+### Instructions model 1
+
+To run the model, first read the file into an object called flowers_df.
+
+Run a linear model using:
+
+```{r eval=FALSE}
+modelflower<-lm(flower_production ~ rainfall, data = flowers_df)
+```
+
+And then, view the summary of the model using:
+
+```{r eval=FALSE}
+
+summary(modelflower)
+
+```
+
+Finally, plot the model using ggplot2:
+
+```{r eval=FALSE}
+library(ggplot2)
+ggplot(flowers_df, aes(x = rainfall, y = flower_production)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Flower Production vs Rainfall",
+       x = "Rainfall (mm)",
+       y = "Flower Production")
+```
+
+And that is it! You ran the model, viewed the summary, and plotted the results.
+
+------------------------------------------------------------------------
+
+## Dataset 2: Effects of temperature on snail size 🐌
+
+This dataset contains measurements of snail size collected across locations with different average temperatures. Snail size is a continuous measurement representing shell length.
+
+**Goal:** Determine whether temperature affects snail size.
+
+This one you can do it by yourself! Follow the same steps as in Dataset 1, but using the snail dataset.
+
+------------------------------------------------------------------------
+
+## Dataset 3: Wood Production, Temperature, and Forest Management 🌲
+
+This dataset contains measurements of wood production collected from two types of forests: managed and unmanaged across gradient of temperature.
+
+::: callout-caution
+## Multiple explanatory variables!
+
+Here you have both rain and management type as potential explanatory variables... Because both affect the wood production.
+:::
+
+**Goal:** Determine whether temperature and forest management type affect wood production.
+
+### Instructions model 3
+
+To run the model, first read the forest data file into an object called wood_df. Run a linear model using:
+
+```{r eval=FALSE}
+modelwood<-lm(wood_production ~ temperature + management, data = wood_df)
+```
+
+And then, view the summary of the model. You know how to do this.
+
+Then plot the model, but! Add color to differentiate between management types:
+
+```{r eval=FALSE}
+library(ggplot2)
+ggplot(wood_df, aes(x = temperature, y = wood_production, color =
+ management)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(title = "Wood Production vs Temperature by Management Type",
+       x = "Temperature (°C)",
+       y = "Wood Production")
+```
+
+And that is it! You ran the model, viewed the summary, and plotted the results.
+
+Submit it on Canvas, and get ready for the exam.

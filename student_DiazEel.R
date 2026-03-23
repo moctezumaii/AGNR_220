@@ -1,0 +1,5 @@
+eel<-read.csv('eel.csv')
+head(eel)
+mean(eel$Length)
+sampled.eels<-sample(eel$Length,12)
+std.dev<-mean(sampled.eels)

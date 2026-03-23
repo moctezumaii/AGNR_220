@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AGNR 220",
+    "section": "",
+    "text": "This book",
+    "crumbs": [
+      "This book"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "index.html#syllabus",
+    "href": "index.html#syllabus",
+    "title": "AGNR 220",
+    "section": "Syllabus",
+    "text": "Syllabus\nPlease check Canvas for an updated syllabus.",
+    "crumbs": [
+      "This book"
+    ]
+  },
+  {
+    "objectID": "index.html#objectives-and-structure",
+    "href": "index.html#objectives-and-structure",
+    "title": "AGNR 220",
+    "section": "Objectives and structure",
+    "text": "Objectives and structure\nSpecific Course Objectives\nThis is an applied data analysis course targeted to students working in natural resources and agriculture. This course will focus on real world problems and real world data relevant to natural resources, animal science, plant science, and agriculture. All the applied problems we will work on are from the real-world, and can be solved using real-world data. The ultimate objective is for students to be able to answer and solve data problems commonly found in the natural resources by analyzing data and inferring results. Some of the outcomes for students are to:\n\nidentify data types, and statistical methods,\napply statistical techniques to a variety of natural resource management questions,\nidentify and apply statistical methods commonly used to answer questions in agricultural resource analysis,\ncommunicate results of statistical analysis to stakeholders (e.g., users of natural and agricultural resources),\napply statistical knowledge to decision making in natural resources and agriculture, and\nanalyze data sets using excel and basic introduction to R.\n\nCourse Structure\nThis course will be structured in units, each week will represent one unit with specific learning objectives. During each unit, the student will attend lecture:\n\nLearning: This will be a theoretical, lecture-based session\nPractice: We work on an example in the classroom. You can work collaboratively.\nReal world agricultural/natural resource applications: Problem solving. You are presented with a real-world scenario in which you are tasked with identifying the correct analysis, analyze the data, draw conclusions, and present them to potential stakeholders.\nOnline Readings and Discussions: Supplementary to the classroom lectures\nTake- home assignment: Based on the real-world example\n\n\n\n\nCourse map",
+    "crumbs": [
+      "This book"
+    ]
+  },
+  {
+    "objectID": "index.html#citing-this-book",
+    "href": "index.html#citing-this-book",
+    "title": "AGNR 220",
+    "section": "Citing this book",
+    "text": "Citing this book\nPlease cite this book using:",
+    "crumbs": [
+      "This book"
+    ]
+  }
+]

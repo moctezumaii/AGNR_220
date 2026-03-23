@@ -1,0 +1,92 @@
+---
+title: "One sample t-test"
+format:
+  html:
+    df-print: kable
+---
+
+💻Run this exercise in `EXCEL`
+
+Normal human body temperature, as kids are taught in North America, is 98.6°F. But how well is this supported by data? Researchers obtained body-temperature measurements on randomly chosen healthy people (Shoemaker 1996). The data for 25 of those people are as follows:
+
+```{r echo=FALSE}
+read.csv("datatable.csv")
+```
+
+You can download the data from Canvas: `dataframe.csv`
+
+You are testing whether the claim that 98.6 is the average body temperature. Do the following:
+
+### Task 1
+
+Write your null and alternative hypotheses
+
+### Task 2
+
+Run a t-test! You will do this in Excel. Use the following equation:
+
+$$
+t = \frac{ \bar{Y} - \mu}{S.E._\bar{y}} 
+$$
+
+You can use the `average` function to estimate the mean, the `stdev` function to estimate the standard deviation. To obtain the Standard error, you have to check the standard error equation! It is available on the last slidshow PDF I uploaded to Canvas.
+
+Report the t value
+
+### Task 3
+
+Find a P-value.
+
+#### Task 3.1 approximate P-value
+
+Read the Statistical Tables section in the Book (page 711)
+
+Read the Student-t distribution section (page 717)
+
+Find an approximate P-value using the table.
+
+Remember! We are doing a two tail test! And degrees of freedom are n-1
+
+#### Task 3.2 Exact P-value
+
+In Excel use:
+
+```         
+= 2*(1-T.DIST(ABS(t),df,TRUE))
+```
+
+Make sure to replace `t` and `df` with your values!
+
+### Task 4
+
+Make your statistical decision
+
+### Task 5
+
+💻Run this task in `R`
+
+Now estimate it in R.
+
+First, calculate the mean using `mean()`, calculate the s.d. using `sd()` and calclulate the standard error.
+
+Second, find the real p value using:
+
+```{r eval=F}
+2*pt(q = abs(t),df = ,lower.tail = FALSE)
+```
+
+Replace t by your t value, and add degrees of freedom.
+
+#### Task 5.1 Run the whole thing as a test in R
+
+Do the following:
+
+```{r eval=FALSE}
+t.test(res$temperature,mu=98.6)
+```
+
+Replace x by a vector containing the temperatures.
+
+## Submit
+
+Submit your excel file and your R code either as an r file or you can copy and paste it in Canvas

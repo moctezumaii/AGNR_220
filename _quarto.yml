@@ -2,8 +2,9 @@ project:
   type: book
 
 book:
-  title: "AGNR_220"
-  author: "Norah Jones"
+  title: "AGNR 220"
+  subtitle: "Introduction to Statistical Analysis in Agriculture and the Natural Resources"
+  author: "Alejandro Molina Moctezuma"
   date: "6/6/2025"
   chapters:
     - index.qmd
@@ -15,7 +16,7 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
+    theme: united
   pdf:
     documentclass: scrreprt
 

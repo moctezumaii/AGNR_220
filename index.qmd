@@ -1,9 +1,40 @@
-# Preface {.unnumbered}
+# This book {.unnumbered}
 
-This is a Quarto book.
+### Introduction to Statistical Analysis in Agriculture and the Natural Resources
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This book was created in order to host all of the materials for AGNR220/SNR220 class.
 
-```{r}
-1 + 1
-```
+This book and the material will be updated constantly.
+
+## Syllabus
+
+Please check Canvas for an updated syllabus.
+
+## Objectives and structure
+
+**Specific Course Objectives**
+
+This is an **applied** data analysis course targeted to students working in natural resources and agriculture. This course will focus on real world problems and real world data relevant to natural resources, animal science, plant science, and agriculture. All the applied problems we will work on are from the real-world, and can be solved using real-world data. The ultimate **objective** is for students to be able to answer and solve data problems commonly found in the natural resources by analyzing data and inferring results. Some of the outcomes for students are to:
+
+1.  identify data types, and statistical methods,
+2.  apply statistical techniques to a variety of natural resource management questions,
+3.  identify and apply statistical methods commonly used to answer questions in agricultural resource analysis,
+4.  communicate results of statistical analysis to stakeholders (e.g., users of natural and agricultural resources),
+5.  apply statistical knowledge to decision making in natural resources and agriculture, and
+6.  analyze data sets using excel and basic introduction to R.
+
+**Course Structure**
+
+This course will be structured in units, each week will represent one unit with specific learning objectives. During each unit, the student will attend lecture:
+
+1.  Learning: This will be a theoretical, lecture-based session
+2.  Practice: We work on an example in the classroom. You can work collaboratively.
+3.  Real world agricultural/natural resource applications: Problem solving. You are presented with a real-world scenario in which you are tasked with identifying the correct analysis, analyze the data, draw conclusions, and present them to potential stakeholders.
+4.  Online Readings and Discussions: Supplementary to the classroom lectures
+5.  Take- home assignment: Based on the real-world example
+
+![Course map](img/Picture1.png)
+
+## Citing this book
+
+Please cite this book using:

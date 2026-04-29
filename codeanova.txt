@@ -1,0 +1,5 @@
+library(tidyr)
+anova1r <- read.csv("anova1r.csv")
+datalong<- anova1r%>% pivot_longer(!Replicate,names_to = "Fertilizer", values_to = "growth")
+result<-aov(growth~Fertilizer,data=datalong)
+summary(result)

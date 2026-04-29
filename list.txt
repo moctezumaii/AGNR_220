@@ -1,0 +1,53 @@
+binomial proportions.pdf
+binomial proportions.pptx
+Class 1.pptx
+Class 1_complete.pdf
+Class 2 Data.pptx
+Class 2_complete.pdf
+Class 3Describing data.pdf
+Class 3Describing data.pptx
+Class 3Describing data_students.pdf
+Class 3Describing data_students.pptx
+Class1_Welcome_Student.pdf
+Class1_Welcome_Student.pptx
+Class4Describing dataII.pptx
+Class5 and 6Uncertainty_complete.pdf
+Class5Uncertainty.pptx
+Class5Uncertainty_complete.pptx
+Class5Uncertainty_student.pdf
+Class5Uncertainty_student.pptx
+Class6and7_prob_complete.pdf
+Class6and7_prob_complete.pptx
+Class6_prob.pdf
+Class6_prob.pptx
+Comparing means.pdf
+Comparing means.pptx
+Comparing more than two means.pdf
+Contingency analysis.pdf
+Contingency analysis.pptx
+Continuous variables and tests.pdf
+Continuous variables and tests.pptx
+CRITICAL THINKING ASSIGNMENT INSTRUCTIONS.docx
+criticalThinking.docx
+criticalThinking1.pdf
+datafiles
+experimental design and scientific method.pdf
+experimental design and scientific method.pptx
+final guide.docx
+Frequency data and probability.pdf
+Frequency data and probability.pptx
+guide1.docx
+guide1.pdf
+guide2.docx
+Linear regression.pdf
+Linear regression.pptx
+list.txt
+New folder
+New_topic_Hypothesis testing.pdf
+New_topic_Hypothesis testing.pptx
+New_topic_Hypothesis testing_complete.pdf
+New_topic_Hypothesis testing_complete.pptx
+Review of topics.pptx
+student versions
+T tests and one tail tests.pdf
+T tests and one tail tests.pptx

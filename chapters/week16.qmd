@@ -1,0 +1,195 @@
+---
+categories:
+  - review
+  - wrap-up
+  - synthesis
+  - study-guide
+---
+
+# Week 16 — Review and Wrap-Up {#sec-week16}
+
+**Dates:** Monday November 30
+
+*(This is the final class meeting before finals week)*
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Identify which statistical test is appropriate for a given research question and data type.
+- Recall the key assumptions for each test covered in the course.
+- Walk through the four-step NHST framework for any test we have studied.
+- Explain in plain language what the outputs of common statistical tests mean.
+- Reflect on the overall arc of the course and how the pieces fit together.
+
+---
+
+## The Big Picture: How the Course Fits Together
+
+Congratulations — you have reached the end of AGNR 220! Let us take a step back and see how all the pieces fit together.
+
+This course followed a natural progression:
+
+**Unit 1** — We learned how to describe data: what kinds of variables exist, how to measure their center and spread, and how to display their distribution.
+
+**Unit 2** — We learned where data come from: probability, frequency distributions, and binomial proportions. These ideas underpin all of statistical inference.
+
+**Unit 3** — We learned how to test claims about data: the hypothesis testing framework (NHST), the z-test, and the t-test. We learned that statistical decisions involve uncertainty — we can be wrong, but good design and proper statistics minimize that risk.
+
+**Unit 4** — We learned how to compare groups: ANOVA for three or more group means, chi-square for categorical data.
+
+**Unit 5** — We learned how to model relationships: correlation to measure the strength of an association, and linear regression to build a predictive model.
+
+All of these tools are connected by the same core logic:
+
+1. State a null hypothesis ($H_0$).
+2. Collect data and calculate a test statistic.
+3. Find a p-value: how surprising are the data if $H_0$ were true?
+4. Make a decision and a recommendation.
+
+---
+
+## Choosing the Right Test
+
+One of the most important skills you have developed is knowing *which* test to use. Use this guide:
+
+| Question | Data Type | Test |
+|----------|-----------|------|
+| Is a group mean different from a known value? | Numerical, 1 group | One-sample t-test |
+| Are two group means different? (independent) | Numerical, 2 groups | Two-sample t-test |
+| Are two group means different? (paired) | Numerical, matched pairs | Paired t-test |
+| Are three or more group means different? | Numerical, 3+ groups | One-way ANOVA |
+| Are two categorical variables associated? | Categorical counts | Chi-square test |
+| How strongly are two variables related? | Two continuous variables | Pearson correlation |
+| Can I predict y from x? | Response + predictor (continuous) | Linear regression |
+
+::: {.callout-tip}
+## Think About It 🧠
+
+For each of the following scenarios, identify the correct statistical test:
+
+1. A cattle researcher wants to know if a supplement (yes/no) changes daily weight gain. She has 20 cattle on supplement and 20 on standard diet.
+2. A forester measures tree height at age 10 and age 20 for the same 15 trees.
+3. An ecologist surveys 200 stream sites and classifies each by land use (agriculture vs. forest) and macroinvertebrate community status (impaired vs. unimpaired).
+4. A plant scientist wants to predict crop yield from soil nitrogen concentration.
+5. A wildlife manager compares deer density across 4 management zones.
+:::
+
+---
+
+## Summary of Key Formulas
+
+### Descriptive Statistics
+
+| Measure | Formula |
+|---------|---------|
+| Sample mean | $\bar{y} = \frac{\sum y_i}{n}$ |
+| Sample variance | $s^2 = \frac{\sum(y_i - \bar{y})^2}{n-1}$ |
+| Standard deviation | $s = \sqrt{s^2}$ |
+| Standard error | $SE = s/\sqrt{n}$ |
+| 95% CI (approx.) | $\bar{y} \pm 2 \times SE$ |
+
+### Probability
+
+| Concept | Formula |
+|---------|---------|
+| Binomial probability | $P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$ |
+| z-score | $z = (y - \mu)/\sigma$ |
+
+### Hypothesis Tests
+
+| Test | Statistic | df |
+|------|-----------|-----|
+| One-sample z-test | $z = (\bar{y} - \mu_0)/(\sigma/\sqrt{n})$ | — |
+| One-sample t-test | $t = (\bar{y} - \mu_0)/(s/\sqrt{n})$ | $n-1$ |
+| Two-sample t-test | $t = (\bar{y}_1 - \bar{y}_2)/SE_{diff}$ | $n_1+n_2-2$ |
+| F-test (ANOVA) | $F = MS_{groups}/MS_{error}$ | $(k-1, N-k)$ |
+| Chi-square | $\chi^2 = \sum(O-E)^2/E$ | $(r-1)(c-1)$ |
+| Correlation t-test | $t = r\sqrt{(n-2)/(1-r^2)}$ | $n-2$ |
+
+### Regression
+
+$$\hat{y} = b_0 + b_1 x, \quad b_1 = r \cdot s_y/s_x, \quad b_0 = \bar{y} - b_1\bar{x}$$
+
+---
+
+## Key R Functions Summary
+
+| Task | R function |
+|------|-----------|
+| Mean, SD, median | `mean()`, `sd()`, `median()` |
+| Summary stats | `summary()` |
+| Histogram | `hist()` |
+| Boxplot | `boxplot()` |
+| Normal probability | `pnorm()`, `qnorm()`, `dnorm()` |
+| t probability | `pt()`, `qt()` |
+| Binomial probability | `dbinom()`, `pbinom()` |
+| One-sample t-test | `t.test(x, mu=value)` |
+| Two-sample t-test | `t.test(x, y, var.equal=T)` |
+| Paired t-test | `t.test(x, y, paired=T)` |
+| One-way ANOVA | `aov(y ~ group)` then `summary()` |
+| Chi-square test | `chisq.test(table)` |
+| Correlation | `cor.test(x, y)` |
+| Linear regression | `lm(y ~ x)` then `summary()` |
+
+---
+
+## Common Mistakes to Avoid
+
+Here is a consolidated list of pitfalls from the whole course:
+
+::: {.callout-warning}
+## "Failing to reject H₀ proves H₀ is true"
+
+No! A non-significant result means we lack evidence to reject $H_0$. It does not prove $H_0$. Absence of evidence is not evidence of absence.
+:::
+
+::: {.callout-warning}
+## "Statistical significance means practical importance"
+
+A p-value of 0.001 can result from a trivially small effect size in a large study. Always report effect sizes (mean differences, $R^2$, etc.) alongside p-values.
+:::
+
+::: {.callout-warning}
+## "Correlation implies causation"
+
+It does not. Always consider confounding variables and the need for controlled experiments before making causal claims.
+:::
+
+::: {.callout-warning}
+## "The standard error is the same as the standard deviation"
+
+The SD measures variability among individuals. The SE measures how precisely you have estimated the mean. The SE is always smaller (for $n > 1$) and shrinks with larger sample sizes. The SD does not.
+:::
+
+---
+
+## How to Succeed Going Forward
+
+The statistical thinking you have developed in this course is valuable far beyond the classroom. Here is how to keep building on it:
+
+1. **Practice on your own data.** If you work in a lab, on a farm, or with wildlife data, apply these tools to real problems. The best way to learn statistics is to use it.
+
+2. **Look at your data first.** Before running any test, always visualize your data. A histogram, boxplot, or scatterplot will often reveal patterns — or problems — that a test alone will miss.
+
+3. **Read statistical results critically.** When you read a scientific paper or an extension article that says "there was a significant effect," ask: what test was used? What was the effect size? Was the sample size adequate?
+
+4. **Know when to ask for help.** Complex study designs and advanced models (mixed effects models, non-parametric tests, survival analysis) are beyond this course. That is fine — knowing the limits of your knowledge is itself a form of statistical literacy.
+
+---
+
+## Summary
+
+- The course progressed from describing data → probability → hypothesis testing → comparing groups → modeling relationships.
+- Use the test selection guide to match the right test to your data type and research question.
+- All hypothesis tests share the same four-step NHST framework.
+- The most important skill: connecting statistical conclusions to real management decisions.
+- Keep practicing — statistical thinking is a skill that improves with use.
+
+## Practice Problems
+
+1. A rancher applies a new nutritional supplement to 25 randomly selected cows and leaves 25 others as controls. She measures daily milk production after 6 weeks. (a) Which test should she use? (b) Write null and alternative hypotheses. (c) What assumptions must be checked?
+
+2. Match each R function to its use: `t.test()`, `aov()`, `chisq.test()`, `cor.test()`, `lm()`. For each, give one agricultural or natural resource example where you would use it.
+
+3. Describe the entire NHST process — from research question to management recommendation — for the following scenario: A water quality manager suspects that nitrate levels in a stream are above the safe threshold of 5 mg/L. She collects 20 water samples.

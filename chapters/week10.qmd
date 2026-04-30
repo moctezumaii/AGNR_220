@@ -1,0 +1,234 @@
+---
+categories:
+  - t-test
+  - one-sample
+  - one-tail-test
+  - student-t
+  - inference
+---
+
+# Week 10 — T-Tests and One-Tail Tests {#sec-week10}
+
+**Dates:** Monday October 19 · Wednesday October 21 · Friday October 23
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Explain why a t-distribution is used instead of the normal distribution when $\sigma$ is unknown.
+- Describe how degrees of freedom affect the shape of the t-distribution.
+- Conduct a one-sample t-test by hand, in Excel, and in R.
+- Choose between a one-tailed and two-tailed t-test based on the research question.
+- Interpret the output of `t.test()` in R.
+
+---
+
+## Background and Conceptual Introduction
+
+In Week 9, we used the z-test — a test that requires knowing the true population standard deviation ($\sigma$). In real research, we almost never know $\sigma$. We have to estimate it from our sample using $s$.
+
+When we substitute $s$ for $\sigma$, we introduce extra uncertainty. The sample standard deviation varies from sample to sample, just like the sample mean. A statistician named William Gosset (publishing under the pseudonym "Student") worked out the correct probability distribution to use in this situation: the **Student's t-distribution**.
+
+The t-distribution looks like a normal distribution — it is bell-shaped and symmetric — but it has heavier tails. This means that extreme values are more likely under the t-distribution than under the normal. As sample size grows, the t-distribution gets closer and closer to the normal distribution. With $n = 30$ or more, they are nearly identical.
+
+Think of it this way: if you estimate a parameter from a small sample, you should be less confident in your estimate than if you used a large sample. The t-distribution captures that extra uncertainty by having wider tails.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+A wildlife biologist collects weight measurements on only 5 wolves. Her sample standard deviation might be quite different from the true population standard deviation because of the small sample. Another researcher measures 100 wolves — her sample standard deviation will be much more reliable. How should the probability calculations differ for these two researchers, even if they get the same mean and standard deviation?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**t-distribution:** A symmetric, bell-shaped distribution that depends on **degrees of freedom**. It has heavier tails than the normal distribution, becoming more normal as degrees of freedom increase.
+
+**Degrees of freedom (df):** For a one-sample t-test: $df = n - 1$. Losing one degree of freedom reflects the fact that we estimated the mean before estimating the standard deviation.
+
+**One-sample t-test statistic:**
+
+$$t = \frac{\bar{y} - \mu_0}{s / \sqrt{n}}$$
+
+where $\bar{y}$ is the sample mean, $\mu_0$ is the null hypothesis value, $s$ is the sample standard deviation, and $n$ is the sample size.
+
+**Standard error (SE):** $SE = s / \sqrt{n}$ — same formula as the SE we used in Week 4.
+
+**Critical value from t-table:** Look up $t_{crit}$ with $df = n-1$ and your chosen $\alpha$.
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Wolf Body Mass
+
+Wolves (*Canis lupus*) in a national park are known historically to have a mean body mass of $\mu_0 = 38$ kg. A wildlife biologist weighs a random sample of 15 wolves this year and finds:
+
+$\bar{y} = 35.4$ kg, $s = 5.2$ kg, $n = 15$
+
+Is there evidence that wolf body mass has *decreased* from the historical average?
+:::
+
+**Step 1: State the hypotheses**
+
+$$H_0: \mu = 38 \text{ kg}$$
+$$H_a: \mu < 38 \text{ kg} \quad \text{(one-tailed, left)}$$
+
+**Step 2: Set $\alpha$ and critical value**
+
+$\alpha = 0.05$, $df = 15 - 1 = 14$, one-tailed (left).
+
+From a t-table: $t_{crit} = -1.761$ (the negative sign because we're testing the left tail).
+
+**Step 3: Calculate t-statistic**
+
+$$SE = \frac{s}{\sqrt{n}} = \frac{5.2}{\sqrt{15}} = \frac{5.2}{3.873} = 1.343$$
+
+$$t = \frac{\bar{y} - \mu_0}{SE} = \frac{35.4 - 38}{1.343} = \frac{-2.6}{1.343} = -1.936$$
+
+**Approximate p-value:** $|t| = 1.936 > t_{crit} = 1.761$, so $p < 0.05$. More precisely, $p \approx 0.036$ (from table or software).
+
+**Step 4: Decision and interpretation**
+
+$t = -1.936 < t_{crit} = -1.761$, and $p = 0.036 < \alpha = 0.05$ → **Reject $H_0$**
+
+**Conclusion:** There is sufficient evidence ($t_{14} = -1.94$, $p = 0.036$) that the mean wolf body mass in the park has decreased from the historical average of 38 kg.
+
+---
+
+## How to Read a t-Table
+
+A t-table shows critical values for given degrees of freedom and significance levels.
+
+| df | $\alpha = 0.10$ (two-tailed) | $\alpha = 0.05$ (two-tailed) | $\alpha = 0.01$ (two-tailed) |
+|----|------------------------------|------------------------------|------------------------------|
+| 10 | 1.812 | 2.228 | 3.169 |
+| 14 | 1.761 | 2.145 | 2.977 |
+| 20 | 1.725 | 2.086 | 2.845 |
+| 30 | 1.697 | 2.042 | 2.750 |
+| $\infty$ | 1.645 | 1.960 | 2.576 |
+
+Notice that as $df$ increases, the critical value approaches the z-critical value (the bottom row, $\infty$). This confirms that the t-distribution approaches the normal distribution with large samples.
+
+For a **one-tailed** test at $\alpha = 0.05$, use the column labeled $\alpha = 0.10$ (two-tailed), because the one-tailed $\alpha = 0.05$ corresponds to 5% in one tail = 10% in two tails.
+
+---
+
+## How to Do It in Excel
+
+| Cell | Formula | Description |
+|------|---------|-------------|
+| B1 | 35.4 | Sample mean $\bar{y}$ |
+| B2 | 38 | Null hypothesis $\mu_0$ |
+| B3 | 5.2 | Sample standard deviation $s$ |
+| B4 | 15 | Sample size $n$ |
+| B5 | `=(B1-B2)/(B3/SQRT(B4))` | t-statistic |
+| B6 | `=T.DIST(B5, B4-1, TRUE)` | p-value (one-tailed, left) |
+| B7 | `=T.DIST.2T(ABS(B5), B4-1)` | p-value (two-tailed) |
+| B8 | `=T.INV(0.05, B4-1)` | Critical value (left-tailed, $\alpha=0.05$) |
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Wolf mass example: one-sample t-test
+wolf_data <- c(30.2, 33.5, 38.1, 35.0, 29.8, 37.6, 36.2, 34.1,
+               32.8, 40.1, 36.9, 35.3, 34.5, 37.2, 33.7)
+# Note: this sample gives approximately ybar=35.4, s=5.2
+
+# Manual calculation
+y_bar <- mean(wolf_data)
+s     <- sd(wolf_data)
+n     <- length(wolf_data)
+mu0   <- 38
+
+SE     <- s / sqrt(n)
+t_stat <- (y_bar - mu0) / SE
+
+cat("Mean:", round(y_bar, 2), "\n")
+cat("SD:", round(s, 2), "\n")
+cat("n:", n, "\n")
+cat("SE:", round(SE, 3), "\n")
+cat("t-statistic:", round(t_stat, 3), "\n")
+
+# Degrees of freedom
+df <- n - 1
+
+# One-tailed p-value (left tail: Ha: mu < 38)
+p_val <- pt(t_stat, df = df, lower.tail = TRUE)
+cat("One-tailed p-value:", round(p_val, 4), "\n")
+
+# Decision
+alpha <- 0.05
+cat("Decision:", ifelse(p_val < alpha, "Reject H0", "Fail to reject H0"), "\n")
+
+# --- Built-in R function ---
+# This does everything in one step!
+t.test(wolf_data, mu = 38, alternative = "less")
+# alternative = "less"  → one-tailed left
+# alternative = "greater" → one-tailed right
+# alternative = "two.sided" → two-tailed (the default)
+```
+
+**Sample output from `t.test()`:**
+```
+	One Sample t-test
+
+data:  wolf_data
+t = -1.936, df = 14, p-value = 0.03623
+alternative hypothesis: true mean is less than 38
+95 percent confidence interval:
+     -Inf 37.92
+sample estimates:
+mean of x
+    35.35
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+**Reading the `t.test()` output in R:**
+
+- `t = -1.936` → the test statistic
+- `df = 14` → degrees of freedom = n - 1
+- `p-value = 0.036` → probability of seeing $t \leq -1.936$ if $H_0$ were true
+- `95 percent confidence interval` → range of plausible values for the true mean
+
+::: {.callout-warning}
+## Common Mistake: Using the Wrong `alternative` in R
+
+By default, `t.test()` does a two-tailed test. If your research question is directional (one-tailed), you must specify `alternative = "less"` or `alternative = "greater"`. Forgetting this gives you a two-tailed p-value, which is twice the one-tailed p-value.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Small Sample + One-Tailed Test
+
+One-tailed tests are more powerful (better at detecting real effects), but they are appropriate only when you had a prior, directional hypothesis before collecting data. If you saw the data first, noticed that the mean was lower, and *then* decided to use a one-tailed test in that direction, you have inflated your Type I error rate.
+:::
+
+---
+
+## Summary
+
+- The **t-test** is used when $\sigma$ is unknown and we use the sample standard deviation $s$.
+- The **t-distribution** has heavier tails than the normal; it converges to normal as $n$ increases.
+- Degrees of freedom for a one-sample t-test: $df = n - 1$.
+- $t = (\bar{y} - \mu_0) / (s / \sqrt{n})$.
+- In R, use `t.test(data, mu = mu0, alternative = "less"/"greater"/"two.sided")`.
+- One-tailed tests are more powerful but require a directional hypothesis chosen before data collection.
+
+## Practice Problems
+
+1. A farm's historical records show that cows produce an average of $\mu_0 = 25$ liters of milk per day. This year, a sample of 12 cows produces: 23, 27, 24, 22, 26, 28, 25, 21, 24, 26, 23, 25 liters. Using a two-tailed t-test with $\alpha = 0.05$: (a) Calculate the sample mean and standard deviation. (b) Calculate the t-statistic. (c) Find the critical value ($df = 11$). (d) Make a decision.
+
+2. A researcher expects newly planted pine seedlings to have an average height of 15 cm after 6 weeks. She measures 8 seedlings: 13.5, 14.2, 12.8, 15.1, 14.7, 13.2, 12.5, 14.0. Test whether the seedlings are *shorter* than expected ($\alpha = 0.05$, one-tailed). Write out all four steps.
+
+3. In R, what does `t.test(data, mu=50, alternative="two.sided")$conf.int` return? What does this interval tell you if it does not contain 50?

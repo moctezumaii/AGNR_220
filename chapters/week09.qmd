@@ -1,0 +1,238 @@
+---
+categories:
+  - hypothesis-testing
+  - nhst
+  - one-sample-test
+  - normal-distribution
+  - z-test
+---
+
+# Week 9 — Hypothesis Testing: Complete {#sec-week09}
+
+**Dates:** Monday October 12 · Wednesday October 14 · Friday October 16
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Walk through all four NHST steps for a complete hypothesis test.
+- Use statistical tables to find critical values and approximate p-values.
+- Distinguish between one-tailed and two-tailed tests and choose the correct one.
+- Calculate a z-test statistic for a population mean (when population SD is known).
+- Interpret the output of a complete hypothesis test in context.
+
+---
+
+## Background and Conceptual Introduction
+
+Last week you learned the *concept* of hypothesis testing. This week we put it fully into practice. Think of Week 8 as learning the rules of chess, and Week 9 as your first complete game.
+
+We will work through the full four-step process with real-data examples, focusing on the **one-sample z-test** — a test for a population mean when we know the population standard deviation. While this situation (knowing the true population SD) is uncommon in practice, the z-test is an ideal teaching tool because it connects directly to everything we learned about the normal distribution in Week 5.
+
+Recall the big picture: we take a sample, compute a test statistic that measures "how far is our result from what $H_0$ predicts," convert that to a p-value, and then make a decision.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+A quality control manager at a grain elevator checks that every truckload of corn has moisture content close to 14%. She cannot test every kernel — she tests a sample of 30 kernels from each truck. What are the two types of mistakes she could make? (Accepting a bad truckload, or rejecting a good truckload.) How is setting $\alpha$ related to controlling one type of mistake?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**One-sample test:** A test comparing the mean of a single group to a known or hypothesized value ($\mu_0$).
+
+**Two-tailed test:** Tests whether the population mean is *different from* $\mu_0$ in either direction. Use when your alternative hypothesis has the form $H_a: \mu \neq \mu_0$.
+
+**One-tailed test:** Tests whether the population mean is *greater than* or *less than* $\mu_0$ in a specific direction. Use when you have a directional alternative hypothesis ($H_a: \mu > \mu_0$ or $H_a: \mu < \mu_0$).
+
+**z-test statistic (known $\sigma$):**
+
+$$z = \frac{\bar{y} - \mu_0}{\sigma / \sqrt{n}}$$
+
+where $\bar{y}$ is the sample mean, $\mu_0$ is the null hypothesis value, $\sigma$ is the known population standard deviation, and $n$ is the sample size.
+
+**Critical value:** The value of the test statistic that exactly corresponds to $\alpha$. If the absolute value of the test statistic exceeds the critical value, we reject $H_0$.
+
+For a two-tailed z-test with $\alpha = 0.05$: critical values are $z = \pm 1.96$.
+
+**Rejection region:** The range of test statistic values that would lead us to reject $H_0$.
+
+---
+
+## Two-Tailed vs. One-Tailed Tests
+
+The choice between a one-tailed and two-tailed test should be made *before* you collect data, based on your research question:
+
+| Research Question | Alternative Hypothesis | Test Type |
+|-------------------|----------------------|-----------|
+| Is the average different from 100? | $\mu \neq 100$ | Two-tailed |
+| Is the average *higher* than 100? | $\mu > 100$ | One-tailed (right) |
+| Is the average *lower* than 100? | $\mu < 100$ | One-tailed (left) |
+
+::: {.callout-important}
+## Default to Two-Tailed
+
+Unless you have a strong, prior reason to test in only one direction (and you committed to that direction *before* seeing the data), use a two-tailed test. One-tailed tests have more power in one direction but can miss effects in the other direction.
+:::
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Corn Moisture at a Grain Elevator
+
+A grain elevator accepts corn only if the mean moisture content is 14% or less. The manager knows from historical records that moisture content has a standard deviation of $\sigma = 1.5\%$. She tests a sample of 36 kernels and finds a mean moisture content of $\bar{y} = 14.6\%$.
+
+Test whether this truckload should be rejected ($\alpha = 0.05$).
+:::
+
+**Step 1: State the hypotheses**
+
+$$H_0: \mu = 14\% \quad \text{(acceptable moisture)}$$
+$$H_a: \mu > 14\% \quad \text{(too wet — should reject truck)}$$
+
+This is a **one-tailed (right-tailed)** test because we only care about moisture being *above* the threshold.
+
+**Step 2: Set $\alpha$ and critical value**
+
+$\alpha = 0.05$, one-tailed.
+
+For a one-tailed test, the critical value is $z_{crit} = 1.645$ (look up in z-table: the z-value with 5% of the distribution to its right).
+
+**Step 3: Calculate the z-statistic**
+
+$$z = \frac{\bar{y} - \mu_0}{\sigma / \sqrt{n}} = \frac{14.6 - 14.0}{1.5 / \sqrt{36}} = \frac{0.6}{1.5/6} = \frac{0.6}{0.25} = 2.40$$
+
+**Approximate p-value:** $z = 2.40$ is in the far right tail. From a z-table: $P(Z > 2.40) \approx 0.0082$.
+
+**Step 4: Decision and interpretation**
+
+$z = 2.40 > z_{crit} = 1.645$, and $p = 0.0082 < \alpha = 0.05$ → **Reject $H_0$**
+
+**Conclusion:** There is strong evidence ($z = 2.40$, $p = 0.008$) that the truckload's mean moisture content exceeds 14%. The manager should reject the shipment.
+
+---
+
+## How to Use a z-Table
+
+A standard normal table gives $P(Z \leq z)$ — the area to the left of a given z-value.
+
+**For a two-tailed test ($H_a: \mu \neq \mu_0$):**
+- Find $P(Z \leq z)$ from the table.
+- p-value = $2 \times P(Z > |z|) = 2 \times (1 - P(Z \leq |z|))$
+
+**For a right-tailed test ($H_a: \mu > \mu_0$):**
+- p-value = $1 - P(Z \leq z)$
+
+**For a left-tailed test ($H_a: \mu < \mu_0$):**
+- p-value = $P(Z \leq z)$
+
+---
+
+## How to Do It in Excel
+
+| Cell | Formula | Description |
+|------|---------|-------------|
+| B1 | 14.6 | Sample mean |
+| B2 | 14.0 | Null hypothesis value ($\mu_0$) |
+| B3 | 1.5 | Population SD ($\sigma$) |
+| B4 | 36 | Sample size n |
+| B5 | `=(B1-B2)/(B3/SQRT(B4))` | z-statistic |
+| B6 | `=1-NORM.S.DIST(B5,TRUE)` | p-value (one-tailed, right) |
+| B7 | `=2*(1-NORM.S.DIST(ABS(B5),TRUE))` | p-value (two-tailed) |
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Corn moisture example
+y_bar  <- 14.6   # sample mean
+mu0    <- 14.0   # null hypothesis mean
+sigma  <- 1.5    # known population SD
+n      <- 36     # sample size
+
+# Calculate z-statistic
+z_stat <- (y_bar - mu0) / (sigma / sqrt(n))
+cat("z-statistic:", z_stat, "\n")
+
+# One-tailed p-value (right tail: Ha: mu > mu0)
+p_one_tail <- pnorm(z_stat, lower.tail = FALSE)
+cat("One-tailed p-value:", round(p_one_tail, 4), "\n")
+
+# Two-tailed p-value
+p_two_tail <- 2 * pnorm(abs(z_stat), lower.tail = FALSE)
+cat("Two-tailed p-value:", round(p_two_tail, 4), "\n")
+
+# Critical value for alpha = 0.05, one-tailed
+z_crit <- qnorm(0.95)
+cat("Critical value (one-tailed, alpha=0.05):", round(z_crit, 3), "\n")
+cat("Decision:", ifelse(z_stat > z_crit, "Reject H0", "Fail to reject H0"), "\n")
+
+# --- Two-tailed example ---
+# Illustrate the rejection region
+x_vals <- seq(-4, 4, length.out = 500)
+plot(x_vals, dnorm(x_vals), type = "l", lwd = 2,
+     main = "z-test: Corn Moisture (one-tailed)",
+     xlab = "z", ylab = "Density")
+
+# Shade rejection region (right tail only)
+x_rej <- seq(z_crit, 4, length.out = 100)
+polygon(c(z_rej, rev(x_rej)),
+        c(dnorm(x_rej), rep(0, length(x_rej))),
+        col = "salmon", border = NA)
+
+abline(v = z_stat, col = "blue", lty = 2, lwd = 2)
+text(z_stat, 0.35, paste("z =", round(z_stat, 2)), col = "blue", pos = 4)
+text(z_crit + 0.2, 0.05, paste("Critical\nvalue =", round(z_crit, 2)),
+     col = "red", pos = 4, cex = 0.9)
+legend("topleft", legend = c("Rejection region (5%)", "z-statistic"),
+       fill = c("salmon", NA), lty = c(NA, 2), col = c(NA, "blue"), border = NA)
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-warning}
+## Common Mistake: Choosing One-Tailed to Get a Smaller p-Value
+
+A one-tailed test gives a smaller p-value than a two-tailed test for the same data. Students sometimes choose one-tailed tests after seeing the data to make a borderline result significant. This is not acceptable. The direction of the test must be chosen based on the research question, before data collection.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Reporting "p = 0" in R
+
+R sometimes outputs `p-value < 2.2e-16` for extremely small p-values. This means the p-value is essentially zero, but it is NOT literally zero. Always report it as "p < 0.001" in your write-up.
+:::
+
+::: {.callout-note}
+## Practical Note: When Do We Use the z-Test?
+
+In practice, we rarely know the true population standard deviation $\sigma$. The z-test is mainly a teaching tool. Next week we introduce the **t-test**, which uses the sample standard deviation $s$ instead of $\sigma$ — this is the test you will use most often.
+:::
+
+---
+
+## Summary
+
+- A **two-tailed test** tests for differences in both directions; a **one-tailed test** tests in a specific direction.
+- The **z-test** is used when the population standard deviation is known.
+- Calculate $z = (\bar{y} - \mu_0) / (\sigma/\sqrt{n})$ and compare to the critical value.
+- Reject $H_0$ when $p \leq \alpha$ (or equivalently, when $|z| \geq z_{crit}$).
+- The choice of one-tailed vs. two-tailed must be made before seeing the data.
+
+## Practice Problems
+
+1. A dairy farm expects cows to produce an average of 28 liters of milk per day. The population standard deviation is known to be $\sigma = 4$ liters. The farm manager measures a random sample of 25 cows and finds $\bar{y} = 26.2$ liters. Use a two-tailed z-test with $\alpha = 0.05$ to test whether production differs from the expected 28 liters. Show all four steps.
+
+2. A water quality standard requires that stream nitrate concentration not exceed 5 mg/L. A sample of 49 measurements has mean 5.4 mg/L. The population SD is known to be 1.4 mg/L. Is there evidence ($\alpha = 0.05$) that the concentration exceeds the standard? (Use a one-tailed test.)
+
+3. A two-tailed z-test gives a test statistic of $z = -1.75$ with $\alpha = 0.05$. The critical values are $\pm 1.96$. (a) What is the decision? (b) What if $\alpha = 0.10$ (critical values $\pm 1.645$)? (c) Explain why using a larger $\alpha$ increases the risk of a Type I error.

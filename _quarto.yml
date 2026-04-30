@@ -1,16 +1,76 @@
 project:
   type: book
+  output-dir: docs
+  render:
+    - index.qmd
+    - syllabus.qmd
+    - chapters/week01.qmd
+    - chapters/week02.qmd
+    - chapters/week03.qmd
+    - chapters/week04.qmd
+    - chapters/week05.qmd
+    - chapters/week06.qmd
+    - chapters/week07.qmd
+    - chapters/week08.qmd
+    - chapters/week09.qmd
+    - chapters/week10.qmd
+    - chapters/week11.qmd
+    - chapters/week12.qmd
+    - chapters/week13.qmd
+    - chapters/week14.qmd
+    - chapters/week15.qmd
+    - chapters/week16.qmd
+    - references.qmd
 
 book:
-  title: "AGNR 220"
-  subtitle: "Introduction to Statistical Analysis in Agriculture and the Natural Resources"
-  author: "Alejandro Molina Moctezuma"
-  date: "6/6/2025"
+  title: "Introduction to Statistical Analysis in Agriculture and the Natural Resources"
+  subtitle: "AGNR 220 / SNR 220"
+  author: "Dr. Alejandro Molina-Moctezuma"
+  date: "August 17, 2026"
+  page-footer: "Alejandro Molina-Moctezuma, 2026"
+  downloads: [pdf, epub]
+  sidebar:
+    collapse-level: 1
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "Front Matter"
+      chapters:
+        - syllabus.qmd
+    - part: "Unit 1: Getting Started with Data"
+      chapters:
+        - chapters/week01.qmd
+        - chapters/week02.qmd
+        - chapters/week03.qmd
+        - chapters/week04.qmd
+    - part: "Unit 2: Probability and Uncertainty"
+      chapters:
+        - chapters/week05.qmd
+        - chapters/week06.qmd
+        - chapters/week07.qmd
+    - part: "Unit 3: Inference and Hypothesis Testing"
+      chapters:
+        - chapters/week08.qmd
+        - chapters/week09.qmd
+        - chapters/week10.qmd
+        - chapters/week11.qmd
+    - part: "Unit 4: Comparing Groups"
+      chapters:
+        - chapters/week12.qmd
+        - chapters/week13.qmd
+        - chapters/week14.qmd
+    - part: "Unit 5: Relationships Between Variables"
+      chapters:
+        - chapters/week15.qmd
+    - chapters/week16.qmd
     - references.qmd
+  navbar:
+    search: true
+    background: light
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "AGNR 220 Course Page"
+        href: https://moctezumaii.github.io/AGNR_220/
 
 bibliography: references.bib
 
@@ -19,6 +79,8 @@ format:
     theme: united
   pdf:
     documentclass: scrreprt
+
+number-sections: true
 
 editor: visual
 

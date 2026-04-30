@@ -1,0 +1,244 @@
+---
+categories:
+  - descriptive-statistics
+  - distributions
+  - histograms
+  - boxplots
+---
+
+# Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots {#sec-week03}
+
+**Dates:** Monday August 31 · Wednesday September 2 · Friday September 4
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Draw and interpret a histogram from a small dataset.
+- Describe the shape of a distribution (symmetric, right-skewed, left-skewed).
+- Calculate quartiles and the interquartile range (IQR).
+- Draw and interpret a boxplot by hand.
+- Create histograms and boxplots in Excel and R.
+
+---
+
+## Background and Conceptual Introduction
+
+Last week we calculated summary numbers — the mean, median, and standard deviation. Those numbers are useful, but they do not tell the whole story. Two datasets can have the same mean and standard deviation yet look completely different when plotted.
+
+Think of it this way: knowing that a forest has an average tree diameter of 20 cm is useful. But knowing that the diameters are spread roughly evenly around 20 cm (bell-shaped) is very different from knowing that most trees are small saplings and a few are giant old-growth trees (right-skewed). The *shape* of the distribution matters for choosing the right statistical test.
+
+**Histograms** and **boxplots** are two of the most important tools for visualizing the distribution of a numerical variable. They let you see the shape, identify typical values, spot unusual observations (outliers), and compare groups.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+You are comparing fish length data from two different lakes. Lake A has an average trout length of 35 cm with most fish close to that size. Lake B also has an average of 35 cm, but it has a mix of very small young fish and a few very large old fish. If you only reported the mean, would someone reading your report notice the difference? What would a histogram show that the mean cannot?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Frequency:** The number of observations that fall within a given interval or category.
+
+**Histogram:** A bar chart for numerical data. Each bar covers a range of values (a "bin"), and the height of the bar shows how many observations fall in that range. Bars touch each other because the data are continuous.
+
+**Bin (class interval):** The range of values covered by one bar in a histogram. Choosing the number of bins affects how a histogram looks.
+
+**Distribution:** The overall pattern of values in a dataset — where values cluster, how spread out they are, and whether they are symmetric or skewed.
+
+**Symmetric distribution:** The left and right halves of the histogram mirror each other. The mean and median are approximately equal.
+
+**Right-skewed (positively skewed):** The histogram has a long tail extending to the right. Most values are small, but a few are very large. The mean is pulled to the right of the median. Common in income data, species abundance counts, and pollutant concentrations.
+
+**Left-skewed (negatively skewed):** The histogram has a long tail extending to the left. The mean is pulled to the left of the median.
+
+**Quartiles:** Values that split a sorted dataset into four equal parts.
+- Q1 (first quartile) = 25th percentile
+- Q2 (second quartile) = median = 50th percentile
+- Q3 (third quartile) = 75th percentile
+
+**Interquartile Range (IQR):** $IQR = Q3 - Q1$. It describes the spread of the middle 50% of the data. It is resistant to outliers.
+
+**Outlier:** An observation that is far from the rest. A common rule: any value more than $1.5 \times IQR$ below Q1 or above Q3 is considered a potential outlier.
+
+**Boxplot (box-and-whisker plot):** A graphical display showing Q1, median, Q3, and the range of non-outlier values. Outliers are plotted as individual points.
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Soil Nitrate Concentrations
+
+A water quality specialist measures soil nitrate concentration (mg/kg) at 12 sampling locations across a farm field:
+
+**Data:** 8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17
+:::
+
+### Building a Histogram
+
+**Step 1: Sort the data**
+
+8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 22
+
+**Step 2: Choose bins**
+
+Range = 22 − 8 = 14. With 12 observations, 3–4 bins works well. Use bins of width 4:
+
+| Bin | Range | Observations | Frequency |
+|-----|-------|--------------|-----------|
+| 1 | 8–11 | 8, 9, 10, 11 | 4 |
+| 2 | 12–15 | 12, 13, 14, 15 | 4 |
+| 3 | 16–19 | 16, 17, 19 | 3 |
+| 4 | 20–23 | 22 | 1 |
+
+**Step 3: Draw the histogram**
+
+Draw a horizontal axis (Nitrate concentration), a vertical axis (Frequency), and draw a bar for each bin with height equal to its frequency.
+
+### Building a Boxplot
+
+**Step 1: Find Q1, median (Q2), Q3**
+
+Sorted: 8, 9, 10, 11, **12, 13** | **14, 15**, 16, 17, 19, 22
+
+Median (Q2) = average of 6th and 7th values = $\frac{13 + 14}{2} = 13.5$
+
+Lower half: 8, 9, 10, 11, 12, 13 → Q1 = average of 3rd and 4th = $\frac{10 + 11}{2} = 10.5$
+
+Upper half: 14, 15, 16, 17, 19, 22 → Q3 = average of 3rd and 4th = $\frac{16 + 17}{2} = 16.5$
+
+**Step 2: Calculate IQR**
+
+$$IQR = Q3 - Q1 = 16.5 - 10.5 = 6.0$$
+
+**Step 3: Calculate fence values (outlier boundaries)**
+
+Lower fence = $Q1 - 1.5 \times IQR = 10.5 - 9.0 = 1.5$
+
+Upper fence = $Q3 + 1.5 \times IQR = 16.5 + 9.0 = 25.5$
+
+All observations fall between 1.5 and 25.5, so there are **no outliers**.
+
+**Step 4: Draw the boxplot**
+
+- Draw a box from Q1 (10.5) to Q3 (16.5)
+- Draw a line inside the box at the median (13.5)
+- Draw whiskers from Q1 down to the minimum (8) and from Q3 up to the maximum (22)
+
+---
+
+## How to Do It in Excel
+
+### Histogram
+
+1. Enter your data in column A.
+2. Click **Insert** → **Charts** → select the **Histogram** icon (it looks like vertical bars).
+3. Excel will automatically create a histogram. Right-click on the bars and select **Format Data Series** to adjust the number of bins.
+4. Label your axes: right-click each axis, choose **Add Axis Title**.
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+### Boxplot
+
+1. Select your data column.
+2. Click **Insert** → **Charts** → **Insert Statistic Chart** → **Box and Whisker**.
+3. Excel draws the boxplot. Note that Excel calculates quartiles slightly differently from how we did it by hand — small differences are normal.
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Enter the nitrate data
+nitrate <- c(8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17)
+
+# --- Histogram ---
+hist(nitrate,
+     main = "Soil Nitrate Concentration",
+     xlab = "Nitrate (mg/kg)",
+     ylab = "Frequency",
+     col  = "steelblue",
+     border = "white")
+
+# --- Quartiles and IQR ---
+quantile(nitrate)         # shows min, Q1, median, Q3, max
+IQR(nitrate)              # interquartile range
+
+# --- Boxplot ---
+boxplot(nitrate,
+        main   = "Soil Nitrate Concentration",
+        ylab   = "Nitrate (mg/kg)",
+        col    = "lightgreen")
+
+# --- Side-by-side boxplots for two groups (example) ---
+# Suppose we have data from Field A and Field B
+field_A <- c(8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17)
+field_B <- c(5, 7, 6, 9, 8, 11, 6, 10, 7, 8, 9, 12)
+
+boxplot(field_A, field_B,
+        names  = c("Field A", "Field B"),
+        main   = "Nitrate by Field",
+        ylab   = "Nitrate (mg/kg)",
+        col    = c("lightblue", "lightyellow"))
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+**Reading a boxplot:**
+
+- A box that is taller (larger IQR) = more variable middle 50%
+- If the median line is not in the center of the box, the data is skewed
+- Long upper whisker or outlier points on top = right-skewed
+- Long lower whisker or outlier points on bottom = left-skewed
+
+**Comparing groups:**
+
+When you put two boxplots side by side, overlapping boxes suggest the groups are similar; non-overlapping boxes suggest a meaningful difference. (We will test this formally with statistical tests in Units 3 and 4.)
+
+::: {.callout-warning}
+## Common Mistake: Connecting Histogram Bars
+
+In a bar chart for categorical data, bars are separated by spaces. In a histogram for continuous numerical data, bars should touch. If your histogram has gaps between bars, check that you have the right chart type.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Too Few or Too Many Bins
+
+With too few bins you lose detail; with too many bins the histogram becomes jagged and noisy. A good rule of thumb: use $\sqrt{n}$ bins where $n$ is the number of observations. For 12 observations, $\sqrt{12} \approx 3.5$, so 3–4 bins is sensible.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Confusing Standard Deviation with IQR
+
+Both measure spread, but in different ways. Standard deviation uses all observations and is sensitive to outliers. IQR uses only the middle 50% and is resistant to outliers. Report SD when data are symmetric; consider IQR when data are skewed or have outliers.
+:::
+
+---
+
+## Summary
+
+- A **histogram** shows the shape of the distribution of a numerical variable.
+- Common shapes: symmetric (bell-shaped), right-skewed (long right tail), left-skewed (long left tail).
+- A **boxplot** displays Q1, median, Q3, whiskers, and outliers — a compact 5-number summary.
+- The **IQR** is the range of the middle 50% of data; it is resistant to outliers.
+- In Excel: use Insert → Statistical Chart for both histograms and boxplots.
+- In R: use `hist()` for histograms and `boxplot()` for boxplots.
+
+## Practice Problems
+
+1. A forester measures the diameter at breast height (DBH, in cm) of 10 trees in a stand: 12, 8, 35, 14, 11, 9, 42, 13, 10, 16. (a) Create a frequency table with bins of width 10 (0–9, 10–19, 20–29, 30–39, 40–49). (b) Calculate Q1, Q2, Q3, and IQR. (c) Are there any outliers according to the 1.5 × IQR rule?
+
+2. A researcher counts the number of invasive plant species found in 8 forest plots: 2, 1, 3, 5, 0, 2, 4, 1. Describe what you would expect the histogram to look like. Would you expect this distribution to be symmetric or skewed? Explain your reasoning.
+
+3. Two ranches record their daily milk production (liters/cow). Ranch A: mean = 22 L, median = 21 L. Ranch B: mean = 22 L, median = 19 L. Without seeing the raw data, what do these statistics suggest about the shape of the distributions at each ranch? Which ranch likely has a few unusually high-producing cows?

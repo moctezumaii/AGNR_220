@@ -1,0 +1,209 @@
+---
+categories:
+  - course-introduction
+  - data-types
+  - variables
+  - statistics-overview
+---
+
+# Week 1 — Welcome and What Is Data? {#sec-week01}
+
+**Dates:** Monday August 17 · Wednesday August 19 · Friday August 21
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Explain why data and statistics are important in agriculture and natural resources.
+- Define the terms *variable*, *observation*, and *dataset*.
+- Classify variables as categorical or numerical (and within each type, name the subtypes).
+- Give at least two real-world agricultural or natural resource examples for each data type.
+- Describe how this course is organized and what to expect each week.
+
+---
+
+## Why Do We Use Data and Statistics?
+
+Every day, people working in agriculture and natural resources face questions that data can help answer:
+
+- Is this new corn variety producing higher yields than the old one?
+- Are deer populations in this county growing, stable, or declining?
+- Does adding fertilizer to these fields actually improve grass production, or does the variation between fields just make it look that way?
+- Is the water in this stream safe for fish?
+
+Without data, we can only guess at the answers. With data — and the right tools to analyze them — we can make confident, defensible decisions.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+Think of a decision that a farmer, a wildlife manager, or a water quality specialist might make in a typical week. What information would they need to make a *good* decision rather than just an educated guess? Where would that information come from?
+:::
+
+Statistics is the science of collecting, organizing, analyzing, and interpreting data. In this course, you will learn how to do all four of those steps — first by hand (so you truly understand what is happening), then in Excel, and then in R.
+
+### Real-World Examples of Statistics in Action
+
+**Food Security and Crop Production**
+Plant scientists use statistics to test whether new crop varieties yield more grain per hectare than current varieties. A single farmer's field is not enough evidence — we need data from many fields, many locations, and multiple growing seasons. Statistical analysis tells us whether an observed difference is real or could have happened by random chance.
+
+**Wildlife Management**
+Wildlife managers count deer, elk, or turkey populations to set hunting regulations. A simple count from one area on one day is misleading — animals move, observers miss individuals, and conditions vary. Statistics allows managers to estimate population size with a known margin of error.
+
+**Water Quality**
+Environmental scientists monitor streams for pollutants such as nitrates from fertilizer runoff. They collect water samples at multiple times and locations. Statistics helps them determine whether nitrate levels exceed safe thresholds and whether levels are changing over time.
+
+**Livestock Performance**
+Animal scientists compare weight gain in steers on different diets. Is the difference in average weight gain between two groups due to the diet, or just random variation among individual animals? A statistical test answers that question.
+
+---
+
+## What Is a Dataset?
+
+When we collect information, we organize it into a **dataset**. A dataset is a structured collection of data about a group of *subjects* (also called *units* or *cases*).
+
+Consider this small example:
+
+| Steer ID | Diet | Daily Gain (kg) | Age (months) | Breed |
+|----------|------|----------------|--------------|-------|
+| 1 | Standard | 1.2 | 18 | Angus |
+| 2 | Supplement | 1.5 | 20 | Hereford |
+| 3 | Standard | 1.1 | 19 | Angus |
+| 4 | Supplement | 1.6 | 21 | Angus |
+| 5 | Standard | 1.3 | 17 | Hereford |
+
+Each **row** is one *observation* — in this case, one steer.
+Each **column** is one *variable* — a characteristic measured on each steer.
+
+::: {.callout-note}
+## Key Vocabulary
+
+**Dataset:** A table of data with rows (observations) and columns (variables).
+
+**Observation:** One subject/unit in your study (one steer, one field, one water sample, one tree).
+
+**Variable:** A characteristic measured or recorded for each observation (weight, species, temperature, yield).
+:::
+
+---
+
+## Types of Variables
+
+Not all variables are the same kind. The type of variable determines what statistics you can use and what kind of plots make sense. There are two main families:
+
+### Categorical Variables
+
+A **categorical variable** places each observation into one of a fixed set of categories. You cannot do arithmetic on categories (what is the "average" of Angus + Hereford?).
+
+**Nominal variables** — categories with no natural order.
+Examples:
+- Crop species: corn, soybeans, wheat, sorghum
+- Land cover type: forest, pasture, cropland, wetland
+- Sex: male, female
+- Treatment group: control, low fertilizer, high fertilizer
+
+**Ordinal variables** — categories that do have a natural order, but the gaps between levels are not equal.
+Examples:
+- Soil compaction rating: low, medium, high
+- Body condition score of a cow: 1, 2, 3, 4, 5 (numbers used as ranks)
+- Wildlife habitat quality: poor, fair, good, excellent
+
+::: {.callout-tip}
+## Think About It 🧠
+
+If a researcher rates a stream's water quality as "1 = poor, 2 = fair, 3 = good," is the difference between "poor" and "fair" the same as the difference between "fair" and "good"? Why does that matter for choosing a statistical method?
+:::
+
+### Numerical Variables
+
+A **numerical variable** takes actual number values, and arithmetic on those numbers is meaningful (a steer that weighs 400 kg really does weigh twice as much as one that weighs 200 kg).
+
+**Discrete variables** — whole-number counts. You cannot have 2.5 deer.
+Examples:
+- Number of eggs in a bird nest
+- Count of seedlings that germinated in a plot
+- Number of insects caught in a trap
+
+**Continuous variables** — can take any value in a range, including decimals.
+Examples:
+- Tree diameter at breast height (cm)
+- Soil pH (e.g., 6.3, 7.1, 5.8)
+- Precipitation in millimeters
+- Milk production per cow per day (liters)
+- Temperature in degrees Celsius
+
+::: {.callout-note}
+## Summary of Variable Types
+
+```
+Variables
+├── Categorical
+│   ├── Nominal (no order): crop species, land use type
+│   └── Ordinal (ordered): habitat quality, body condition score
+└── Numerical
+    ├── Discrete (counts): number of deer, seedling germination count
+    └── Continuous (measurements): tree diameter, milk yield, soil pH
+```
+:::
+
+---
+
+## Overview of the Course Structure
+
+This course is organized into five units. Each week covers one main topic. Below is the roadmap for the semester.
+
+| Unit | Weeks | Topics |
+|------|-------|--------|
+| 1 — Getting Started with Data | 1–4 | Data types, describing data, uncertainty |
+| 2 — Probability and Uncertainty | 5–7 | Probability, frequency distributions, binomial |
+| 3 — Inference and Hypothesis Testing | 8–11 | NHST framework, t-tests |
+| 4 — Comparing Groups | 12–14 | ANOVA, chi-square |
+| 5 — Relationships | 15 | Correlation and regression |
+| Wrap-Up | 16 | Review and synthesis |
+
+**What to expect each week:**
+
+Each chapter in this book follows the same structure:
+
+1. **Learning Objectives** — what you should know by Friday
+2. **Background** — plain-language explanations with ag/NR examples
+3. **Key Concepts** — definitions you should memorize
+4. **How to Do It by Hand** — step-by-step worked examples
+5. **How to Do It in Excel** — practical spreadsheet instructions
+6. **How to Do It in R** — beginner-friendly code with comments
+7. **Practice Problems** — problems to try on your own
+
+---
+
+## Introduction to the Tools
+
+In this course you will use two software tools:
+
+**Microsoft Excel** — You almost certainly have Excel already. We use it for calculations, simple statistics, and creating basic plots. Excel is the tool of choice for many agricultural professionals and is excellent for organizing small to medium-sized datasets.
+
+**Program R** — R is a free, open-source programming language designed specifically for statistical analysis. It is widely used in research, government agencies, and industry. Do not be intimidated — we will start with very simple commands and build from there.
+
+::: {.callout-important}
+## Software Installation
+
+You will need both Excel and R/RStudio installed by **Week 3**. Instructions for installing R and RStudio are available from the instructor on Canvas. R can be downloaded for free from [https://cran.r-project.org/](https://cran.r-project.org/) and RStudio from [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/). If you have a Chromebook or iPad, a free cloud version of RStudio is available at [https://posit.cloud](https://posit.cloud).
+:::
+
+We will use Excel first (Weeks 2–3) and introduce R gradually starting in Week 3. By the end of the semester you will be comfortable with basic data analysis in both tools.
+
+---
+
+## Summary
+
+- Statistics helps us make sound decisions in agriculture and natural resources by turning raw data into reliable conclusions.
+- A dataset is a table of observations (rows) and variables (columns).
+- Variables are either **categorical** (nominal or ordinal) or **numerical** (discrete or continuous).
+- Knowing the type of a variable is the first step in choosing the right analysis.
+- This course progresses from describing data → understanding probability → testing hypotheses → comparing groups → modeling relationships.
+
+## Practice Problems
+
+1. A forest ecologist records the following information for each tree in a study plot: species, diameter at breast height (cm), canopy condition (healthy, stressed, dying), and the number of woodpecker cavities present. Classify each of these four variables as nominal, ordinal, discrete, or continuous.
+
+2. A poultry farmer wants to know whether a new feed supplement increases egg production. She records, for each hen: feed type (standard or supplement), hen age in weeks, number of eggs laid per week, and flock ID. Identify the observations and variables. Classify each variable.
+
+3. Give one example of a dataset you might collect in your own major or career interest. List at least three variables and classify each one.

@@ -1,0 +1,237 @@
+---
+categories:
+  - anova
+  - one-way-anova
+  - comparing-means
+  - f-test
+  - multiple-groups
+---
+
+# Week 12 — Comparing More Than Two Means: One-Way ANOVA {#sec-week12}
+
+**Dates:** Monday November 2 · Wednesday November 4 · Friday November 6
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Explain why we use ANOVA instead of multiple t-tests when comparing three or more groups.
+- Define and calculate sources of variation: between-group (treatment) SS, within-group (error) SS.
+- Interpret an ANOVA table: SS, df, MS, F-ratio, and p-value.
+- State the assumptions of one-way ANOVA and check them.
+- Conduct a one-way ANOVA in Excel and R and interpret the output.
+
+---
+
+## Background and Conceptual Introduction
+
+The two-sample t-test from Week 11 is great for comparing two groups. But what if you have three fertilizer treatments? Or four feed types? Or five grazing management regimes?
+
+You might think: "I'll just run all the pairwise t-tests." If you have 3 groups, that is 3 pairwise tests. If you have 5 groups, that is 10 pairwise tests. Here is the problem: every time you run a test at $\alpha = 0.05$, there is a 5% chance of a Type I error. Run 10 tests and your chance of getting at least one false positive grows dramatically — this is called **inflating the Type I error rate** (or the family-wise error rate).
+
+**Analysis of Variance (ANOVA)** solves this problem by testing all groups simultaneously in a single test. It answers the question: "Is there any significant difference among these group means?" If yes, we then use follow-up tests to figure out which groups differ.
+
+The logic of ANOVA is clever. It partitions the total variability in the data into two sources:
+
+1. **Variation between groups** (due to the treatment): Are the group means different from each other?
+2. **Variation within groups** (due to random error): How much do individual observations vary around their group mean?
+
+If variation between groups is large relative to variation within groups, the F-ratio is large, and we reject $H_0$.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+Imagine you measure crop yield from three fertilizer treatment groups. In Scenario A, the three group means are 50, 52, and 51 bushels/acre — very close together. In Scenario B, the means are 42, 55, and 68 bushels/acre — very spread apart. In both scenarios, there is also some variability within each group. For which scenario is the F-ratio likely to be larger? Why?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**One-way ANOVA:** ANOVA with a single categorical explanatory variable (factor) with three or more levels.
+
+**Factor:** The categorical explanatory variable (e.g., fertilizer type with levels: none, low, high).
+
+**Levels:** The categories within the factor (e.g., none, low, high).
+
+**Total Sum of Squares (SST):** Total variability in the data from the overall grand mean.
+
+**Between-group Sum of Squares (SS~groups~):** Variability of each group mean around the grand mean. Measures the treatment effect.
+
+**Within-group Sum of Squares (SS~error~):** Variability of individual observations around their group mean. Measures random error.
+
+**SST = SS~groups~ + SS~error~**
+
+**Mean Squares (MS):** SS divided by corresponding degrees of freedom.
+- $MS_{groups} = SS_{groups} / (k-1)$ where $k$ = number of groups
+- $MS_{error} = SS_{error} / (N-k)$ where $N$ = total number of observations
+
+**F-ratio:** The ratio of between-group to within-group variation:
+
+$$F = \frac{MS_{groups}}{MS_{error}}$$
+
+Under $H_0$, $F$ follows an F-distribution. Large $F$ → reject $H_0$.
+
+**Assumptions of one-way ANOVA:**
+1. Observations are independent
+2. Data within each group are approximately normally distributed
+3. Variances are approximately equal across groups (homogeneity of variance)
+
+---
+
+## ANOVA Table
+
+| Source | SS | df | MS | F | p-value |
+|--------|----|----|-----|---|---------|
+| Between groups (treatment) | SS~groups~ | $k-1$ | SS~groups~$/$(k-1) | MS~groups~/MS~error~ | from F-table |
+| Within groups (error) | SS~error~ | $N-k$ | SS~error~$/$(N-k) | | |
+| Total | SST | $N-1$ | | | |
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Three Grazing Intensities on Forage Yield
+
+A range manager tests three grazing intensities (light, moderate, heavy) on forage yield (kg/ha). Each treatment is applied to 4 plots:
+
+| Light | Moderate | Heavy |
+|-------|----------|-------|
+| 1850 | 1620 | 1380 |
+| 1920 | 1680 | 1350 |
+| 1790 | 1590 | 1410 |
+| 1870 | 1650 | 1420 |
+:::
+
+**Step 1: Calculate group means and grand mean**
+
+$\bar{y}_{light} = (1850+1920+1790+1870)/4 = 7430/4 = 1857.5$
+
+$\bar{y}_{moderate} = (1620+1680+1590+1650)/4 = 6540/4 = 1635.0$
+
+$\bar{y}_{heavy} = (1380+1350+1410+1420)/4 = 5560/4 = 1390.0$
+
+$\bar{y}_{grand} = (7430+6540+5560)/12 = 19530/12 = 1627.5$
+
+**Step 2: Calculate SS~groups~**
+
+$$SS_{groups} = \sum_{j=1}^{k} n_j (\bar{y}_j - \bar{y}_{grand})^2$$
+
+$$= 4(1857.5 - 1627.5)^2 + 4(1635.0 - 1627.5)^2 + 4(1390.0 - 1627.5)^2$$
+
+$$= 4(230)^2 + 4(7.5)^2 + 4(-237.5)^2$$
+
+$$= 4(52900) + 4(56.25) + 4(56406.25) = 211600 + 225 + 225625 = 437450$$
+
+**Step 3: Calculate SS~error~**
+
+For each group, compute $\sum(y_{ij} - \bar{y}_j)^2$:
+
+Light: $(1850-1857.5)^2 + (1920-1857.5)^2 + (1790-1857.5)^2 + (1870-1857.5)^2$
+$= 56.25 + 3906.25 + 4556.25 + 156.25 = 8675$
+
+Moderate: $(1620-1635)^2 + (1680-1635)^2 + (1590-1635)^2 + (1650-1635)^2$
+$= 225 + 2025 + 2025 + 225 = 4500$
+
+Heavy: $(1380-1390)^2 + (1350-1390)^2 + (1410-1390)^2 + (1420-1390)^2$
+$= 100 + 1600 + 400 + 900 = 3000$
+
+$SS_{error} = 8675 + 4500 + 3000 = 16175$
+
+**Step 4: Fill in the ANOVA table**
+
+$df_{groups} = k - 1 = 3 - 1 = 2$
+
+$df_{error} = N - k = 12 - 3 = 9$
+
+| Source | SS | df | MS | F |
+|--------|----|----|-----|---|
+| Groups | 437450 | 2 | 218725 | 121.6 |
+| Error | 16175 | 9 | 1797.2 | |
+| Total | 453625 | 11 | | |
+
+**Step 5: Find p-value**
+
+$F = 121.6$ with $df_1 = 2$, $df_2 = 9$. From an F-table, the critical value at $\alpha = 0.05$ with (2,9) df is 4.26.
+
+$F = 121.6 \gg 4.26$ → **Reject $H_0$**
+
+**Conclusion:** Grazing intensity has a significant effect on forage yield ($F_{2,9} = 121.6$, $p \ll 0.001$). Not all group means are equal.
+
+---
+
+## How to Do It in Excel
+
+1. Enter the data with each treatment in a separate column.
+2. Go to **Data** → **Data Analysis** → **Anova: Single Factor**.
+3. Set Input Range = all data columns, $\alpha = 0.05$.
+4. Click OK and interpret the output table.
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Grazing intensity ANOVA
+forage <- c(1850, 1920, 1790, 1870,   # Light
+            1620, 1680, 1590, 1650,   # Moderate
+            1380, 1350, 1410, 1420)   # Heavy
+
+grazing <- rep(c("Light", "Moderate", "Heavy"), each = 4)
+
+df_grazing <- data.frame(yield = forage, treatment = grazing)
+
+# Run one-way ANOVA
+model <- aov(yield ~ treatment, data = df_grazing)
+summary(model)
+
+# Visualize group means
+library(ggplot2)
+ggplot(df_grazing, aes(x = treatment, y = yield, fill = treatment)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.15, size = 2) +
+  labs(title = "Forage Yield by Grazing Intensity",
+       x = "Grazing Intensity",
+       y = "Yield (kg/ha)") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-warning}
+## Common Mistake: ANOVA Significant → Which Groups Differ?
+
+A significant ANOVA F-test tells you that *at least one* group mean is different from the others — it does NOT tell you which ones. You need a **post-hoc test** (e.g., Tukey's HSD) to identify the specific pairs that differ. In R: `TukeyHSD(model)`.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Running Multiple t-Tests Instead of ANOVA
+
+If you have 4 groups and run all 6 pairwise t-tests at $\alpha = 0.05$, your probability of at least one false positive is approximately $1 - (0.95)^6 = 0.26$ — more than 25%! Always use ANOVA (and post-hoc tests) when comparing more than two groups.
+:::
+
+---
+
+## Summary
+
+- **One-way ANOVA** tests whether any group means differ among three or more groups simultaneously.
+- ANOVA partitions variability into between-group (treatment) and within-group (error) components.
+- The **F-ratio** = MS~groups~/MS~error~. A large F → reject $H_0$.
+- A significant F only tells you *some* groups differ — post-hoc tests identify *which* groups.
+- In R, use `aov(response ~ factor, data = df)` followed by `summary()` and `TukeyHSD()`.
+
+## Practice Problems
+
+1. A plant ecologist measures plant biomass (g) in four habitat types (forest, meadow, wetland, shrubland): Forest: 42, 38, 45; Meadow: 31, 35, 29; Wetland: 55, 60, 52; Shrubland: 37, 33, 40. (a) Calculate the grand mean. (b) Calculate SS~groups~. (c) Write out the ANOVA table structure (you do not need to compute SS~error~ by hand — just set up the table).
+
+2. In an ANOVA with 3 groups and 6 observations per group ($N=18$), what are the degrees of freedom for: (a) between groups, (b) within groups, (c) total?
+
+3. An ANOVA on fish length across 5 lake sites produces $F_{4,45} = 2.1$, $p = 0.094$. (a) What is the statistical decision at $\alpha = 0.05$? (b) Does this mean all lake means are equal? (c) What might explain a non-significant result if you believed fish sizes truly differ between lakes?

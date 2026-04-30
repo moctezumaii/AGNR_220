@@ -1,0 +1,194 @@
+---
+categories:
+  - experimental-design
+  - scientific-method
+  - controls
+  - replication
+  - randomization
+---
+
+# Week 7 — Experimental Design and the Scientific Method {#sec-week07}
+
+**Dates:** Monday September 28 · Wednesday September 30 · Friday October 2
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Explain the steps of the scientific method and how they apply to agricultural and natural resource research.
+- Define treatment, control, replication, randomization, and blocking.
+- Distinguish between observational studies and controlled experiments.
+- Identify potential sources of bias in an experimental design.
+- Design a basic experiment for a simple agricultural or natural resource question.
+
+---
+
+## Background and Conceptual Introduction
+
+You have spent the first six weeks of this course learning *how* to describe and summarize data. Now it is time to step back and ask: *where does data come from, and how should we collect it?*
+
+The way you design an experiment determines whether you can draw valid conclusions. No amount of sophisticated statistics can rescue a poorly designed study. The old saying in research is: "Design your experiment so that the statistics you need are obvious." In other words, if you have to ask how to analyze your data, you may need to redesign your study.
+
+Consider this scenario: A farmer applies a new herbicide to his fields and notices that weed pressure drops significantly that year. Does the herbicide work? Maybe — but maybe it was also a drier-than-normal year that reduced weed germination. Or maybe the treated fields were already less weedy to begin with. Without proper experimental design, we cannot separate the effect of the herbicide from these other potential explanations. These alternative explanations are called **confounding variables**.
+
+Good experimental design is like building a fair test. Scientists who study crop varieties want to know: "Is this new variety truly better, or did it just get lucky with a good plot of land?" The three pillars of good experimental design — **randomization**, **replication**, and **controls** — are designed specifically to eliminate luck and confounding.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+Imagine you want to test whether playing classical music in a greenhouse increases tomato plant growth. You play music in one greenhouse (your "treatment") and leave the other greenhouse silent (your "control"). After 4 weeks, the music greenhouse plants are taller. But the music greenhouse also happened to get more sunlight because it faces south. How does this flaw in the design undermine your conclusion? How would you fix it?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Scientific method:** The systematic process of asking a question, forming a hypothesis, designing an experiment, collecting data, analyzing results, and drawing conclusions.
+
+**Hypothesis:** A testable prediction about the relationship between variables. Must be falsifiable.
+
+**Experimental unit:** The individual entity that receives a treatment (e.g., one field plot, one cow, one seedling).
+
+**Treatment:** What you apply or manipulate in the experiment (e.g., fertilizer type, irrigation level, feed supplement).
+
+**Control group:** A group that receives no treatment (or the standard/reference treatment). The control provides a baseline for comparison.
+
+**Replication:** Using multiple experimental units per treatment. Replication is essential — it lets you estimate natural variability and separate real treatment effects from random noise.
+
+**Randomization:** Randomly assigning experimental units to treatments. Randomization distributes unknown confounding variables evenly across groups.
+
+**Blocking:** Grouping similar experimental units together (a "block") before randomizing treatments within each block. Blocking controls for known sources of variability (e.g., soil type, field slope).
+
+**Confounding variable:** A variable that is related to both the treatment and the outcome, making it hard to isolate the treatment effect.
+
+**Observational study:** A study where the researcher measures but does not manipulate variables. Can identify associations but cannot establish cause and effect.
+
+**Controlled experiment:** A study where the researcher actively assigns treatments to experimental units. When properly designed, allows causal conclusions.
+
+---
+
+## How to Design an Experiment
+
+::: {.callout-note}
+## Example: Testing a New Fertilizer
+
+A crop scientist wants to know whether a new slow-release nitrogen fertilizer increases corn yield compared to the standard fertilizer.
+
+**Research question:** Does slow-release nitrogen fertilizer increase corn yield?
+
+**Hypothesis:** Corn plots receiving slow-release nitrogen will have higher yield (bushels/acre) than plots receiving standard nitrogen fertilizer.
+:::
+
+**Step 1: Identify the response variable**
+
+Corn grain yield (bushels/acre) — this is what we measure to assess the treatment effect.
+
+**Step 2: Identify the explanatory variable (treatment)**
+
+Fertilizer type: standard nitrogen vs. slow-release nitrogen.
+
+**Step 3: Decide on a control**
+
+The standard fertilizer serves as the control — it is the current practice.
+
+**Step 4: Determine the experimental units**
+
+Each experimental unit is one 1-acre plot. We will use 20 plots total.
+
+**Step 5: Randomize**
+
+Randomly assign 10 plots to receive standard fertilizer and 10 plots to receive slow-release fertilizer. To do this, number the plots 1–20 and use a random number generator (Excel: `=RAND()`, or draw numbers from a hat).
+
+**Step 6: Consider blocking**
+
+If the field has a noticeable slope (wet low end vs. dry high end), we divide the field into blocks of 2 plots each — one wet and one dry. Within each block, randomly assign one plot to each treatment. This ensures both fertilizer types experience similar water conditions.
+
+**Step 7: Identify potential confounders and minimize them**
+
+Apply both fertilizers at the same rate (kg N/acre). Plant the same variety. Use the same planting date. The only thing that differs between groups is the fertilizer type.
+
+**Step 8: Collect data consistently**
+
+Harvest all plots at the same time, with the same equipment, by the same operators.
+
+---
+
+## Types of Study Designs
+
+| Design Type | Can Manipulate? | Controls? | Randomization? | Can Infer Causation? |
+|-------------|-----------------|-----------|----------------|----------------------|
+| Observational | No | No | No | No (only association) |
+| Quasi-experiment | Sometimes | Partial | No | Weak |
+| Randomized controlled experiment | Yes | Yes | Yes | Yes |
+| Randomized complete block design | Yes | Yes | Yes (within block) | Yes |
+
+---
+
+## How to Do It in R
+
+```{r}
+# Simulating random assignment of 20 plots to two treatments
+set.seed(42) # set seed for reproducibility
+
+plots     <- 1:20
+treatment <- sample(rep(c("Standard", "Slow-release"), each = 10))
+
+assignment <- data.frame(Plot = plots, Treatment = treatment)
+print(assignment)
+
+# Check the balance
+table(assignment$Treatment) # should be 10 in each group
+```
+
+---
+
+## How to Spot a Poorly Designed Study
+
+::: {.callout-warning}
+## Common Mistake: No Replication (n = 1)
+
+A farmer applies a new herbicide to one field and the old herbicide to a different field, then compares weed counts. There is no replication — each treatment is applied to only one field. Any difference could be due to the herbicide or to inherent differences between the two fields. You cannot draw conclusions from a single observation per treatment.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Confusing Correlation with Causation
+
+An observational study finds that farms with more land under cover crops have higher profit margins. Does planting cover crops *cause* higher profits? Not necessarily — larger, more sophisticated farms may be both more likely to plant cover crops AND more profitable for other reasons. Only a randomized experiment can establish causation.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Pseudoreplication
+
+Using multiple measurements from the same experimental unit as if they were independent replicates. For example: measuring yield at 5 spots within a single fertilized plot and treating those 5 measurements as 5 independent replicates. They are not — they all came from the same unit receiving the same treatment.
+:::
+
+---
+
+## Interpretation and Common Mistakes
+
+**Why does randomization matter?**
+
+Randomization is the key step that allows causal inference. By randomly assigning treatments, we ensure that any difference we observe between groups is not due to systematic bias — it is either a real treatment effect or random chance. Statistical tests (coming in Weeks 8–9) then help us decide which explanation is more likely.
+
+**Why does replication matter?**
+
+Individual plants, animals, and fields vary naturally. With only one or two replicates per treatment, we cannot tell whether a difference between groups is real or just due to the natural variation between individual units. More replicates → more information → more reliable conclusions.
+
+---
+
+## Summary
+
+- Good experimental design requires **randomization**, **replication**, and a **control group**.
+- **Randomization** prevents confounding; **replication** allows estimation of random variability.
+- **Blocking** controls for known sources of variability (e.g., field topography, soil type).
+- An **observational study** can show association but cannot prove causation.
+- A well-designed **randomized controlled experiment** is the gold standard for establishing cause and effect.
+- Common design flaws: no replication, no randomization, pseudoreplication, and uncontrolled confounders.
+
+## Practice Problems
+
+1. A wildlife manager wants to test whether supplemental feeding increases white-tailed deer body mass in winter. She places feeding stations in 6 of the 12 forest blocks in her management area and leaves the other 6 blocks as controls. She weighs a sample of deer from each block at the end of winter. (a) What is the experimental unit? (b) What is the response variable? (c) Is there replication? (d) How could she randomize the assignment of feeding stations to blocks?
+
+2. A researcher reports that regions with higher livestock density have higher rates of stream phosphorus contamination. Is this an observational study or a controlled experiment? Can the researcher conclude that livestock *cause* phosphorus contamination? What alternative explanations exist?
+
+3. Design a simple experiment to test whether adding compost to garden soil increases tomato yield. Specify: research question, hypothesis, experimental units, treatments, control, replication (how many units per treatment?), and one potential confounding variable you would need to control.

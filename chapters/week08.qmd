@@ -1,0 +1,185 @@
+---
+categories:
+  - hypothesis-testing
+  - null-hypothesis
+  - p-value
+  - alpha
+  - nhst
+---
+
+# Week 8 — Hypothesis Testing: Conceptual Introduction {#sec-week08}
+
+**Dates:** Wednesday October 7 · Friday October 9
+
+*(Note: Monday October 5 — no class)*
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- State null and alternative hypotheses for a given research question.
+- Explain what a p-value means in plain language.
+- Define the significance level ($\alpha$) and explain its role in decision-making.
+- Distinguish between Type I and Type II errors.
+- Apply the four-step NHST framework to a conceptual example.
+
+---
+
+## Background and Conceptual Introduction
+
+You now know how to describe data (Units 1 and 2) and how to collect it properly (Week 7). The next challenge is this: once you have data from a well-designed experiment, how do you decide whether an observed difference is *real* or just due to *random chance*?
+
+This is the core problem of statistical inference, and the solution is **hypothesis testing**. Hypothesis testing is a formal decision-making framework that lets you judge, based on data, whether the evidence supports a claim.
+
+Here is an analogy. In the United States legal system, a defendant is presumed innocent until proven guilty. The prosecution must present enough evidence to convince a jury beyond a reasonable doubt. Notice three things:
+
+1. We start with a *default assumption* (innocent).
+2. We set a *standard of evidence* (beyond reasonable doubt).
+3. We make a *decision* (guilty or not guilty) based on the evidence.
+
+Statistical hypothesis testing works the same way:
+
+1. We start with a *default assumption* called the **null hypothesis** ($H_0$).
+2. We set a *standard of evidence* called the **significance level** ($\alpha$, usually 0.05).
+3. We make a *decision* (reject $H_0$ or fail to reject $H_0$) based on a calculated **p-value**.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+A new insecticide is claimed to reduce aphid counts on wheat by 50%. You apply it to 15 wheat plots and count aphids before and after. You find a 35% reduction. Is 35% close enough to 50% to support the claim? Or could a 35% reduction happen by random chance even if the true effect is 50%? How would you decide?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Null hypothesis ($H_0$):** The default assumption — usually "no effect," "no difference," or "no relationship." We test against this assumption. Written in terms of population parameters.
+
+**Alternative hypothesis ($H_a$ or $H_1$):** The research hypothesis — what we are trying to find evidence for. Written as the complement of $H_0$.
+
+**Test statistic:** A number calculated from the data that measures how far the observed result is from what $H_0$ predicts. Large test statistics (far from zero) provide more evidence against $H_0$.
+
+**p-value:** The probability of observing a result as extreme as (or more extreme than) the one you got, *assuming $H_0$ is true*. A small p-value means the data are surprising under $H_0$.
+
+**Significance level ($\alpha$):** The threshold below which we reject $H_0$. The most common value is $\alpha = 0.05$ (5%). We set $\alpha$ before collecting data.
+
+**Decision rule:**
+- If $p \leq \alpha$: **Reject $H_0$** — the result is "statistically significant"
+- If $p > \alpha$: **Fail to reject $H_0$** — insufficient evidence to reject
+
+**Type I Error ($\alpha$):** Rejecting $H_0$ when it is actually true — a "false positive." We convict an innocent person.
+
+**Type II Error ($\beta$):** Failing to reject $H_0$ when it is actually false — a "false negative." We acquit a guilty person.
+
+| Decision | $H_0$ true | $H_0$ false |
+|----------|-----------|------------|
+| Reject $H_0$ | **Type I Error** ($\alpha$) | Correct (Power) |
+| Fail to reject $H_0$ | Correct | **Type II Error** ($\beta$) |
+
+---
+
+## The Four-Step NHST Framework
+
+We will use these four steps for every hypothesis test in this course:
+
+**Step 1: State the hypotheses**
+
+Write $H_0$ and $H_a$ clearly using proper notation. Be specific about the population parameter.
+
+**Step 2: Set $\alpha$ and select the test**
+
+Choose a significance level (usually 0.05). Choose the appropriate test statistic for your data type and study design.
+
+**Step 3: Calculate the test statistic and p-value**
+
+Use the data to calculate the test statistic. Determine the p-value (using a table, Excel, or R).
+
+**Step 4: Make a decision and interpret**
+
+Compare the p-value to $\alpha$. State whether you reject or fail to reject $H_0$. Write a conclusion in the context of the original research question.
+
+---
+
+## A Conceptual Walk-Through
+
+::: {.callout-note}
+## Example: Average Chicken Feed Consumption
+
+A chicken feed manufacturer claims that hens eat an average of 120 g of feed per day. A farm manager suspects her flock eats *more* than this. She randomly selects 25 hens and records their daily feed intake over one week.
+
+She finds: $\bar{y} = 127$ g/day, $s = 18$ g.
+:::
+
+**Step 1: State the hypotheses**
+
+$$H_0: \mu = 120 \text{ g/day} \quad \text{(manufacturer's claim)}$$
+$$H_a: \mu > 120 \text{ g/day} \quad \text{(the manager's suspicion — one-sided test)}$$
+
+**Step 2: Set $\alpha$**
+
+$\alpha = 0.05$. We will use a one-sample t-test (covered fully next week).
+
+**Step 3: Calculate the test statistic**
+
+$$t = \frac{\bar{y} - \mu_0}{SE} = \frac{127 - 120}{18/\sqrt{25}} = \frac{7}{3.6} = 1.94$$
+
+The p-value for $t = 1.94$ with 24 degrees of freedom (one-tailed) is approximately 0.032.
+
+**Step 4: Decision and interpretation**
+
+$p = 0.032 < \alpha = 0.05$ → **Reject $H_0$**
+
+**Conclusion:** There is sufficient evidence ($t_{24} = 1.94$, $p = 0.032$) to conclude that hens at this farm consume more than 120 g of feed per day on average.
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-important}
+## What a p-value is NOT
+
+The p-value is frequently misunderstood. Be careful:
+
+- **p-value is NOT** the probability that $H_0$ is true.
+- **p-value is NOT** the probability that your result happened by chance.
+- **p-value IS** the probability of observing data as extreme as yours IF $H_0$ were true.
+
+These distinctions seem subtle but matter greatly when interpreting results.
+:::
+
+::: {.callout-warning}
+## Common Mistake: "Proving" the Null Hypothesis
+
+When $p > \alpha$ and we "fail to reject $H_0$," we do **not** prove that $H_0$ is true. We simply lack sufficient evidence to reject it. A not-guilty verdict in a trial does not prove innocence — it just means the evidence was not strong enough.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Equating Statistical and Practical Significance
+
+A result can be **statistically significant** ($p < 0.05$) but **practically unimportant**. For example, if you measure corn yield from 10,000 plots, even a difference of 0.1 bushels/acre between treatments might be statistically significant — but a farmer would not change practices for such a tiny gain. Always ask: "Is this result meaningful in the real world?"
+:::
+
+::: {.callout-warning}
+## Common Mistake: Setting α After Seeing the Data
+
+You must set $\alpha$ before collecting data. If you set $\alpha = 0.05$, collect data, get $p = 0.07$, and then say "well, let's use $\alpha = 0.10$," you are cheating — increasing your chance of a Type I error. This practice is called "p-hacking."
+:::
+
+---
+
+## Summary
+
+- Hypothesis testing is a formal framework for deciding whether data provide enough evidence against a null hypothesis.
+- $H_0$ states "no effect" or "no difference"; $H_a$ states the research hypothesis.
+- The **p-value** is the probability of seeing your results (or more extreme) if $H_0$ were true.
+- We reject $H_0$ when $p \leq \alpha$ (typically 0.05).
+- **Type I error**: rejecting a true $H_0$ (false positive). **Type II error**: failing to reject a false $H_0$ (false negative).
+- Statistical significance is not the same as practical importance.
+
+## Practice Problems
+
+1. A botanist claims that the average height of a particular wildflower species is 45 cm. A graduate student measures 18 plants and finds a mean height of 49 cm. Write appropriate null and alternative hypotheses (two-sided). What would a Type I error mean in this context? What would a Type II error mean?
+
+2. A study compares weight gain in lambs fed two different forage types. The p-value from the test is 0.12. The researchers set $\alpha = 0.05$. (a) What is the statistical decision? (b) Is it possible that there truly is a difference in weight gain? Explain.
+
+3. Describe in your own words what the following statement means: "If the null hypothesis were true, we would expect to see a difference this large or larger only about 3% of the time." Based on this, what would you decide if $\alpha = 0.05$?

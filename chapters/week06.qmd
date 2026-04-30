@@ -1,0 +1,239 @@
+---
+categories:
+  - binomial-distribution
+  - proportions
+  - probability
+  - bernoulli-trials
+---
+
+# Week 6 — Binomial Proportions {#sec-week06}
+
+**Dates:** Monday September 21 · Wednesday September 23 · Friday September 25
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Identify when a situation follows a binomial distribution (the BINS conditions).
+- Calculate binomial probabilities using the formula.
+- Estimate a population proportion from a sample proportion.
+- Construct a confidence interval for a proportion.
+- Apply binomial reasoning to real agricultural and natural resource scenarios.
+
+---
+
+## Background and Conceptual Introduction
+
+Many questions in agriculture and natural resources involve *proportions* — not means or standard deviations, but the fraction of individuals in a category:
+
+- What proportion of seedlings survive transplanting?
+- What percentage of grain samples are contaminated with mycotoxins?
+- What fraction of wildlife camera trap photos contain the target species?
+- What proportion of fish in a sample carry a specific disease?
+
+When we measure a proportion, we are dealing with a fundamentally different type of data than the continuous measurements we handled in Weeks 2–4. Each observation is a simple **yes/no** outcome: germinated or not, infected or not, detected or not. This type of data follows a **binomial distribution**.
+
+Imagine flipping a coin 10 times. Each flip is independent — previous flips do not affect the next one. The outcome is always heads or tails. You can ask: "What is the probability of getting exactly 7 heads?" The binomial distribution answers this question.
+
+Now replace "coin flip" with "does a newborn calf survive its first week?" or "does a planted seed germinate?" The math is exactly the same.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+A corn seed variety has a germination rate of 85%. If you plant 10 seeds, how many do you expect to germinate? Would it surprise you if only 6 germinated? What about if none germinated? The binomial distribution helps us judge which outcomes are plausible and which are extraordinary.
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Bernoulli trial:** A single experiment with exactly two possible outcomes — success or failure. The probability of success is $p$.
+
+**Binomial distribution:** The distribution of the number of successes in $n$ independent Bernoulli trials, each with the same probability of success $p$.
+
+**The BINS conditions** (all four must be met):
+1. **B**inary outcome — only two possible outcomes (success / failure)
+2. **I**ndependent trials — the outcome of one trial does not affect others
+3. **N**umber of trials is fixed in advance ($n$ is set before you start)
+4. **S**ame probability of success ($p$) on each trial
+
+**Binomial probability formula:** The probability of getting exactly $k$ successes in $n$ trials is:
+
+$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
+
+where $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is "n choose k" — the number of ways to arrange $k$ successes among $n$ trials.
+
+**Sample proportion ($\hat{p}$):** The observed proportion of successes in a sample:
+
+$$\hat{p} = \frac{\text{number of successes}}{n}$$
+
+**Standard error of a proportion:**
+
+$$SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+**95% Confidence interval for a proportion (rule of thumb):**
+
+$$95\% \text{ CI} \approx \hat{p} \pm 2 \times SE_{\hat{p}}$$
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Calf Survival
+
+On a beef cattle operation, the probability that a newborn calf survives its first 30 days is $p = 0.90$. In a group of 8 calves born this spring, what is the probability that exactly 7 survive?
+:::
+
+**Check BINS conditions:**
+- Binary: calf survives or does not ✓
+- Independent: survival of one calf does not affect others (assume so) ✓
+- Fixed n: $n = 8$ calves ✓
+- Same p: $p = 0.90$ for each calf ✓
+
+**Calculate $\binom{8}{7}$:**
+
+$$\binom{8}{7} = \frac{8!}{7! \cdot 1!} = \frac{8 \times 7!}{7! \times 1} = 8$$
+
+**Apply the formula:**
+
+$$P(X = 7) = 8 \times (0.90)^7 \times (0.10)^1$$
+
+$$= 8 \times 0.4783 \times 0.10 = 8 \times 0.04783 = 0.3826$$
+
+There is about a **38% chance** that exactly 7 of the 8 calves survive.
+
+---
+
+::: {.callout-note}
+## Example: Estimating Camera Trap Detection Rate
+
+A wildlife biologist checks 50 camera trap sites over a season. Deer were detected at 32 of the sites. Estimate the proportion of sites where deer are present, and construct a 95% confidence interval.
+:::
+
+**Sample proportion:**
+
+$$\hat{p} = \frac{32}{50} = 0.64 \quad (64\%)$$
+
+**Standard error:**
+
+$$SE_{\hat{p}} = \sqrt{\frac{0.64 \times 0.36}{50}} = \sqrt{\frac{0.2304}{50}} = \sqrt{0.004608} = 0.0679$$
+
+**95% CI:**
+
+$$0.64 \pm 2 \times 0.0679 = 0.64 \pm 0.136$$
+
+$$\text{Lower: } 0.504 \quad \text{Upper: } 0.776$$
+
+**Interpretation:** We estimate that deer are present at 64% of camera trap sites. We are 95% confident the true detection proportion is between 50.4% and 77.6%.
+
+---
+
+## How to Do It in Excel
+
+### Binomial Probabilities
+
+- **Exactly k successes:** `=BINOM.DIST(k, n, p, FALSE)`
+  - Example: `=BINOM.DIST(7, 8, 0.9, FALSE)` → 0.383
+- **At most k successes (cumulative):** `=BINOM.DIST(k, n, p, TRUE)`
+  - Example: `=BINOM.DIST(7, 8, 0.9, TRUE)` → probability of 7 or fewer surviving
+
+### CI for a Proportion
+
+| Cell | Formula | Description |
+|------|---------|-------------|
+| B1 | `=32/50` | Sample proportion $\hat{p}$ |
+| B2 | `=SQRT(B1*(1-B1)/50)` | Standard error |
+| B3 | `=B1 - 2*B2` | Lower CI bound |
+| B4 | `=B1 + 2*B2` | Upper CI bound |
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Binomial probability: exactly 7 of 8 calves survive
+# P(X = 7), n=8, p=0.90
+dbinom(7, size = 8, prob = 0.90)
+
+# Cumulative: P(X <= 7)
+pbinom(7, size = 8, prob = 0.90)
+
+# Probability of 7 OR 8 calves surviving (at least 7)
+pbinom(6, size = 8, prob = 0.90, lower.tail = FALSE) # P(X > 6) = P(X >= 7)
+
+# --- Plotting a binomial distribution ---
+k_vals <- 0:8
+probs  <- dbinom(k_vals, size = 8, prob = 0.90)
+
+barplot(probs, names.arg = k_vals,
+        main = "Binomial Distribution: Calf Survival (n=8, p=0.90)",
+        xlab = "Number of calves surviving",
+        ylab = "Probability",
+        col  = "steelblue")
+
+# --- CI for a proportion ---
+n_sites    <- 50
+n_detected <- 32
+p_hat      <- n_detected / n_sites
+SE_p       <- sqrt(p_hat * (1 - p_hat) / n_sites)
+
+cat("Sample proportion:", p_hat, "\n")
+cat("Standard error:", round(SE_p, 4), "\n")
+cat("95% CI:", round(p_hat - 2*SE_p, 3), "to", round(p_hat + 2*SE_p, 3), "\n")
+
+# Built-in exact test for proportions
+prop.test(n_detected, n_sites, conf.level = 0.95)
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+**Expected value and variance of a binomial:**
+
+If $X$ follows a binomial distribution with parameters $n$ and $p$:
+- Expected number of successes: $E(X) = np$
+- Standard deviation: $\sigma_X = \sqrt{np(1-p)}$
+
+For our calf example: $E(X) = 8 \times 0.90 = 7.2$ calves survive on average; $\sigma = \sqrt{8 \times 0.90 \times 0.10} = \sqrt{0.72} = 0.85$.
+
+::: {.callout-warning}
+## Common Mistake: Applying Binomial to Non-Independent Trials
+
+The binomial requires independent trials. If calves are from the same mother (twins) or share a disease exposure, survival is not independent and the binomial is not valid. Always check the independence assumption.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Using Binomial When n or p is Not Fixed
+
+If you count deer until you find 10 (rather than checking a fixed number of sites), the number of trials is not fixed — this is a *negative binomial* situation, not binomial. Always check whether $n$ is set before the experiment begins.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Wide CI from Small Samples
+
+With $n = 10$ camera sites, even observing detection at 6 of 10 gives a very wide CI (approximately 0.30 to 0.90). Small samples give unreliable proportion estimates. You generally need $n \geq 30$ for a reasonably precise CI.
+:::
+
+---
+
+## Summary
+
+- A **binomial distribution** models the number of successes in $n$ independent trials with success probability $p$.
+- The **BINS conditions** must all hold: binary outcomes, independent trials, fixed $n$, same $p$.
+- Use $\hat{p} = k/n$ to estimate a population proportion from a sample.
+- The **standard error** of a proportion is $\sqrt{\hat{p}(1-\hat{p})/n}$.
+- The **95% CI** for a proportion is approximately $\hat{p} \pm 2 \times SE_{\hat{p}}$.
+
+## Practice Problems
+
+1. A forestry experiment plants 12 tree seedlings in a degraded area. Based on past experience, each seedling has a 70% probability of establishing successfully (independent of the others). (a) What is the probability that exactly 10 seedlings survive? Show your work using the binomial formula. (b) What is the expected number of surviving seedlings?
+
+2. A fish hatchery samples 40 fingerlings and finds that 28 test positive for a bacterial infection. (a) Calculate the sample proportion. (b) Calculate the standard error. (c) Construct a 95% confidence interval. (d) Interpret the confidence interval in one plain-language sentence.
+
+3. Does the following scenario meet the BINS conditions for a binomial distribution? Explain. "A farmer randomly plants seeds from a bag and records how many of the first 20 planted germinate, but stops counting if 3 consecutive seeds fail to germinate."

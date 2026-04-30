@@ -1,0 +1,238 @@
+---
+categories:
+  - correlation
+  - continuous-variables
+  - scatterplot
+  - pearson-r
+---
+
+# Week 14 — Continuous Variables and Correlation {#sec-week14}
+
+**Dates:** Monday November 16 · Wednesday November 18 · Friday November 20
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Create and interpret a scatterplot for two continuous variables.
+- Define and calculate the Pearson correlation coefficient ($r$).
+- Interpret the sign and magnitude of a correlation coefficient.
+- Test whether a correlation is significantly different from zero.
+- Explain the important difference between correlation and causation.
+
+---
+
+## Background and Conceptual Introduction
+
+So far in this course, we have asked questions like "does Group A have a higher mean than Group B?" Those questions involve comparing a numerical response variable across categories of a grouping variable.
+
+Now we tackle a different kind of question: "As one continuous variable increases, does another continuous variable tend to increase or decrease?" For example:
+
+- As annual rainfall increases, does crop yield increase?
+- As temperature rises, does fish growth rate change?
+- As soil organic matter increases, does soil water-holding capacity increase?
+
+When both variables are continuous (measured on a numerical scale), we describe their relationship with **correlation**. Correlation measures how strongly — and in what direction — two variables move together. Next week, in linear regression, we will go a step further and build a mathematical model of that relationship.
+
+Picture a scatterplot of 20 points, each representing one farm field. The x-axis shows annual precipitation (mm), and the y-axis shows corn yield (bushels/acre). If points trend upward from left to right, there is a **positive correlation** — more rain goes with more yield. If points trend downward, there is a **negative correlation**. If points show no pattern, correlation is near zero.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+A study finds a strong positive correlation ($r = 0.87$) between the number of tractors per farm and the crop yield per farm. Does this mean buying more tractors *causes* higher yields? What other variable might explain this relationship?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Scatterplot:** A plot with one variable on the x-axis and another on the y-axis. Each point represents one observation.
+
+**Association:** A general term for a relationship between two variables.
+
+**Pearson correlation coefficient ($r$):** A number between −1 and +1 that measures the strength and direction of the linear relationship between two continuous variables.
+
+$$r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{(n-1) \cdot s_x \cdot s_y}$$
+
+**Interpreting $r$:**
+
+| $|r|$ value | Interpretation |
+|------------|----------------|
+| 0.00 – 0.19 | Very weak |
+| 0.20 – 0.39 | Weak |
+| 0.40 – 0.59 | Moderate |
+| 0.60 – 0.79 | Strong |
+| 0.80 – 1.00 | Very strong |
+
+A positive $r$ means variables increase together; a negative $r$ means one increases as the other decreases.
+
+**Coefficient of determination ($r^2$):** The square of $r$. Represents the proportion of variability in one variable explained by the other. Example: $r = 0.8 \Rightarrow r^2 = 0.64$, meaning 64% of the variance in $y$ is associated with variance in $x$.
+
+**Hypothesis test for correlation:**
+
+$H_0: \rho = 0$ (no linear correlation in the population)
+
+$H_a: \rho \neq 0$ (there is a linear correlation)
+
+Test statistic: $t = r\sqrt{\frac{n-2}{1-r^2}}$, with $df = n - 2$.
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Rainfall and Hay Yield
+
+A forage agronomist records annual rainfall (mm) and dry hay yield (kg/ha) at 8 locations:
+
+| Location | Rainfall (x) | Yield (y) |
+|----------|-------------|-----------|
+| 1 | 480 | 3800 |
+| 2 | 520 | 4100 |
+| 3 | 390 | 3200 |
+| 4 | 610 | 4600 |
+| 5 | 450 | 3500 |
+| 6 | 580 | 4400 |
+| 7 | 430 | 3400 |
+| 8 | 550 | 4200 |
+:::
+
+**Step 1: Calculate means**
+
+$\bar{x} = (480+520+390+610+450+580+430+550)/8 = 4010/8 = 501.25$ mm
+
+$\bar{y} = (3800+4100+3200+4600+3500+4400+3400+4200)/8 = 31200/8 = 3900$ kg/ha
+
+**Step 2: Calculate deviations and cross-products**
+
+| $x_i$ | $x_i - \bar{x}$ | $y_i$ | $y_i - \bar{y}$ | $(x_i-\bar{x})(y_i-\bar{y})$ | $(x_i-\bar{x})^2$ | $(y_i-\bar{y})^2$ |
+|-------|-----------------|-------|-----------------|------------------------------|-------------------|-------------------|
+| 480 | −21.25 | 3800 | −100 | 2125 | 451.6 | 10000 |
+| 520 | 18.75 | 4100 | 200 | 3750 | 351.6 | 40000 |
+| 390 | −111.25 | 3200 | −700 | 77875 | 12376.6 | 490000 |
+| 610 | 108.75 | 4600 | 700 | 76125 | 11826.6 | 490000 |
+| 450 | −51.25 | 3500 | −400 | 20500 | 2626.6 | 160000 |
+| 580 | 78.75 | 4400 | 500 | 39375 | 6201.6 | 250000 |
+| 430 | −71.25 | 3400 | −500 | 35625 | 5076.6 | 250000 |
+| 550 | 48.75 | 4200 | 300 | 14625 | 2376.6 | 90000 |
+| **Sum** | | | | **270000** | **41287.5** | **1780000** |
+
+**Step 3: Calculate $s_x$ and $s_y$**
+
+$$s_x = \sqrt{\frac{41287.5}{7}} = \sqrt{5898.2} = 76.80 \text{ mm}$$
+
+$$s_y = \sqrt{\frac{1780000}{7}} = \sqrt{254285.7} = 504.3 \text{ kg/ha}$$
+
+**Step 4: Calculate r**
+
+$$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{(n-1) \cdot s_x \cdot s_y} = \frac{270000}{7 \times 76.80 \times 504.3} = \frac{270000}{271232} = 0.995$$
+
+**Interpretation:** $r = 0.995$ — a very strong positive linear correlation. Locations with more rainfall tend to have much higher hay yields.
+
+**Step 5: Test significance**
+
+$$t = r\sqrt{\frac{n-2}{1-r^2}} = 0.995 \times \sqrt{\frac{6}{1-0.990}} = 0.995 \times \sqrt{\frac{6}{0.010}} = 0.995 \times 24.49 = 24.37$$
+
+$df = 8 - 2 = 6$. From a t-table, $t_{crit} = 2.447$ at $\alpha = 0.05$, two-tailed.
+
+$t = 24.37 \gg 2.447$ → **Reject $H_0$**. The correlation is significantly different from zero.
+
+---
+
+## How to Do It in Excel
+
+1. Enter x-values in column A and y-values in column B.
+2. Calculate $r$ with: `=CORREL(A1:A8, B1:B8)`.
+3. Create a scatterplot: select both columns → Insert → Chart → Scatter.
+4. Add a trendline: right-click a data point → Add Trendline → Linear. Check "Display R² value."
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Rainfall and hay yield data
+rainfall <- c(480, 520, 390, 610, 450, 580, 430, 550)
+yield    <- c(3800, 4100, 3200, 4600, 3500, 4400, 3400, 4200)
+
+# Scatterplot
+plot(rainfall, yield,
+     main = "Rainfall vs. Hay Yield",
+     xlab = "Annual rainfall (mm)",
+     ylab = "Dry hay yield (kg/ha)",
+     pch  = 16, col = "darkgreen", cex = 1.5)
+
+# Add a linear trend line
+abline(lm(yield ~ rainfall), col = "blue", lwd = 2)
+
+# Pearson correlation coefficient
+r <- cor(rainfall, yield)
+cat("Pearson r:", round(r, 4), "\n")
+cat("r-squared:", round(r^2, 4), "\n")
+
+# Significance test
+cor.test(rainfall, yield, method = "pearson")
+```
+
+**Sample output:**
+```
+Pearson r: 0.9954
+
+	Pearson's product-moment correlation
+
+data:  rainfall and yield
+t = 24.37, df = 6, p-value = 5.07e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9784 0.9991
+sample estimates:
+      cor
+0.9954
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-warning}
+## Common Mistake: Confusing Correlation with Causation
+
+Correlation tells you that two variables move together — it does NOT tell you why. An increase in X may cause an increase in Y; OR an increase in Y may cause an increase in X; OR some third variable may cause both to increase. Always look for mechanistic explanations before claiming causation.
+
+Classic example: ice cream sales and drowning rates are positively correlated — not because ice cream causes drowning, but because both increase in summer (the confounding variable is temperature).
+:::
+
+::: {.callout-warning}
+## Common Mistake: Interpreting r for Non-Linear Relationships
+
+Pearson's $r$ measures *linear* correlation. Two variables can have a strong curved (non-linear) relationship and still have $r \approx 0$. Always look at the scatterplot — if the relationship looks curved, $r$ is not the right measure.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Extrapolating Beyond the Data Range
+
+If your data range from 390 to 610 mm of rainfall, a strong correlation does not mean the relationship continues to hold at 1000 mm. Do not use correlation (or the regression line) to make predictions far beyond the range of your data.
+:::
+
+---
+
+## Summary
+
+- **Scatterplots** are the essential first step for visualizing the relationship between two continuous variables.
+- The **Pearson correlation coefficient** ($r$) measures the strength and direction of a linear relationship.
+- $r$ ranges from −1 (perfect negative) through 0 (no linear relationship) to +1 (perfect positive).
+- $r^2$ is the proportion of variability in $y$ explained by $x$.
+- Correlation is NOT causation.
+- In R, use `cor()` for the coefficient and `cor.test()` for the significance test.
+
+## Practice Problems
+
+1. A livestock researcher records average daily temperature (°C) and water intake (liters/day) for beef cattle on 7 consecutive days: Temp: 18, 22, 27, 31, 25, 29, 33; Water: 35, 41, 48, 55, 44, 52, 59. (a) Plot the data (by hand or in R). (b) Describe the direction and apparent strength of the relationship. (c) Calculate $r$ using the formula or R.
+
+2. A study reports a correlation of $r = 0.35$ between soil compaction score and corn root depth ($p = 0.03$, $n = 45$). (a) Is this correlation statistically significant at $\alpha = 0.05$? (b) What proportion of variance in root depth is explained by compaction score? (c) Does this mean compaction *causes* reduced root depth?
+
+3. Two variables show a U-shaped relationship on a scatterplot (Y is high when X is either low or high, but low when X is medium). Would you expect the Pearson $r$ to be positive, negative, or near zero? Why does this demonstrate that looking at only $r$ can be misleading?

@@ -1,0 +1,221 @@
+---
+categories:
+  - chi-square
+  - contingency-table
+  - categorical-data
+  - frequency-test
+---
+
+# Week 13 — Contingency Analysis: Chi-Square Tests {#sec-week13}
+
+**Dates:** Monday November 9 · Wednesday November 11 · Friday November 13
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Explain the difference between tests for numerical data (t-test, ANOVA) and tests for categorical data (chi-square).
+- Construct a contingency table from categorical data.
+- Calculate expected cell counts for a chi-square test of independence.
+- Calculate the chi-square statistic by hand.
+- Conduct a chi-square test in Excel and R, and interpret the output.
+
+---
+
+## Background and Conceptual Introduction
+
+All the tests we have covered so far — t-tests and ANOVA — compare the *means* of numerical variables. But what if your data are categorical? For example:
+
+- Do the proportions of males and females differ between two wildlife populations?
+- Is disease presence (infected vs. healthy) associated with farm management type (organic vs. conventional)?
+- Is germination success (germinated vs. not) independent of seed treatment (treated vs. untreated)?
+
+For questions like these, we use the **chi-square test** ($\chi^2$ test). Instead of comparing means, we compare *observed counts* to *expected counts* — the counts we would expect if there were no relationship between the two categorical variables.
+
+Think of it this way: if farm management type has no effect on disease prevalence, then we would expect the same proportion of infected animals on organic farms as on conventional farms. If the observed proportions are very different from this expectation, the chi-square statistic will be large, and we reject the null hypothesis of independence.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+You survey 100 farms and categorize each by management type (conventional vs. organic) and whether a specific plant disease was observed (present vs. absent). You find disease on 40% of conventional farms but only 20% of organic farms. Is this difference due to a real association, or could it happen by chance? How large does the difference need to be before you are convinced it is real?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Chi-square test of independence ($\chi^2$):** Tests whether two categorical variables are associated (not independent) in a population.
+
+**Contingency table:** A table displaying the frequencies of two categorical variables. Also called a cross-tabulation or "cross-tab."
+
+**Observed counts ($O$):** The actual counts from your data.
+
+**Expected counts ($E$):** The counts you would expect if the two variables were completely independent:
+
+$$E_{ij} = \frac{(\text{row total}_i) \times (\text{column total}_j)}{\text{grand total } N}$$
+
+**Chi-square statistic:**
+
+$$\chi^2 = \sum_{all\ cells} \frac{(O - E)^2}{E}$$
+
+A large $\chi^2$ means observed counts are far from expected counts → evidence against independence.
+
+**Degrees of freedom:** $df = (r - 1)(c - 1)$, where $r$ = number of rows and $c$ = number of columns.
+
+**Assumption:** Expected cell counts should all be ≥ 5 (or at least 80% of cells ≥ 5). With very small expected counts, the chi-square approximation breaks down.
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Cattle Disease and Farm Type
+
+A veterinarian surveys 120 cattle farms and records: (1) farm type (conventional vs. organic) and (2) whether bovine respiratory disease (BRD) was detected in the past year (yes vs. no).
+
+**Observed contingency table:**
+
+|  | BRD Yes | BRD No | Row Total |
+|--|---------|--------|-----------|
+| Conventional | 36 | 44 | 80 |
+| Organic | 8 | 32 | 40 |
+| **Column Total** | **44** | **76** | **120** |
+:::
+
+**Step 1: State hypotheses**
+
+$H_0$: Farm type and BRD occurrence are independent.
+
+$H_a$: Farm type and BRD occurrence are associated.
+
+**Step 2: Calculate expected counts**
+
+$$E_{conventional, yes} = \frac{80 \times 44}{120} = \frac{3520}{120} = 29.33$$
+
+$$E_{conventional, no} = \frac{80 \times 76}{120} = \frac{6080}{120} = 50.67$$
+
+$$E_{organic, yes} = \frac{40 \times 44}{120} = \frac{1760}{120} = 14.67$$
+
+$$E_{organic, no} = \frac{40 \times 76}{120} = \frac{3040}{120} = 25.33$$
+
+**Expected counts table:**
+
+|  | BRD Yes | BRD No |
+|--|---------|--------|
+| Conventional | 29.33 | 50.67 |
+| Organic | 14.67 | 25.33 |
+
+All expected counts ≥ 5 ✓
+
+**Step 3: Calculate $\chi^2$**
+
+$$\chi^2 = \frac{(36 - 29.33)^2}{29.33} + \frac{(44 - 50.67)^2}{50.67} + \frac{(8 - 14.67)^2}{14.67} + \frac{(32 - 25.33)^2}{25.33}$$
+
+$$= \frac{(6.67)^2}{29.33} + \frac{(-6.67)^2}{50.67} + \frac{(-6.67)^2}{14.67} + \frac{(6.67)^2}{25.33}$$
+
+$$= \frac{44.49}{29.33} + \frac{44.49}{50.67} + \frac{44.49}{14.67} + \frac{44.49}{25.33}$$
+
+$$= 1.517 + 0.878 + 3.032 + 1.756 = 7.183$$
+
+**Step 4: Degrees of freedom and critical value**
+
+$df = (2-1)(2-1) = 1$
+
+From a $\chi^2$ table: $\chi^2_{crit}$ at $\alpha = 0.05$, $df = 1$ is **3.841**.
+
+$7.183 > 3.841$ → **Reject $H_0$**, $p \approx 0.007$
+
+**Conclusion:** There is significant evidence ($\chi^2_1 = 7.18$, $p = 0.007$) that BRD occurrence is associated with farm type. Conventional farms had a higher observed disease rate (45%) compared to organic farms (20%).
+
+---
+
+## How to Do It in Excel
+
+1. Enter your contingency table including marginal totals.
+2. Calculate expected counts in a separate table using the formula: `=(row total × column total) / grand total`.
+3. In a third table, calculate $(O-E)^2/E$ for each cell using formulas.
+4. Sum all $(O-E)^2/E$ values to get $\chi^2$.
+5. Find the p-value: `=CHISQ.DIST.RT(chi_sq, df)`.
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Create contingency table as a matrix
+observed <- matrix(c(36, 44,   # Conventional: BRD yes, BRD no
+                      8, 32),  # Organic: BRD yes, BRD no
+                   nrow = 2, byrow = TRUE)
+
+rownames(observed) <- c("Conventional", "Organic")
+colnames(observed) <- c("BRD Yes", "BRD No")
+
+print(observed)
+
+# Chi-square test of independence
+chisq.test(observed)
+
+# --- Alternatively, from raw data ---
+farm_type <- c(rep("Conventional", 80), rep("Organic", 40))
+brd       <- c(rep("Yes", 36), rep("No", 44),
+               rep("Yes", 8),  rep("No", 32))
+
+# Create contingency table from raw data
+tab <- table(farm_type, brd)
+print(tab)
+
+# Chi-square test on the table
+chisq.test(tab)
+
+# --- Visualize with a mosaic plot ---
+mosaicplot(tab,
+           main  = "Farm Type vs. BRD Occurrence",
+           color = c("lightblue", "salmon"),
+           xlab  = "Farm Type",
+           ylab  = "BRD Status")
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-warning}
+## Common Mistake: Expected Counts Too Small
+
+If any expected cell count is less than 5, the $\chi^2$ approximation may be inaccurate. In R, you will see a warning: "Chi-squared approximation may be incorrect." Options: (1) combine categories if it makes biological sense, (2) use Fisher's Exact Test (`fisher.test(tab)`), which works for small samples.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Using Chi-Square for Numerical Data
+
+Chi-square tests categorical data (counts of individuals in categories). Do not use it to test whether the *means* of a numerical variable differ between groups — use t-tests or ANOVA for that.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Chi-Square with n = 1 Per Cell
+
+A 2×2 table with very small counts (e.g., 4 total observations across 4 cells) violates the expected-count assumption badly. Always check your sample size before running a chi-square test.
+:::
+
+---
+
+## Summary
+
+- The **chi-square test of independence** tests whether two categorical variables are associated.
+- Build a **contingency table** with observed counts, then calculate expected counts under independence.
+- The **chi-square statistic** compares observed and expected counts: $\chi^2 = \sum (O-E)^2/E$.
+- Degrees of freedom: $df = (rows - 1)(columns - 1)$.
+- Assumption: expected cell counts ≥ 5; use Fisher's Exact Test if not met.
+- In R, use `chisq.test(table)`.
+
+## Practice Problems
+
+1. A wildlife biologist surveys 80 prairie dogs and classifies each by colony type (large vs. small) and plague infection status (infected vs. not). Results: large colony, infected = 18; large colony, not = 22; small colony, infected = 8; small colony, not = 32. (a) Construct the contingency table with row/column totals. (b) Calculate expected counts. (c) Calculate the chi-square statistic. (d) State your conclusion at $\alpha = 0.05$ ($\chi^2_{crit} = 3.841$).
+
+2. A crop scientist plants 150 soybean plants and classifies them by seed treatment (inoculated vs. control) and nodulation status (nodules present vs. absent). He finds all expected cell counts ≥ 5 and obtains $\chi^2 = 2.1$ with $df = 1$. Is nodulation independent of seed treatment ($\alpha = 0.05$)? Explain.
+
+3. In a chi-square test of independence, what does it mean for the two variables to be "independent"? Give an agricultural example of two categorical variables that you would expect to be associated, and two that you would expect to be independent.

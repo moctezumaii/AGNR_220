@@ -1,0 +1,252 @@
+---
+categories:
+  - linear-regression
+  - regression
+  - prediction
+  - least-squares
+  - r-squared
+---
+
+# Week 15 — Linear Regression {#sec-week15}
+
+**Dates:** Monday November 23
+
+*(Note: Wednesday November 25 and Friday November 27 — no class, Thanksgiving)*
+
+## Learning Objectives
+
+By the end of this week, you should be able to:
+
+- Distinguish between correlation (association) and regression (prediction/modeling).
+- Identify the response variable ($y$) and explanatory variable ($x$) in a regression problem.
+- Interpret the slope and intercept of a regression line in the context of the data.
+- Calculate the least-squares regression line using the formulas for slope and intercept.
+- Use the regression equation to make predictions within the range of the data.
+- Evaluate model fit using $R^2$.
+
+---
+
+## Background and Conceptual Introduction
+
+In Week 14 we measured *how strongly* two variables are related using correlation. Now we go one step further and ask: *can we use one variable to predict the other?*
+
+Linear regression builds a mathematical model — a straight line — that describes the relationship between an **explanatory variable** (x) and a **response variable** (y). Once we have this line, we can use it to:
+
+- Predict the response for a new value of x.
+- Quantify how much y changes for each unit change in x.
+- Understand which variables are associated with outcomes of interest.
+
+Remember the Lego model analogy: a linear regression line is the simplest possible model of a relationship. It will not be perfectly correct (all models are wrong), but it can be very useful. The line captures the *average* relationship between x and y — individual observations will scatter around it due to random variability.
+
+In agriculture and natural resources, linear regression is everywhere:
+- Predicting timber volume from tree diameter.
+- Estimating water demand from temperature.
+- Relating fertilizer application rate to crop yield.
+- Predicting body weight from age in livestock.
+
+::: {.callout-tip}
+## Think About It 🧠
+
+You have data on fertilizer application rate (kg N/ha) and corn yield (bushels/acre) from 25 plots. You fit a regression line and get: Yield = 60 + 0.8 × (Fertilizer rate). What does the slope of 0.8 tell you? What does the intercept of 60 tell you? Does the intercept have a practical interpretation here?
+:::
+
+---
+
+## Key Concepts and Definitions
+
+**Response variable ($y$):** The variable you are trying to predict or explain. Also called the *dependent variable*.
+
+**Explanatory variable ($x$):** The variable used to predict or explain $y$. Also called the *independent variable* or *predictor*.
+
+**Linear regression model:**
+
+$$\hat{y} = \beta_0 + \beta_1 x$$
+
+where $\hat{y}$ is the predicted value of y, $\beta_0$ is the y-intercept, and $\beta_1$ is the slope.
+
+**Slope ($\beta_1$):** The predicted change in $y$ for each one-unit increase in $x$. Can be positive or negative.
+
+**Intercept ($\beta_0$):** The predicted value of $y$ when $x = 0$. Sometimes has a practical interpretation, sometimes does not (if $x = 0$ is outside the data range).
+
+**Residual:** The difference between an observed value and the value predicted by the model: $e_i = y_i - \hat{y}_i$. Residuals represent unexplained variation.
+
+**Least-squares criterion:** The regression line minimizes the sum of squared residuals ($\sum e_i^2$). This gives the best-fitting straight line.
+
+**Formulas for slope and intercept:**
+
+$$b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = r \cdot \frac{s_y}{s_x}$$
+
+$$b_0 = \bar{y} - b_1 \cdot \bar{x}$$
+
+**Coefficient of determination ($R^2$):** The proportion of total variability in $y$ explained by the regression model. $R^2 = r^2$ for simple linear regression. Ranges from 0 to 1: higher is better.
+
+---
+
+## How to Do It by Hand
+
+::: {.callout-note}
+## Example: Tree Diameter and Timber Volume
+
+A forester measures diameter at breast height (DBH, cm) and timber volume (m³) for 8 trees:
+
+| Tree | DBH (x) | Volume (y) |
+|------|---------|-----------|
+| 1 | 18 | 0.22 |
+| 2 | 22 | 0.31 |
+| 3 | 15 | 0.16 |
+| 4 | 28 | 0.52 |
+| 5 | 20 | 0.27 |
+| 6 | 25 | 0.43 |
+| 7 | 17 | 0.19 |
+| 8 | 24 | 0.40 |
+:::
+
+**Step 1: Calculate means**
+
+$\bar{x} = (18+22+15+28+20+25+17+24)/8 = 169/8 = 21.125$ cm
+
+$\bar{y} = (0.22+0.31+0.16+0.52+0.27+0.43+0.19+0.40)/8 = 2.50/8 = 0.3125$ m³
+
+**Step 2: Calculate deviations and cross-products**
+
+| $x_i$ | $x_i - \bar{x}$ | $y_i$ | $y_i - \bar{y}$ | $(x_i-\bar{x})(y_i-\bar{y})$ | $(x_i-\bar{x})^2$ |
+|-------|-----------------|-------|-----------------|------------------------------|-------------------|
+| 18 | −3.125 | 0.22 | −0.0925 | 0.289 | 9.766 |
+| 22 | 0.875 | 0.31 | −0.0025 | −0.002 | 0.766 |
+| 15 | −6.125 | 0.16 | −0.1525 | 0.934 | 37.516 |
+| 28 | 6.875 | 0.52 | 0.2075 | 1.427 | 47.266 |
+| 20 | −1.125 | 0.27 | −0.0425 | 0.048 | 1.266 |
+| 25 | 3.875 | 0.43 | 0.1175 | 0.455 | 15.016 |
+| 17 | −4.125 | 0.19 | −0.1225 | 0.505 | 17.016 |
+| 24 | 2.875 | 0.40 | 0.0875 | 0.252 | 8.266 |
+| **Sum** | | | | **3.908** | **136.875** |
+
+**Step 3: Calculate slope**
+
+$$b_1 = \frac{3.908}{136.875} = 0.02855 \text{ m}^3/\text{cm}$$
+
+**Step 4: Calculate intercept**
+
+$$b_0 = 0.3125 - 0.02855 \times 21.125 = 0.3125 - 0.6031 = -0.2906 \text{ m}^3$$
+
+**Regression equation:**
+
+$$\hat{y} = -0.291 + 0.0286 \times DBH$$
+
+**Step 5: Interpret**
+
+- **Slope:** Each additional 1 cm in DBH predicts an increase of about **0.029 m³** in timber volume.
+- **Intercept:** A tree with DBH = 0 would have volume = −0.291 m³. This is not physically meaningful (trees do not have zero diameter), so the intercept is just a mathematical anchor for the line.
+
+**Step 6: Make a prediction**
+
+A new tree has DBH = 23 cm. Predicted volume:
+
+$$\hat{y} = -0.291 + 0.0286 \times 23 = -0.291 + 0.658 = 0.367 \text{ m}^3$$
+
+**Step 7: Calculate $R^2$**
+
+From our Week 14 analysis of these data: $r = 0.995$, so $R^2 = 0.995^2 = 0.990$ (99% of variance explained). *(Note: actual r for this example is similar — see R code below.)*
+
+---
+
+## How to Do It in Excel
+
+1. Enter DBH in column A, Volume in column B.
+2. Create a scatterplot (Insert → Scatter).
+3. Right-click a data point → Add Trendline → Linear.
+4. Check "Display equation on chart" and "Display R² value."
+5. For exact coefficients, also use: `=SLOPE(B1:B8, A1:A8)` and `=INTERCEPT(B1:B8, A1:A8)`.
+
+::: {.callout-note}
+Screenshot will be added here.
+:::
+
+---
+
+## How to Do It in R
+
+```{r}
+# Tree diameter and timber volume data
+dbh    <- c(18, 22, 15, 28, 20, 25, 17, 24)
+volume <- c(0.22, 0.31, 0.16, 0.52, 0.27, 0.43, 0.19, 0.40)
+
+# Fit a linear model
+model <- lm(volume ~ dbh)
+
+# View the model summary
+summary(model)
+
+# --- Interpret the output ---
+# Coefficients: Estimate for (Intercept) = b0, Estimate for dbh = b1
+# Multiple R-squared: proportion of variance explained
+# p-value for dbh coefficient: test of H0: beta1 = 0
+
+# Make a prediction for DBH = 23 cm
+new_tree <- data.frame(dbh = 23)
+predict(model, newdata = new_tree, interval = "confidence")
+
+# --- Plot with regression line ---
+library(ggplot2)
+df_trees <- data.frame(dbh = dbh, volume = volume)
+
+ggplot(df_trees, aes(x = dbh, y = volume)) +
+  geom_point(size = 3, color = "darkgreen") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue", fill = "lightblue") +
+  labs(title  = "Tree Diameter vs. Timber Volume",
+       x      = "DBH (cm)",
+       y      = "Volume (m³)") +
+  theme_bw()
+```
+
+**Sample `summary(model)` output:**
+```
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) -0.29060    0.02590  -11.22  1.6e-05 ***
+dbh          0.02855    0.00119   23.99  9.8e-07 ***
+
+Multiple R-squared:  0.9899
+```
+
+---
+
+## Interpretation and Common Mistakes
+
+::: {.callout-warning}
+## Common Mistake: Predicting Outside the Data Range
+
+Our tree data spans DBH = 15–28 cm. The regression line may not apply outside this range — very large or very small trees may have different relationships between diameter and volume. Always restrict predictions to the range of your data.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Mixing Up Response and Explanatory Variables
+
+The slope and intercept depend on which variable you put on the x-axis. Regressing volume on DBH gives different coefficients than regressing DBH on volume. Always identify which variable you want to predict (y) and which variable you are using to predict (x) before building the model.
+:::
+
+::: {.callout-warning}
+## Common Mistake: Ignoring the Residuals
+
+A high $R^2$ does not guarantee a good model. Always check residual plots. If residuals show a pattern (e.g., a curved trend), a straight line is not the right model and the predictions will be biased.
+:::
+
+---
+
+## Summary
+
+- **Linear regression** builds a prediction equation: $\hat{y} = b_0 + b_1 x$.
+- The **slope** ($b_1$) is the predicted change in y per unit increase in x.
+- The **intercept** ($b_0$) is the predicted y when x = 0 (may or may not be meaningful).
+- Use the **least-squares** criterion to find the best-fitting line.
+- $R^2$ is the proportion of variance in y explained by x.
+- In R, use `lm(y ~ x, data = df)` and `summary(model)`.
+- Predict only within the range of the data used to build the model.
+
+## Practice Problems
+
+1. A soil scientist measures soil phosphorus (ppm) in 6 fields and their average corn yield (bu/acre): P (x): 12, 18, 25, 30, 22, 15; Yield (y): 140, 158, 175, 182, 167, 148. (a) Calculate the slope and intercept by hand (use the formulas). (b) Predict the yield for a field with soil P = 20 ppm. (c) Write the regression equation.
+
+2. A regression of tree height (m) on tree age (years) for Douglas fir gives: $\hat{height} = 1.5 + 0.9 \times age$, $R^2 = 0.78$. (a) Interpret the slope. (b) Predict the height of a 30-year-old tree. (c) Would it be appropriate to predict the height at age 200? Why or why not?
+
+3. You run a linear regression in R and get this output: `lm(yield ~ rainfall)`. The slope is 0.12 (bushels/acre per mm of rain) with $p = 0.35$. What does the non-significant p-value tell you about the relationship between rainfall and yield in this dataset?

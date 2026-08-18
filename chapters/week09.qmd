@@ -185,7 +185,7 @@ plot(x_vals, dnorm(x_vals), type = "l", lwd = 2,
 
 # Shade rejection region (right tail only)
 x_rej <- seq(z_crit, 4, length.out = 100)
-polygon(c(z_rej, rev(x_rej)),
+polygon(c(x_rej, rev(x_rej)),
         c(dnorm(x_rej), rep(0, length(x_rej))),
         col = "salmon", border = NA)
 

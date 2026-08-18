@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Week 15 — Linear Regression – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/week16.html" rel="next">
+<link href="../chapters/week14.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e6327c87da4d77694843264cb205aa05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to Statistical Analysis in Agriculture and the Natural Resources</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://moctezumaii.github.io/AGNR_220/"> 
+<span class="menu-text">AGNR 220 Course Page</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="../Introduction-to-Statistical-Analysis-in-Agriculture-and-the-Natural-Resources.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="../Introduction-to-Statistical-Analysis-in-Agriculture-and-the-Natural-Resources.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week15.html">Unit 5: Relationships Between Variables</a></li><li class="breadcrumb-item"><a href="../chapters/week15.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 15 — Linear Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Front Matter</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus: AGNR 220 - Introduction to Statistical Analysis in Agriculture and the Natural Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unit 1: Getting Started with Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 1 - Welcome and What Is Data?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unit 2: Probability and Uncertainty</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Week 6 — Binomial Proportions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Week 7 — Experimental Design and the Scientific Method</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unit 3: Inference and Hypothesis Testing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 8 — Hypothesis Testing: Conceptual Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Week 9 — Hypothesis Testing: Complete</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Week 10 — T-Tests and One-Tail Tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Week 11 — Comparing Means: Two-Sample Tests</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unit 4: Comparing Groups</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Week 12 — Comparing More Than Two Means: One-Way ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Week 13 — Contingency Analysis: Chi-Square Tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Week 14 — Continuous Variables and Correlation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 5: Relationships Between Variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week15.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 15 — Linear Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/week16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Week 16 — Review and Wrap-Up</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">16.1</span> Learning Objectives</a></li>
+  <li><a href="#background-and-conceptual-introduction" id="toc-background-and-conceptual-introduction" class="nav-link" data-scroll-target="#background-and-conceptual-introduction"><span class="header-section-number">16.2</span> Background and Conceptual Introduction</a></li>
+  <li><a href="#key-concepts-and-definitions" id="toc-key-concepts-and-definitions" class="nav-link" data-scroll-target="#key-concepts-and-definitions"><span class="header-section-number">16.3</span> Key Concepts and Definitions</a></li>
+  <li><a href="#how-to-do-it-by-hand" id="toc-how-to-do-it-by-hand" class="nav-link" data-scroll-target="#how-to-do-it-by-hand"><span class="header-section-number">16.4</span> How to Do It by Hand</a></li>
+  <li><a href="#how-to-do-it-in-excel" id="toc-how-to-do-it-in-excel" class="nav-link" data-scroll-target="#how-to-do-it-in-excel"><span class="header-section-number">16.5</span> How to Do It in Excel</a></li>
+  <li><a href="#how-to-do-it-in-r" id="toc-how-to-do-it-in-r" class="nav-link" data-scroll-target="#how-to-do-it-in-r"><span class="header-section-number">16.6</span> How to Do It in R</a></li>
+  <li><a href="#interpretation-and-common-mistakes" id="toc-interpretation-and-common-mistakes" class="nav-link" data-scroll-target="#interpretation-and-common-mistakes"><span class="header-section-number">16.7</span> Interpretation and Common Mistakes</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">16.8</span> Summary</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">16.9</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week15.html">Unit 5: Relationships Between Variables</a></li><li class="breadcrumb-item"><a href="../chapters/week15.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 15 — Linear Regression</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-week15" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 15 — Linear Regression</span></span></h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">linear-regression</div>
+    <div class="quarto-category">regression</div>
+    <div class="quarto-category">prediction</div>
+    <div class="quarto-category">least-squares</div>
+    <div class="quarto-category">r-squared</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Dates:</strong> Monday November 23</p>
+<p><em>(Note: Wednesday November 25 and Friday November 27 — no class, Thanksgiving)</em></p>
+<section id="learning-objectives" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">16.1</span> Learning Objectives</h2>
+<p>By the end of this week, you should be able to:</p>
+<ul>
+<li>Distinguish between correlation (association) and regression (prediction/modeling).</li>
+<li>Identify the response variable (<span class="math inline">\(y\)</span>) and explanatory variable (<span class="math inline">\(x\)</span>) in a regression problem.</li>
+<li>Interpret the slope and intercept of a regression line in the context of the data.</li>
+<li>Calculate the least-squares regression line using the formulas for slope and intercept.</li>
+<li>Use the regression equation to make predictions within the range of the data.</li>
+<li>Evaluate model fit using <span class="math inline">\(R^2\)</span>.</li>
+</ul>
+<hr>
+</section>
+<section id="background-and-conceptual-introduction" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="background-and-conceptual-introduction"><span class="header-section-number">16.2</span> Background and Conceptual Introduction</h2>
+<p>In Week 14 we measured <em>how strongly</em> two variables are related using correlation. Now we go one step further and ask: <em>can we use one variable to predict the other?</em></p>
+<p>Linear regression builds a mathematical model — a straight line — that describes the relationship between an <strong>explanatory variable</strong> (x) and a <strong>response variable</strong> (y). Once we have this line, we can use it to:</p>
+<ul>
+<li>Predict the response for a new value of x.</li>
+<li>Quantify how much y changes for each unit change in x.</li>
+<li>Understand which variables are associated with outcomes of interest.</li>
+</ul>
+<p>Remember the Lego model analogy: a linear regression line is the simplest possible model of a relationship. It will not be perfectly correct (all models are wrong), but it can be very useful. The line captures the <em>average</em> relationship between x and y — individual observations will scatter around it due to random variability.</p>
+<p>In agriculture and natural resources, linear regression is everywhere: - Predicting timber volume from tree diameter. - Estimating water demand from temperature. - Relating fertilizer application rate to crop yield. - Predicting body weight from age in livestock.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think About It 🧠
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have data on fertilizer application rate (kg N/ha) and corn yield (bushels/acre) from 25 plots. You fit a regression line and get: Yield = 60 + 0.8 × (Fertilizer rate). What does the slope of 0.8 tell you? What does the intercept of 60 tell you? Does the intercept have a practical interpretation here?</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="key-concepts-and-definitions" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="key-concepts-and-definitions"><span class="header-section-number">16.3</span> Key Concepts and Definitions</h2>
+<p><strong>Response variable (<span class="math inline">\(y\)</span>):</strong> The variable you are trying to predict or explain. Also called the <em>dependent variable</em>.</p>
+<p><strong>Explanatory variable (<span class="math inline">\(x\)</span>):</strong> The variable used to predict or explain <span class="math inline">\(y\)</span>. Also called the <em>independent variable</em> or <em>predictor</em>.</p>
+<p><strong>Linear regression model:</strong></p>
+<p><span class="math display">\[\hat{y} = \beta_0 + \beta_1 x\]</span></p>
+<p>where <span class="math inline">\(\hat{y}\)</span> is the predicted value of y, <span class="math inline">\(\beta_0\)</span> is the y-intercept, and <span class="math inline">\(\beta_1\)</span> is the slope.</p>
+<p><strong>Slope (<span class="math inline">\(\beta_1\)</span>):</strong> The predicted change in <span class="math inline">\(y\)</span> for each one-unit increase in <span class="math inline">\(x\)</span>. Can be positive or negative.</p>
+<p><strong>Intercept (<span class="math inline">\(\beta_0\)</span>):</strong> The predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>. Sometimes has a practical interpretation, sometimes does not (if <span class="math inline">\(x = 0\)</span> is outside the data range).</p>
+<p><strong>Residual:</strong> The difference between an observed value and the value predicted by the model: <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>. Residuals represent unexplained variation.</p>
+<p><strong>Least-squares criterion:</strong> The regression line minimizes the sum of squared residuals (<span class="math inline">\(\sum e_i^2\)</span>). This gives the best-fitting straight line.</p>
+<p><strong>Formulas for slope and intercept:</strong></p>
+<p><span class="math display">\[b_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = r \cdot \frac{s_y}{s_x}\]</span></p>
+<p><span class="math display">\[b_0 = \bar{y} - b_1 \cdot \bar{x}\]</span></p>
+<p><strong>Coefficient of determination (<span class="math inline">\(R^2\)</span>):</strong> The proportion of total variability in <span class="math inline">\(y\)</span> explained by the regression model. <span class="math inline">\(R^2 = r^2\)</span> for simple linear regression. Ranges from 0 to 1: higher is better.</p>
+<hr>
+</section>
+<section id="how-to-do-it-by-hand" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="how-to-do-it-by-hand"><span class="header-section-number">16.4</span> How to Do It by Hand</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example: Tree Diameter and Timber Volume
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A forester measures diameter at breast height (DBH, cm) and timber volume (m³) for 8 trees:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tree</th>
+<th>DBH (x)</th>
+<th>Volume (y)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>18</td>
+<td>0.22</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>22</td>
+<td>0.31</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>15</td>
+<td>0.16</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>28</td>
+<td>0.52</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>20</td>
+<td>0.27</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>25</td>
+<td>0.43</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>17</td>
+<td>0.19</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>24</td>
+<td>0.40</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Step 1: Calculate means</strong></p>
+<p><span class="math inline">\(\bar{x} = (18+22+15+28+20+25+17+24)/8 = 169/8 = 21.125\)</span> cm</p>
+<p><span class="math inline">\(\bar{y} = (0.22+0.31+0.16+0.52+0.27+0.43+0.19+0.40)/8 = 2.50/8 = 0.3125\)</span> m³</p>
+<p><strong>Step 2: Calculate deviations and cross-products</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 17%">
+<col style="width: 7%">
+<col style="width: 17%">
+<col style="width: 30%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\(x_i - \bar{x}\)</span></th>
+<th><span class="math inline">\(y_i\)</span></th>
+<th><span class="math inline">\(y_i - \bar{y}\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})(y_i-\bar{y})\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>18</td>
+<td>−3.125</td>
+<td>0.22</td>
+<td>−0.0925</td>
+<td>0.289</td>
+<td>9.766</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>0.875</td>
+<td>0.31</td>
+<td>−0.0025</td>
+<td>−0.002</td>
+<td>0.766</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>−6.125</td>
+<td>0.16</td>
+<td>−0.1525</td>
+<td>0.934</td>
+<td>37.516</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>6.875</td>
+<td>0.52</td>
+<td>0.2075</td>
+<td>1.427</td>
+<td>47.266</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>−1.125</td>
+<td>0.27</td>
+<td>−0.0425</td>
+<td>0.048</td>
+<td>1.266</td>
+</tr>
+<tr class="even">
+<td>25</td>
+<td>3.875</td>
+<td>0.43</td>
+<td>0.1175</td>
+<td>0.455</td>
+<td>15.016</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>−4.125</td>
+<td>0.19</td>
+<td>−0.1225</td>
+<td>0.505</td>
+<td>17.016</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>2.875</td>
+<td>0.40</td>
+<td>0.0875</td>
+<td>0.252</td>
+<td>8.266</td>
+</tr>
+<tr class="odd">
+<td><strong>Sum</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>3.908</strong></td>
+<td><strong>136.875</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3: Calculate slope</strong></p>
+<p><span class="math display">\[b_1 = \frac{3.908}{136.875} = 0.02855 \text{ m}^3/\text{cm}\]</span></p>
+<p><strong>Step 4: Calculate intercept</strong></p>
+<p><span class="math display">\[b_0 = 0.3125 - 0.02855 \times 21.125 = 0.3125 - 0.6031 = -0.2906 \text{ m}^3\]</span></p>
+<p><strong>Regression equation:</strong></p>
+<p><span class="math display">\[\hat{y} = -0.291 + 0.0286 \times DBH\]</span></p>
+<p><strong>Step 5: Interpret</strong></p>
+<ul>
+<li><strong>Slope:</strong> Each additional 1 cm in DBH predicts an increase of about <strong>0.029 m³</strong> in timber volume.</li>
+<li><strong>Intercept:</strong> A tree with DBH = 0 would have volume = −0.291 m³. This is not physically meaningful (trees do not have zero diameter), so the intercept is just a mathematical anchor for the line.</li>
+</ul>
+<p><strong>Step 6: Make a prediction</strong></p>
+<p>A new tree has DBH = 23 cm. Predicted volume:</p>
+<p><span class="math display">\[\hat{y} = -0.291 + 0.0286 \times 23 = -0.291 + 0.658 = 0.367 \text{ m}^3\]</span></p>
+<p><strong>Step 7: Calculate <span class="math inline">\(R^2\)</span></strong></p>
+<p>From our Week 14 analysis of these data: <span class="math inline">\(r = 0.995\)</span>, so <span class="math inline">\(R^2 = 0.995^2 = 0.990\)</span> (99% of variance explained). <em>(Note: actual r for this example is similar — see R code below.)</em></p>
+<hr>
+</section>
+<section id="how-to-do-it-in-excel" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="how-to-do-it-in-excel"><span class="header-section-number">16.5</span> How to Do It in Excel</h2>
+<ol type="1">
+<li>Enter DBH in column A, Volume in column B.</li>
+<li>Create a scatterplot (Insert → Scatter).</li>
+<li>Right-click a data point → Add Trendline → Linear.</li>
+<li>Check “Display equation on chart” and “Display R² value.”</li>
+<li>For exact coefficients, also use: <code>=SLOPE(B1:B8, A1:A8)</code> and <code>=INTERCEPT(B1:B8, A1:A8)</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Screenshot will be added here.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-to-do-it-in-r" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="how-to-do-it-in-r"><span class="header-section-number">16.6</span> How to Do It in R</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tree diameter and timber volume data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dbh    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">17</span>, <span class="dv">24</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>volume <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.22</span>, <span class="fl">0.31</span>, <span class="fl">0.16</span>, <span class="fl">0.52</span>, <span class="fl">0.27</span>, <span class="fl">0.43</span>, <span class="fl">0.19</span>, <span class="fl">0.40</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear model</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> dbh)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View the model summary</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = volume ~ dbh)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.027480 -0.006151  0.001068  0.007966  0.022356 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.290575   0.030036  -9.674 6.99e-05 ***
+dbh          0.028548   0.001395  20.460 8.86e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.01632 on 6 degrees of freedom
+Multiple R-squared:  0.9859,    Adjusted R-squared:  0.9835 
+F-statistic: 418.6 on 1 and 6 DF,  p-value: 8.865e-07</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Interpret the output ---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients: Estimate for (Intercept) = b0, Estimate for dbh = b1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple R-squared: proportion of variance explained</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value for dbh coefficient: test of H0: beta1 = 0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a prediction for DBH = 23 cm</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>new_tree <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dbh =</span> <span class="dv">23</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new_tree, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        fit       lwr      upr
+1 0.3660274 0.3505218 0.381533</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Plot with regression line ---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_trees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dbh =</span> dbh, <span class="at">volume =</span> volume)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_trees, <span class="fu">aes</span>(<span class="at">x =</span> dbh, <span class="at">y =</span> volume)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title  =</span> <span class="st">"Tree Diameter vs. Timber Volume"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x      =</span> <span class="st">"DBH (cm)"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y      =</span> <span class="st">"Volume (m³)"</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week15_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Sample <code>summary(model)</code> output:</strong></p>
+<pre><code>Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -0.29060    0.02590  -11.22  1.6e-05 ***
+dbh          0.02855    0.00119   23.99  9.8e-07 ***
+
+Multiple R-squared:  0.9899</code></pre>
+<hr>
+</section>
+<section id="interpretation-and-common-mistakes" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="interpretation-and-common-mistakes"><span class="header-section-number">16.7</span> Interpretation and Common Mistakes</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistake: Predicting Outside the Data Range
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Our tree data spans DBH = 15–28 cm. The regression line may not apply outside this range — very large or very small trees may have different relationships between diameter and volume. Always restrict predictions to the range of your data.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistake: Mixing Up Response and Explanatory Variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The slope and intercept depend on which variable you put on the x-axis. Regressing volume on DBH gives different coefficients than regressing DBH on volume. Always identify which variable you want to predict (y) and which variable you are using to predict (x) before building the model.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistake: Ignoring the Residuals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A high <span class="math inline">\(R^2\)</span> does not guarantee a good model. Always check residual plots. If residuals show a pattern (e.g., a curved trend), a straight line is not the right model and the predictions will be biased.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">16.8</span> Summary</h2>
+<ul>
+<li><strong>Linear regression</strong> builds a prediction equation: <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span>.</li>
+<li>The <strong>slope</strong> (<span class="math inline">\(b_1\)</span>) is the predicted change in y per unit increase in x.</li>
+<li>The <strong>intercept</strong> (<span class="math inline">\(b_0\)</span>) is the predicted y when x = 0 (may or may not be meaningful).</li>
+<li>Use the <strong>least-squares</strong> criterion to find the best-fitting line.</li>
+<li><span class="math inline">\(R^2\)</span> is the proportion of variance in y explained by x.</li>
+<li>In R, use <code>lm(y ~ x, data = df)</code> and <code>summary(model)</code>.</li>
+<li>Predict only within the range of the data used to build the model.</li>
+</ul>
+</section>
+<section id="practice-problems" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">16.9</span> Practice Problems</h2>
+<ol type="1">
+<li><p>A soil scientist measures soil phosphorus (ppm) in 6 fields and their average corn yield (bu/acre): P (x): 12, 18, 25, 30, 22, 15; Yield (y): 140, 158, 175, 182, 167, 148. (a) Calculate the slope and intercept by hand (use the formulas). (b) Predict the yield for a field with soil P = 20 ppm. (c) Write the regression equation.</p></li>
+<li><p>A regression of tree height (m) on tree age (years) for Douglas fir gives: <span class="math inline">\(\hat{height} = 1.5 + 0.9 \times age\)</span>, <span class="math inline">\(R^2 = 0.78\)</span>. (a) Interpret the slope. (b) Predict the height of a 30-year-old tree. (c) Would it be appropriate to predict the height at age 200? Why or why not?</p></li>
+<li><p>You run a linear regression in R and get this output: <code>lm(yield ~ rainfall)</code>. The slope is 0.12 (bushels/acre per mm of rain) with <span class="math inline">\(p = 0.35\)</span>. What does the non-significant p-value tell you about the relationship between rainfall and yield in this dataset?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/week14.html" class="pagination-link" aria-label="Week 14 — Continuous Variables and Correlation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Week 14 — Continuous Variables and Correlation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/week16.html" class="pagination-link" aria-label="Week 16 — Review and Wrap-Up">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Week 16 — Review and Wrap-Up</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Alejandro Molina-Moctezuma, 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

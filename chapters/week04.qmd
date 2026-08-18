@@ -7,11 +7,11 @@ categories:
   - sampling
 ---
 
-# Week 4 — Uncertainty and Variability {#sec-week04}
+# Week 4 - Uncertainty and Variability {#sec-week04}
 
 **Dates:** Wednesday September 9 · Friday September 11
 
-*(Note: Monday September 7 is Labor Day — no class)*
+*(Note: Monday September 7 is Labor Day - no class)*
 
 ## Learning Objectives
 
@@ -27,11 +27,11 @@ By the end of this week, you should be able to:
 
 ## Background and Conceptual Introduction
 
-Suppose you want to know the average daily milk production of all dairy cows in Tennessee — that is the **population**. You cannot measure every cow in the state, so you measure a **sample** of 40 cows. You calculate the sample mean: 24 liters per day.
+Suppose you want to know the average daily milk production of all dairy cows in Tennessee - that is the **population**. You cannot measure every cow in the state, so you measure a **sample** of 40 cows. You calculate the sample mean: 24 liters per day.
 
-But here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean — maybe 23.5 or 24.8. This variation from sample to sample is called **sampling variability**, and it is at the heart of statistical inference.
+But here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean - maybe 23.5 or 24.8. This variation from sample to sample is called **sampling variability**, and it is at the heart of statistical inference.
 
-Think of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good *estimate* of the average size of all fish in the lake — but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.
+Think of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good *estimate* of the average size of all fish in the lake - but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.
 
 The **standard error** and **confidence interval** are tools that quantify our uncertainty. They tell us how far our sample estimate might be from the true population value.
 
@@ -120,7 +120,7 @@ $$95\% \text{ CI} = \bar{y} \pm 2 \times SE = 98.6 \pm 2 \times 1.89 = 98.6 \pm 
 $$\text{Lower bound} = 98.6 - 3.78 = 94.8 \text{ cm}$$
 $$\text{Upper bound} = 98.6 + 3.78 = 102.4 \text{ cm}$$
 
-**Interpretation:** Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval — our sample gave a good estimate!
+**Interpretation:** Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval - our sample gave a good estimate!
 
 ---
 
@@ -209,7 +209,7 @@ The **standard deviation (SD)** describes how much individuals in your sample va
 
 The **standard error (SE)** describes how precisely your sample mean estimates the population mean.
 
-The SE is always smaller than the SD (for $n > 1$). Reporting the SE as a measure of data spread is misleading — it understates the true variability among individuals.
+The SE is always smaller than the SD (for $n > 1$). Reporting the SE as a measure of data spread is misleading - it understates the true variability among individuals.
 :::
 
 ::: {.callout-warning}

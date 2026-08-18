@@ -6,7 +6,7 @@ categories:
   - boxplots
 ---
 
-# Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots {#sec-week03}
+# Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots {#sec-week03}
 
 **Dates:** Monday August 31 · Wednesday September 2 · Friday September 4
 
@@ -24,7 +24,7 @@ By the end of this week, you should be able to:
 
 ## Background and Conceptual Introduction
 
-Last week we calculated summary numbers — the mean, median, and standard deviation. Those numbers are useful, but they do not tell the whole story. Two datasets can have the same mean and standard deviation yet look completely different when plotted.
+Last week we calculated summary numbers - the mean, median, and standard deviation. Those numbers are useful, but they do not tell the whole story. Two datasets can have the same mean and standard deviation yet look completely different when plotted.
 
 Think of it this way: knowing that a forest has an average tree diameter of 20 cm is useful. But knowing that the diameters are spread roughly evenly around 20 cm (bell-shaped) is very different from knowing that most trees are small saplings and a few are giant old-growth trees (right-skewed). The *shape* of the distribution matters for choosing the right statistical test.
 
@@ -46,7 +46,7 @@ You are comparing fish length data from two different lakes. Lake A has an avera
 
 **Bin (class interval):** The range of values covered by one bar in a histogram. Choosing the number of bins affects how a histogram looks.
 
-**Distribution:** The overall pattern of values in a dataset — where values cluster, how spread out they are, and whether they are symmetric or skewed.
+**Distribution:** The overall pattern of values in a dataset - where values cluster, how spread out they are, and whether they are symmetric or skewed.
 
 **Symmetric distribution:** The left and right halves of the histogram mirror each other. The mean and median are approximately equal.
 
@@ -147,7 +147,7 @@ Screenshot will be added here.
 
 1. Select your data column.
 2. Click **Insert** → **Charts** → **Insert Statistic Chart** → **Box and Whisker**.
-3. Excel draws the boxplot. Note that Excel calculates quartiles slightly differently from how we did it by hand — small differences are normal.
+3. Excel draws the boxplot. Note that Excel calculates quartiles slightly differently from how we did it by hand - small differences are normal.
 
 ::: {.callout-note}
 Screenshot will be added here.
@@ -230,7 +230,7 @@ Both measure spread, but in different ways. Standard deviation uses all observat
 
 - A **histogram** shows the shape of the distribution of a numerical variable.
 - Common shapes: symmetric (bell-shaped), right-skewed (long right tail), left-skewed (long left tail).
-- A **boxplot** displays Q1, median, Q3, whiskers, and outliers — a compact 5-number summary.
+- A **boxplot** displays Q1, median, Q3, whiskers, and outliers - a compact 5-number summary.
 - The **IQR** is the range of the middle 50% of data; it is resistant to outliers.
 - In Excel: use Insert → Statistical Chart for both histograms and boxplots.
 - In R: use `hist()` for histograms and `boxplot()` for boxplots.

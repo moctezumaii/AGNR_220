@@ -6,7 +6,7 @@ categories:
   - mean-median-mode
 ---
 
-# Week 2 — Describing Data, Part I: Central Tendency and Spread {#sec-week02}
+# Week 2 - Describing Data, Part I: Central Tendency and Spread {#sec-week02}
 
 **Dates:** Monday August 24 · Wednesday August 26 · Friday August 28
 
@@ -14,26 +14,26 @@ categories:
 
 By the end of this week, you should be able to:
 
-- Calculate the mean, median, and mode of a small dataset by hand.
-- Calculate the range, variance, and standard deviation of a small dataset by hand.
-- Choose the most appropriate measure of central tendency given the shape of a distribution.
-- Interpret what the standard deviation tells you about a dataset.
-- Perform these calculations in Excel using built-in functions.
+-   Calculate the mean, median, and mode of a small dataset by hand.
+-   Calculate the range, variance, and standard deviation of a small dataset by hand.
+-   Choose the most appropriate measure of central tendency given the shape of a distribution.
+-   Interpret what the standard deviation tells you about a dataset.
+-   Perform these calculations in Excel using built-in functions.
 
----
+------------------------------------------------------------------------
 
 ## Background and Conceptual Introduction
 
-Imagine you are a rancher trying to evaluate whether your cattle are gaining weight at the expected rate. You weigh 10 steers and get a list of numbers. A raw list of numbers is hard to interpret — you need a way to summarize it. That is exactly what descriptive statistics does: it turns a list of numbers into a few meaningful summary values.
+Imagine you are a rancher trying to evaluate whether your cattle are gaining weight at the expected rate. You weigh 10 steers and get a list of numbers. A raw list of numbers is hard to interpret - you need a way to summarize it. That is exactly what descriptive statistics does: it turns a list of numbers into a few meaningful summary values.
 
 There are two main things we want to know about any dataset:
 
-1. **Where is the "center"?** — What is a typical value?
-2. **How spread out are the values?** — Are all the values close together, or do they vary a lot?
+1.  **Where is the "center"?** - What is a typical value?
+2.  **How spread out are the values?** - Are all the values close together, or do they vary a lot?
 
 Think of it like describing the weather. Saying "average high temperature in Knoxville in August is 32°C" tells you the center. Saying "temperatures range from 28°C to 38°C" tells you the spread. Both pieces of information together give you a much clearer picture than either one alone.
 
-::: {.callout-tip}
+::: callout-tip
 ## Think About It 🧠
 
 A soil scientist measures nitrate concentration (mg/L) in 8 water samples from a stream. One sample has a much higher concentration than the rest. How might that one extreme value affect the mean? The median? Which measure would give a more accurate picture of "typical" nitrate concentration?
@@ -41,11 +41,11 @@ A soil scientist measures nitrate concentration (mg/L) in 8 water samples from a
 
 In agriculture and natural resources, both center and spread matter enormously. A crop variety with high *average* yield but very high *variation* from field to field may be less dependable than a variety with slightly lower average yield but very consistent performance.
 
----
+------------------------------------------------------------------------
 
 ## Key Concepts and Definitions
 
-**Mean ($\bar{y}$):** The arithmetic average. Sum all values and divide by the number of observations. The mean uses every value and is sensitive to outliers.
+**Mean (**$\bar{y}$): The arithmetic average. Sum all values and divide by the number of observations. The mean uses every value and is sensitive to outliers.
 
 **Median:** The middle value when observations are sorted from smallest to largest. If there is an even number of observations, the median is the average of the two middle values. The median is resistant to outliers.
 
@@ -55,25 +55,25 @@ In agriculture and natural resources, both center and spread matter enormously. 
 
 **Deviation:** How far a single observation is from the mean: $deviation_i = y_i - \bar{y}$.
 
-**Variance ($s^2$):** The average of the squared deviations. Because deviations are squared, variance is always non-negative and its units are squared (e.g., kg²).
+**Variance (**$s^2$): The average of the squared deviations. Because deviations are squared, variance is always non-negative and its units are squared (e.g., kg²).
 
 $$s^2 = \frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}$$
 
-**Standard Deviation ($s$):** The square root of the variance. It is in the same units as the original data (e.g., kg) and is the most commonly used measure of spread.
+**Standard Deviation (**$s$): The square root of the variance. It is in the same units as the original data (e.g., kg) and is the most commonly used measure of spread.
 
 $$s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}}$$
 
-::: {.callout-important}
+::: callout-important
 ## Why n − 1?
 
-We divide by $n-1$ (not $n$) when calculating sample variance. This is called *Bessel's correction*. When we use a sample to estimate the spread of a whole population, dividing by $n-1$ gives us a better (unbiased) estimate. You will just remember this rule for now — the why becomes clear later in the course.
+We divide by $n-1$ (not $n$) when calculating sample variance. This is called *Bessel's correction*. When we use a sample to estimate the spread of a whole population, dividing by $n-1$ gives us a better (unbiased) estimate. You will just remember this rule for now - the why becomes clear later in the course.
 :::
 
----
+------------------------------------------------------------------------
 
 ## How to Do It by Hand
 
-::: {.callout-note}
+::: callout-note
 ## Example: Steer Weight Gains
 
 A rancher records the daily weight gain (kg) of 10 steers over a 30-day trial period:
@@ -91,12 +91,11 @@ $$\bar{y} = \frac{1.2 + 1.5 + 1.3 + 1.8 + 1.1 + 1.4 + 1.6 + 1.2 + 1.7 + 1.4}{10}
 
 **Step 3: Find the median**
 
-With $n = 10$ (even), the median is the average of the 5th and 6th sorted values:
-$$\text{Median} = \frac{1.4 + 1.4}{2} = 1.4 \text{ kg/day}$$
+With $n = 10$ (even), the median is the average of the 5th and 6th sorted values: $$\text{Median} = \frac{1.4 + 1.4}{2} = 1.4 \text{ kg/day}$$
 
 **Step 4: Find the mode**
 
-The values 1.2 and 1.4 each appear twice — this dataset is **bimodal** (two modes).
+The values 1.2 and 1.4 each appear twice - this dataset is **bimodal** (two modes).
 
 **Step 5: Calculate the range**
 
@@ -104,21 +103,21 @@ $$\text{Range} = 1.8 - 1.1 = 0.7 \text{ kg/day}$$
 
 **Step 6: Calculate deviations, squared deviations**
 
-| $y_i$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
-|-------|-----------------|---------------------|
-| 1.2 | −0.22 | 0.0484 |
-| 1.5 | 0.08 | 0.0064 |
-| 1.3 | −0.12 | 0.0144 |
-| 1.8 | 0.38 | 0.1444 |
-| 1.1 | −0.32 | 0.1024 |
-| 1.4 | −0.02 | 0.0004 |
-| 1.6 | 0.18 | 0.0324 |
-| 1.2 | −0.22 | 0.0484 |
-| 1.7 | 0.28 | 0.0784 |
-| 1.4 | −0.02 | 0.0004 |
-| **Sum** | **0.00** | **0.4760** |
+| $y_i$   | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
+|---------|-----------------|---------------------|
+| 1.2     | −0.22           | 0.0484              |
+| 1.5     | 0.08            | 0.0064              |
+| 1.3     | −0.12           | 0.0144              |
+| 1.8     | 0.38            | 0.1444              |
+| 1.1     | −0.32           | 0.1024              |
+| 1.4     | −0.02           | 0.0004              |
+| 1.6     | 0.18            | 0.0324              |
+| 1.2     | −0.22           | 0.0484              |
+| 1.7     | 0.28            | 0.0784              |
+| 1.4     | −0.02           | 0.0004              |
+| **Sum** | **0.00**        | **0.4760**          |
 
-*(Note: the sum of deviations is always 0 — a good check!)*
+*(Note: the sum of deviations is always 0 - a good check!)*
 
 **Step 7: Calculate variance**
 
@@ -130,34 +129,34 @@ $$s = \sqrt{0.0529} = 0.230 \text{ kg/day}$$
 
 **Interpretation:** The average daily weight gain is **1.42 kg/day**. Most steers gain between about $1.42 - 0.23 = 1.19$ and $1.42 + 0.23 = 1.65$ kg per day.
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in Excel
 
-1. Enter your 10 values in cells **A1:A10**.
-2. In cell **B1**, type a label like "Statistics".
-3. Calculate each statistic in a separate cell:
+1.  Enter your 10 values in cells **A1:A10**.
+2.  In cell **B1**, type a label like "Statistics".
+3.  Calculate each statistic in a separate cell:
 
-| Cell | Formula | What it calculates |
-|------|---------|-------------------|
-| B2 | `=AVERAGE(A1:A10)` | Mean |
-| B3 | `=MEDIAN(A1:A10)` | Median |
-| B4 | `=MODE(A1:A10)` | Mode (returns first mode if multiple) |
-| B5 | `=MAX(A1:A10)-MIN(A1:A10)` | Range |
-| B6 | `=VAR.S(A1:A10)` | Sample variance ($s^2$) |
-| B7 | `=STDEV.S(A1:A10)` | Sample standard deviation ($s$) |
+| Cell | Formula                    | What it calculates                    |
+|------|----------------------------|---------------------------------------|
+| B2   | `=AVERAGE(A1:A10)`         | Mean                                  |
+| B3   | `=MEDIAN(A1:A10)`          | Median                                |
+| B4   | `=MODE(A1:A10)`            | Mode (returns first mode if multiple) |
+| B5   | `=MAX(A1:A10)-MIN(A1:A10)` | Range                                 |
+| B6   | `=VAR.S(A1:A10)`           | Sample variance ($s^2$)               |
+| B7   | `=STDEV.S(A1:A10)`         | Sample standard deviation ($s$)       |
 
-::: {.callout-note}
+::: callout-note
 Screenshot will be added here.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## VAR.S vs. VAR.P
 
 Excel has two variance functions: `VAR.S` (sample variance, divides by $n-1$) and `VAR.P` (population variance, divides by $n$). For this course, **always use `VAR.S` and `STDEV.S`** unless instructed otherwise.
 :::
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in R
 
@@ -185,7 +184,8 @@ summary(gains)    # min, Q1, median, mean, Q3, max
 ```
 
 **Sample output:**
-```
+
+```         
 > mean(gains)
 [1] 1.42
 
@@ -197,7 +197,7 @@ summary(gains)    # min, Q1, median, mean, Q3, max
    1.10    1.20    1.40    1.42    1.60    1.80
 ```
 
----
+------------------------------------------------------------------------
 
 ## Interpretation and Common Mistakes
 
@@ -205,39 +205,39 @@ summary(gains)    # min, Q1, median, mean, Q3, max
 
 A standard deviation of 0.23 kg/day means that, on average, individual steer weight gains differ from the mean by about 0.23 kg/day. The larger the standard deviation, the more variable the group.
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Using the Mean When the Median Is More Appropriate
 
-If one steer in our example gained 4.0 kg/day (perhaps a data entry error), the mean would jump to about 1.68 kg/day — a value higher than 9 out of 10 actual observations. The median would barely change. When you suspect outliers or when data is skewed, the **median** is often a better measure of the "typical" value.
+If one steer in our example gained 4.0 kg/day (perhaps a data entry error), the mean would jump to about 1.68 kg/day - a value higher than 9 out of 10 actual observations. The median would barely change. When you suspect outliers or when data is skewed, the **median** is often a better measure of the "typical" value.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Forgetting to Use n − 1
 
 When computing variance by hand, students often divide by $n$ instead of $n-1$. In this course, we almost always work with *samples*, not entire populations, so we divide by $n-1$.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Reporting Variance Instead of Standard Deviation
 
 Variance is in squared units (kg²/day²), which is hard to interpret. Always convert to standard deviation (kg/day) so your measure of spread is in the same units as your data.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Summary
 
-- The **mean** is the most common measure of center but is pulled toward extreme values.
-- The **median** is the middle value and is more stable when outliers are present.
-- The **standard deviation** tells you, on average, how far individual observations are from the mean.
-- **Variance** is the square of the standard deviation; it is rarely reported directly.
-- In Excel, use `AVERAGE`, `MEDIAN`, `STDEV.S`, and `VAR.S`.
-- In R, use `mean()`, `median()`, `sd()`, and `var()`.
+-   The **mean** is the most common measure of center but is pulled toward extreme values.
+-   The **median** is the middle value and is more stable when outliers are present.
+-   The **standard deviation** tells you, on average, how far individual observations are from the mean.
+-   **Variance** is the square of the standard deviation; it is rarely reported directly.
+-   In Excel, use `AVERAGE`, `MEDIAN`, `STDEV.S`, and `VAR.S`.
+-   In R, use `mean()`, `median()`, `sd()`, and `var()`.
 
 ## Practice Problems
 
-1. A wildlife biologist counts the number of white-tailed deer observed per transect walk on 8 survey days: 4, 7, 3, 9, 5, 6, 4, 10. Calculate the mean, median, mode, range, variance, and standard deviation by hand. Show all steps.
+1.  A wildlife biologist counts the number of white-tailed deer observed per transect walk on 8 survey days: 4, 7, 3, 9, 5, 6, 4, 10. Calculate the mean, median, mode, range, variance, and standard deviation by hand. Show all steps.
 
-2. A farmer records wheat yields (bushels/acre) for 6 fields: 52, 48, 55, 61, 47, 50. Calculate the mean and standard deviation. Then suppose a seventh field yielded 110 bushels/acre (an unusually productive irrigated plot). Recalculate the mean. How much did the mean change? What happened to the median?
+2.  A farmer records wheat yields (bushels/acre) for 6 fields: 52, 48, 55, 61, 47, 50. Calculate the mean and standard deviation. Then suppose a seventh field yielded 110 bushels/acre (an unusually productive irrigated plot). Recalculate the mean. How much did the mean change? What happened to the median?
 
-3. Two groups of corn plants are grown under different irrigation regimes. Group A has a mean height of 150 cm with a standard deviation of 5 cm. Group B has a mean height of 150 cm with a standard deviation of 20 cm. Without doing any calculations, which group would you say has more consistent growth? Why might that matter for a farmer making planting decisions?
+3.  Two groups of corn plants are grown under different irrigation regimes. Group A has a mean height of 150 cm with a standard deviation of 5 cm. Group B has a mean height of 150 cm with a standard deviation of 20 cm. Without doing any calculations, which group would you say has more consistent growth? Why might that matter for a farmer making planting decisions?

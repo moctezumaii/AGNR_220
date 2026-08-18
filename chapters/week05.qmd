@@ -6,7 +6,7 @@ categories:
   - random-variables
 ---
 
-# Week 5 — Frequency Data and Probability {#sec-week05}
+# Week 5 - Frequency Data and Probability {#sec-week05}
 
 **Dates:** Monday September 14 · Wednesday September 16 · Friday September 18
 
@@ -26,7 +26,7 @@ By the end of this week, you should be able to:
 
 Probability is the foundation of all statistical inference. Before we can test whether a fertilizer treatment increases yield or whether a fish population is declining, we need to understand what "by chance alone" looks like.
 
-Think about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a *theoretical probability* — derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an *empirical probability* — derived from observed data. The two values differ slightly because of random chance in the 60 trials.
+Think about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a *theoretical probability* - derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an *empirical probability* - derived from observed data. The two values differ slightly because of random chance in the 60 trials.
 
 In agriculture and natural resources, we almost always work with empirical probabilities derived from data. For example:
 
@@ -45,7 +45,7 @@ A seed company claims their new soybean variety germinates 90% of the time under
 
 **Probability:** A number between 0 and 1 that represents how likely an event is. Probability = 0 means impossible; probability = 1 means certain.
 
-**Empirical probability:** Estimated from observed data — the proportion of times an event occurred in past trials.
+**Empirical probability:** Estimated from observed data - the proportion of times an event occurred in past trials.
 
 $$P(\text{event}) = \frac{\text{number of times event occurred}}{\text{total number of trials}}$$
 
@@ -57,7 +57,7 @@ $$P(\text{event}) = \frac{\text{number of times event occurred}}{\text{total num
 
 **Probability distribution:** A description of all possible values of a random variable and their associated probabilities.
 
-**Normal distribution:** A symmetric, bell-shaped probability distribution completely described by its mean ($\mu$) and standard deviation ($\sigma$). It appears throughout nature — heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.
+**Normal distribution:** A symmetric, bell-shaped probability distribution completely described by its mean ($\mu$) and standard deviation ($\sigma$). It appears throughout nature - heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.
 
 **The Empirical Rule (68–95–99.7 Rule):** For data that follow a normal distribution:
 - About **68%** of observations fall within 1 standard deviation of the mean ($\mu \pm 1\sigma$).
@@ -119,7 +119,7 @@ By the empirical rule, about **95%** of ears fall in this range.
 
 $$z = \frac{220 - 185}{15} = \frac{35}{15} = 2.33$$
 
-This ear is 2.33 standard deviations above the mean — it is quite large but not impossible.
+This ear is 2.33 standard deviations above the mean - it is quite large but not impossible.
 
 ---
 
@@ -140,9 +140,9 @@ Screenshot will be added here.
 
 Excel has built-in functions for the normal distribution:
 
-- `=NORM.DIST(x, mean, std_dev, TRUE)` — gives the probability that a normal random variable is ≤ x (cumulative probability).
-- `=NORM.DIST(200, 185, 15, TRUE)` — probability an ear weighs ≤ 200 g.
-- `=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE)` — probability between 170 and 200 g.
+- `=NORM.DIST(x, mean, std_dev, TRUE)` - gives the probability that a normal random variable is ≤ x (cumulative probability).
+- `=NORM.DIST(200, 185, 15, TRUE)` - probability an ear weighs ≤ 200 g.
+- `=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE)` - probability between 170 and 200 g.
 
 ---
 
@@ -194,7 +194,7 @@ abline(v = 185, col = "red", lty = 2) # mean
 
 **What does probability mean in practice?**
 
-A probability of 0.05 (5%) does not mean something is "impossible" — it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.
+A probability of 0.05 (5%) does not mean something is "impossible" - it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.
 
 ::: {.callout-warning}
 ## Common Mistake: Applying the Empirical Rule to Non-Normal Data

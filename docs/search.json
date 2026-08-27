@@ -394,481 +394,457 @@
   {
     "objectID": "chapters/week02.html",
     "href": "chapters/week02.html",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
+    "title": "3  Week 2, Part 1: Describing Data in R",
     "section": "",
-    "text": "3.1 Learning Objectives\nDates: Monday August 24 · Wednesday August 26 · Friday August 28\nBy the end of this week, you should be able to:",
+    "text": "3.1 What you will do\nIn class, you will:\nAfter class, you will:",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#learning-objectives",
-    "href": "chapters/week02.html#learning-objectives",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
+    "objectID": "chapters/week02.html#what-you-will-do",
+    "href": "chapters/week02.html#what-you-will-do",
+    "title": "3  Week 2, Part 1: Describing Data in R",
     "section": "",
-    "text": "Calculate the mean, median, and mode of a small dataset by hand.\nCalculate the range, variance, and standard deviation of a small dataset by hand.\nChoose the most appropriate measure of central tendency given the shape of a distribution.\nInterpret what the standard deviation tells you about a dataset.\nPerform these calculations in Excel using built-in functions.",
+    "text": "Create an RStudio Project.\nCreate a Quarto document that renders to a Word document.\nPractice a few basic R commands.\nImport the systolic blood pressure dataset used in our previous class.\nUse R to calculate the mean, median, first quartile, third quartile, standard deviation, variance, and coefficient of variation.\nCreate a histogram.\nSubmit\n\n\n\nRead the rest of this chapter.\nComplete only the sections labeled Assignment question.\nWrite your R code and answers in your Quarto document.\nRender the document to Word and submit the .docx file.\n\n\n\n\n\n\n\nImportantWhat should you submit?\n\n\n\nToday, you should submit one rendered Word document that includes your name, and answers.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#background-and-conceptual-introduction",
-    "href": "chapters/week02.html#background-and-conceptual-introduction",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.2 Background and Conceptual Introduction",
-    "text": "3.2 Background and Conceptual Introduction\nImagine you are a rancher trying to evaluate whether your cattle are gaining weight at the expected rate. You weigh 10 steers and get a list of numbers. A raw list of numbers is hard to interpret - you need a way to summarize it. That is exactly what descriptive statistics does: it turns a list of numbers into a few meaningful summary values.\nThere are two main things we want to know about any dataset:\n\nWhere is the “center”? - What is a typical value?\nHow spread out are the values? - Are all the values close together, or do they vary a lot?\n\nThink of it like describing the weather. Saying “average high temperature in Knoxville in August is 32°C” tells you the center. Saying “temperatures range from 28°C to 38°C” tells you the spread. Both pieces of information together give you a much clearer picture than either one alone.\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nA soil scientist measures nitrate concentration (mg/L) in 8 water samples from a stream. One sample has a much higher concentration than the rest. How might that one extreme value affect the mean? The median? Which measure would give a more accurate picture of “typical” nitrate concentration?\n\n\nIn agriculture and natural resources, both center and spread matter enormously. A crop variety with high average yield but very high variation from field to field may be less dependable than a variety with slightly lower average yield but very consistent performance.",
+    "objectID": "chapters/week02.html#part-1-set-up-your-work",
+    "href": "chapters/week02.html#part-1-set-up-your-work",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "3.2 Part 1: Set up your work",
+    "text": "3.2 Part 1: Set up your work\n\n3.2.1 Create an RStudio Project\nProjects keep your data, code, and output together. They also make it easier for R to find your files.\n\n\n\n\n\n\nImportantWhere to put the project\n\n\n\nYou will be downloading ALL DATA FILES to this folder. Please make it an easy to find folder\n\n\n\nOpen RStudio.\nSelect File &gt; New Project &gt; New Directory &gt; New Project.\nName the project SNR220 –&gt; You will use this for the rest of the semester\nChoose a location on your computer that you can find easily.\nCreate the project.\nSave the systolic blood pressure .csv file inside the project folder.\n\n\n\n3.2.2 Create a Quarto document\n\nSelect File &gt; New File &gt; Quarto Document.\nEnter a title such as Week 2: Describing Data.\nEnter your name as the author.\nSelect Word as the output format.\nSelect Create.\nSave the file as week2_describing_data.qmd inside your project folder.\n\nThe top of your file should look similar to this:\n---\ntitle: \"Week 2: Describing Data\"\nauthor: \"Your name\"\nformat: docx\n---\n\n\n3.2.3 Add code and written answers\nYou will complete all work in the .qmd file. Add regular text for your written answers. Add executable R code chunks for your code.\nTo insert a code chunk, select Insert &gt; Executable Cell &gt; R. You can also type three backticks followed by {r}, add your code, and close the chunk with three more backticks.\nFor example:\n### My first calculation\n\nThe result means that...\n\n\n::: {.cell}\n\n```{.r .cell-code}\n2 + 2\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 4\n```\n\n\n:::\n:::\nTo run one line or a selected section of code, press Ctrl + Enter on Windows or Command + Enter on macOS. To create the Word document, click Render.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#key-concepts-and-definitions",
-    "href": "chapters/week02.html#key-concepts-and-definitions",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.3 Key Concepts and Definitions",
-    "text": "3.3 Key Concepts and Definitions\nMean (\\(\\bar{y}\\)): The arithmetic average. Sum all values and divide by the number of observations. The mean uses every value and is sensitive to outliers.\nMedian: The middle value when observations are sorted from smallest to largest. If there is an even number of observations, the median is the average of the two middle values. The median is resistant to outliers.\nMode: The value (or values) that appear most often. Useful mainly for categorical data or discrete counts.\nRange: The difference between the maximum and minimum values. Easy to calculate but sensitive to outliers.\nDeviation: How far a single observation is from the mean: \\(deviation_i = y_i - \\bar{y}\\).\nVariance (\\(s^2\\)): The average of the squared deviations. Because deviations are squared, variance is always non-negative and its units are squared (e.g., kg²).\n\\[s^2 = \\frac{\\sum_{i=1}^{n}(y_i - \\bar{y})^2}{n - 1}\\]\nStandard Deviation (\\(s\\)): The square root of the variance. It is in the same units as the original data (e.g., kg) and is the most commonly used measure of spread.\n\\[s = \\sqrt{\\frac{\\sum_{i=1}^{n}(y_i - \\bar{y})^2}{n - 1}}\\]\n\n\n\n\n\n\nImportantWhy n − 1?\n\n\n\nWe divide by \\(n-1\\) (not \\(n\\)) when calculating sample variance. This is called Bessel’s correction. When we use a sample to estimate the spread of a whole population, dividing by \\(n-1\\) gives us a better (unbiased) estimate. You will just remember this rule for now - the why becomes clear later in the course.",
+    "objectID": "chapters/week02.html#part-2-play-with-r",
+    "href": "chapters/week02.html#part-2-play-with-r",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "3.3 Part 2: Play with R",
+    "text": "3.3 Part 2: Play with R\nR can be used as a calculator. In your Quarto document, create an R code chunk and run each of the following commands one at a time.\n5 + 5\n\n8^2\n\nsqrt(9)\n\n10 / 4\nR can also store values in objects. The assignment operator &lt;- places a value inside an object.\nx &lt;- 17\n\ny &lt;- x * 2\n\nx\n\ny\nA vector is a collection of values. The function c() combines values into a vector.\npractice_values &lt;- c(5, 7, 9, 15, 50)\n\npractice_values\n\nmean(practice_values)\n\nsd(practice_values)\nChange one of the values and run the code again. What happens to the mean and standard deviation?\n\n\n\n\n\n\nTipA note about the Console\n\n\n\nThe Console is useful for quick experiments, but your assignment code should be written in the Quarto file. Code saved in your Quarto file can be checked, corrected, rerun, and included in your final Word document.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#how-to-do-it-by-hand",
-    "href": "chapters/week02.html#how-to-do-it-by-hand",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.4 How to Do It by Hand",
-    "text": "3.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: Steer Weight Gains\n\n\n\nA rancher records the daily weight gain (kg) of 10 steers over a 30-day trial period:\nData: 1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4\n\n\nStep 1: Sort the data\n1.1, 1.2, 1.2, 1.3, 1.4, 1.4, 1.5, 1.6, 1.7, 1.8\nStep 2: Calculate the mean\n\\[\\bar{y} = \\frac{1.2 + 1.5 + 1.3 + 1.8 + 1.1 + 1.4 + 1.6 + 1.2 + 1.7 + 1.4}{10} = \\frac{14.2}{10} = 1.42 \\text{ kg/day}\\]\nStep 3: Find the median\nWith \\(n = 10\\) (even), the median is the average of the 5th and 6th sorted values: \\[\\text{Median} = \\frac{1.4 + 1.4}{2} = 1.4 \\text{ kg/day}\\]\nStep 4: Find the mode\nThe values 1.2 and 1.4 each appear twice - this dataset is bimodal (two modes).\nStep 5: Calculate the range\n\\[\\text{Range} = 1.8 - 1.1 = 0.7 \\text{ kg/day}\\]\nStep 6: Calculate deviations, squared deviations\n\n\n\n\\(y_i\\)\n\\(y_i - \\bar{y}\\)\n\\((y_i - \\bar{y})^2\\)\n\n\n\n\n1.2\n−0.22\n0.0484\n\n\n1.5\n0.08\n0.0064\n\n\n1.3\n−0.12\n0.0144\n\n\n1.8\n0.38\n0.1444\n\n\n1.1\n−0.32\n0.1024\n\n\n1.4\n−0.02\n0.0004\n\n\n1.6\n0.18\n0.0324\n\n\n1.2\n−0.22\n0.0484\n\n\n1.7\n0.28\n0.0784\n\n\n1.4\n−0.02\n0.0004\n\n\nSum\n0.00\n0.4760\n\n\n\n(Note: the sum of deviations is always 0 - a good check!)\nStep 7: Calculate variance\n\\[s^2 = \\frac{0.4760}{10 - 1} = \\frac{0.4760}{9} = 0.0529 \\text{ kg}^2/\\text{day}^2\\]\nStep 8: Calculate standard deviation\n\\[s = \\sqrt{0.0529} = 0.230 \\text{ kg/day}\\]\nInterpretation: The average daily weight gain is 1.42 kg/day. Most steers gain between about \\(1.42 - 0.23 = 1.19\\) and \\(1.42 + 0.23 = 1.65\\) kg per day.",
+    "objectID": "chapters/week02.html#part-3-guided-activity-with-the-systolic-blood-pressure-data",
+    "href": "chapters/week02.html#part-3-guided-activity-with-the-systolic-blood-pressure-data",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "3.4 Part 3: Guided activity with the systolic blood pressure data",
+    "text": "3.4 Part 3: Guided activity with the systolic blood pressure data\nYou previously estimated descriptive statistics for the systolic blood pressure dataset. Now you will use R to calculate the same values.\n\n3.4.1 Import the data\nDownload the dataforR.csv file from Canvas\nCreate an R code chunk in your Quarto document and enter:\n\nblood &lt;- read.csv(\"systolicBloodPressure.csv\")\n\nThe assignment operator &lt;- stores the imported dataset in an object named blood.\nUse these functions to inspect the dataset:\nhead(blood)\n\nnames(blood)\n\nstr(blood)\n\nsummary(blood)\n\nhead() displays the first few observations.\nnames() displays the variable names.\nstr() shows the structure and variable types.\nsummary() provides a quick summary of each variable.\n\n\n\n3.4.2 Select the systolic blood pressure variable\nThe column is named systolicBP. The $ symbol selects that column from the dataframe.\n\nsystolic &lt;- blood$systolicBP\n\nR is case-sensitive. Systolic and systolic are different names. Use the exact column name shown by names(blood).\n\n\n3.4.3 Calculate the descriptive statistics\nUse the following functions to estimate the function in your Quarto document:\nmean(systolic)\n\nmedian(systolic)\n\nquantile(systolic, probs = 0.25)\n\nquantile(systolic, probs = 0.75)\n\nsd(systolic)\n\nvar(systolic)\n\\[\nCV = \\frac{s}{\\bar{y}} \\times 100\n\\]\nCalculate it in R:\nsd(systolic / mean(systolic) * 100\n\n\n\n\n\n\nImportantBefore you render and submit\n\n\n\nMake sure your values are the same as you got on Excel\n\n\nNow, answer in the Quarto document:\nWas it easy or hard to do this?\n\n\n3.4.4 Create a quick histogram\nA histogram displays the distribution of a numerical variable. It can help you see the center, spread, skewness, gaps, and possible extreme values.\nAdd this code to your Quarto document:\nhist(\n  systolic,\n  main = \"Distribution of systolic blood pressure\",\n  xlab = \"Systolic blood pressure (mm Hg)\",\n  col = \"lightblue\",\n  border = \"white\"\n)\nThe histogram will appear automatically in the rendered Word document. Below the plot, write two or three sentences describing what you see. Consider the center, spread, shape, and any possible extreme values.\n\n\n\n\n\n\nWarning\n\n\n\nThat is it! You get to go home. The assignment will be due Wednesday 2nd! After we are back from labor day!",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#how-to-do-it-in-excel",
-    "href": "chapters/week02.html#how-to-do-it-in-excel",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.5 How to Do It in Excel",
-    "text": "3.5 How to Do It in Excel\n\nEnter your 10 values in cells A1:A10.\nIn cell B1, type a label like “Statistics”.\nCalculate each statistic in a separate cell:\n\n\n\n\n\n\n\n\n\nCell\nFormula\nWhat it calculates\n\n\n\n\nB2\n=AVERAGE(A1:A10)\nMean\n\n\nB3\n=MEDIAN(A1:A10)\nMedian\n\n\nB4\n=MODE(A1:A10)\nMode (returns first mode if multiple)\n\n\nB5\n=MAX(A1:A10)-MIN(A1:A10)\nRange\n\n\nB6\n=VAR.S(A1:A10)\nSample variance (\\(s^2\\))\n\n\nB7\n=STDEV.S(A1:A10)\nSample standard deviation (\\(s\\))\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.\n\n\n\n\n\n\n\n\nWarningVAR.S vs. VAR.P\n\n\n\nExcel has two variance functions: VAR.S (sample variance, divides by \\(n-1\\)) and VAR.P (population variance, divides by \\(n\\)). For this course, always use VAR.S and STDEV.S unless instructed otherwise.",
+    "objectID": "chapters/week02.html#excel-reference-only",
+    "href": "chapters/week02.html#excel-reference-only",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "4.1 Excel reference only",
+    "text": "4.1 Excel reference only\n\n\n\n\n\n\nNoteYou do not have to complete this section\n\n\n\nThis section is included as a reference. Do not submit Excel calculations for this assignment. Complete the assignment questions using R.\n\n\nIf values are stored in cells A1:A10, Excel can calculate the following:\n\n\n\nStatistic\nExcel formula\n\n\n\n\nMean\n=AVERAGE(A1:A10)\n\n\nMedian\n=MEDIAN(A1:A10)\n\n\nFirst quartile\n=QUARTILE.INC(A1:A10,1)\n\n\nThird quartile\n=QUARTILE.INC(A1:A10,3)\n\n\nSample variance\n=VAR.S(A1:A10)\n\n\nSample standard deviation\n=STDEV.S(A1:A10)\n\n\nCoefficient of variation\n=STDEV.S(A1:A10)/AVERAGE(A1:A10)*100\n\n\n\nUse VAR.S and STDEV.S when the observations are a sample. The functions VAR.P and STDEV.P are used when the data include the entire population of interest.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#how-to-do-it-in-r",
-    "href": "chapters/week02.html#how-to-do-it-in-r",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.6 How to Do It in R",
-    "text": "3.6 How to Do It in R\n\n# Enter the steer weight gain data as a vector\ngains &lt;- c(1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4)\n\n# --- Measures of central tendency ---\nmean(gains)       # arithmetic mean\n\n[1] 1.42\n\nmedian(gains)     # median\n\n[1] 1.4\n\n# Mode: R does not have a built-in mode() for numeric data\n# We can find it by creating a frequency table\ntable(gains)      # shows how often each value appears\n\ngains\n1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 \n  1   2   1   2   1   1   1   1 \n\n# --- Measures of spread ---\nrange(gains)      # returns the min and max (not the difference)\n\n[1] 1.1 1.8\n\ndiff(range(gains)) # this gives us the actual range = max - min\n\n[1] 0.7\n\nvar(gains)        # sample variance (uses n-1 automatically)\n\n[1] 0.05288889\n\nsd(gains)         # sample standard deviation\n\n[1] 0.2299758\n\n# --- Quick summary of everything ---\nsummary(gains)    # min, Q1, median, mean, Q3, max\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.100   1.225   1.400   1.420   1.575   1.800 \n\n\nSample output:\n&gt; mean(gains)\n[1] 1.42\n\n&gt; sd(gains)\n[1] 0.2299\n\n&gt; summary(gains)\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.\n   1.10    1.20    1.40    1.42    1.60    1.80",
+    "objectID": "chapters/week02.html#homework-r-exercises",
+    "href": "chapters/week02.html#homework-r-exercises",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "4.2 Homework: R exercises",
+    "text": "4.2 Homework: R exercises\nComplete both assignment questions in your Quarto document. Include the code, output, plots, and written responses. Do not calculate these answers in Excel.\n\n4.2.1 Assignment question 1: Deer observations\nA wildlife biologist records the number of white-tailed deer observed during eight transect surveys:\n4, 7, 3, 9, 5, 6, 4, 10\n\nCreate a vector named deer containing these observations.\nWrite R code to calculate the mean, median, Q1, Q3, range, variance, standard deviation, and CV.\nCreate a histogram with an informative title and axis label.\nIn two or three sentences, describe the center and spread of the observations. Mention whether the mean and median are similar.\n\n\n\n\n\n\n\nTipRemember\n\n\n\nThe R function range() returns the minimum and maximum. To calculate the difference between them, use diff(range(deer)).\n\n\n\n\n4.2.2 Assignment question 2: Wheat yield and an extreme value\nA farmer records wheat yield, in bushels per acre, for six fields:\n52, 48, 55, 61, 47, 50\nA seventh irrigated field yields 110 bushels per acre.\n\nCreate a vector named wheat containing the original six observations.\nCreate a second vector named wheat_with_extreme that includes all seven observations.\nFor each vector, write R code to calculate the mean, median, and standard deviation.\nCreate one histogram for each vector. Give each histogram a clear title and use the same x-axis limits so the plots can be compared fairly. You can add xlim = c(40, 115) inside each hist() function.\nIn three or four sentences, explain how the value of 110 affected the mean, median, standard deviation, and shape of the distribution.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
-    "objectID": "chapters/week02.html#interpretation-and-common-mistakes",
-    "href": "chapters/week02.html#interpretation-and-common-mistakes",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.7 Interpretation and Common Mistakes",
-    "text": "3.7 Interpretation and Common Mistakes\nWhat does the standard deviation mean in plain language?\nA standard deviation of 0.23 kg/day means that, on average, individual steer weight gains differ from the mean by about 0.23 kg/day. The larger the standard deviation, the more variable the group.\n\n\n\n\n\n\nWarningCommon Mistake: Using the Mean When the Median Is More Appropriate\n\n\n\nIf one steer in our example gained 4.0 kg/day (perhaps a data entry error), the mean would jump to about 1.68 kg/day - a value higher than 9 out of 10 actual observations. The median would barely change. When you suspect outliers or when data is skewed, the median is often a better measure of the “typical” value.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Forgetting to Use n − 1\n\n\n\nWhen computing variance by hand, students often divide by \\(n\\) instead of \\(n-1\\). In this course, we almost always work with samples, not entire populations, so we divide by \\(n-1\\).\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Reporting Variance Instead of Standard Deviation\n\n\n\nVariance is in squared units (kg²/day²), which is hard to interpret. Always convert to standard deviation (kg/day) so your measure of spread is in the same units as your data.",
+    "objectID": "chapters/week02.html#before-submitting",
+    "href": "chapters/week02.html#before-submitting",
+    "title": "3  Week 2, Part 1: Describing Data in R",
+    "section": "4.3 Before submitting",
+    "text": "4.3 Before submitting\nCheck that your Word document includes:\n\nYour name and assignment title\nAll R code used to answer the assignment questions\nThe numerical output from R\nAll required histograms\nWritten interpretations in complete sentences\n\nClick Render and open the .docx file to make sure the code, output, and plots are visible before submitting it.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/week02.html#summary",
-    "href": "chapters/week02.html#summary",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.8 Summary",
-    "text": "3.8 Summary\n\nThe mean is the most common measure of center but is pulled toward extreme values.\nThe median is the middle value and is more stable when outliers are present.\nThe standard deviation tells you, on average, how far individual observations are from the mean.\nVariance is the square of the standard deviation; it is rarely reported directly.\nIn Excel, use AVERAGE, MEDIAN, STDEV.S, and VAR.S.\nIn R, use mean(), median(), sd(), and var().",
-    "crumbs": [
-      "Home",
-      "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/week02.html#practice-problems",
-    "href": "chapters/week02.html#practice-problems",
-    "title": "3  Week 2 - Describing Data, Part I: Central Tendency and Spread",
-    "section": "3.9 Practice Problems",
-    "text": "3.9 Practice Problems\n\nA wildlife biologist counts the number of white-tailed deer observed per transect walk on 8 survey days: 4, 7, 3, 9, 5, 6, 4, 10. Calculate the mean, median, mode, range, variance, and standard deviation by hand. Show all steps.\nA farmer records wheat yields (bushels/acre) for 6 fields: 52, 48, 55, 61, 47, 50. Calculate the mean and standard deviation. Then suppose a seventh field yielded 110 bushels/acre (an unusually productive irrigated plot). Recalculate the mean. How much did the mean change? What happened to the median?\nTwo groups of corn plants are grown under different irrigation regimes. Group A has a mean height of 150 cm with a standard deviation of 5 cm. Group B has a mean height of 150 cm with a standard deviation of 20 cm. Without doing any calculations, which group would you say has more consistent growth? Why might that matter for a farmer making planting decisions?",
-    "crumbs": [
-      "Home",
-      "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2 - Describing Data, Part I: Central Tendency and Spread</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Week 2, Part 1: Describing Data in R</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html",
     "href": "chapters/week03.html",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "",
     "text": "4.1 Learning Objectives\nDates: Monday August 31 · Wednesday September 2 · Friday September 4\nBy the end of this week, you should be able to:",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#learning-objectives",
     "href": "chapters/week03.html#learning-objectives",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "",
     "text": "Draw and interpret a histogram from a small dataset.\nDescribe the shape of a distribution (symmetric, right-skewed, left-skewed).\nCalculate quartiles and the interquartile range (IQR).\nDraw and interpret a boxplot by hand.\nCreate histograms and boxplots in Excel and R.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#background-and-conceptual-introduction",
     "href": "chapters/week03.html#background-and-conceptual-introduction",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.2 Background and Conceptual Introduction",
-    "text": "4.2 Background and Conceptual Introduction\nLast week we calculated summary numbers — the mean, median, and standard deviation. Those numbers are useful, but they do not tell the whole story. Two datasets can have the same mean and standard deviation yet look completely different when plotted.\nThink of it this way: knowing that a forest has an average tree diameter of 20 cm is useful. But knowing that the diameters are spread roughly evenly around 20 cm (bell-shaped) is very different from knowing that most trees are small saplings and a few are giant old-growth trees (right-skewed). The shape of the distribution matters for choosing the right statistical test.\nHistograms and boxplots are two of the most important tools for visualizing the distribution of a numerical variable. They let you see the shape, identify typical values, spot unusual observations (outliers), and compare groups.\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nYou are comparing fish length data from two different lakes. Lake A has an average trout length of 35 cm with most fish close to that size. Lake B also has an average of 35 cm, but it has a mix of very small young fish and a few very large old fish. If you only reported the mean, would someone reading your report notice the difference? What would a histogram show that the mean cannot?",
+    "text": "4.2 Background and Conceptual Introduction\nLast week we calculated summary numbers - the mean, median, and standard deviation. Those numbers are useful, but they do not tell the whole story. Two datasets can have the same mean and standard deviation yet look completely different when plotted.\nThink of it this way: knowing that a forest has an average tree diameter of 20 cm is useful. But knowing that the diameters are spread roughly evenly around 20 cm (bell-shaped) is very different from knowing that most trees are small saplings and a few are giant old-growth trees (right-skewed). The shape of the distribution matters for choosing the right statistical test.\nHistograms and boxplots are two of the most important tools for visualizing the distribution of a numerical variable. They let you see the shape, identify typical values, spot unusual observations (outliers), and compare groups.\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nYou are comparing fish length data from two different lakes. Lake A has an average trout length of 35 cm with most fish close to that size. Lake B also has an average of 35 cm, but it has a mix of very small young fish and a few very large old fish. If you only reported the mean, would someone reading your report notice the difference? What would a histogram show that the mean cannot?",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#key-concepts-and-definitions",
     "href": "chapters/week03.html#key-concepts-and-definitions",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.3 Key Concepts and Definitions",
-    "text": "4.3 Key Concepts and Definitions\nFrequency: The number of observations that fall within a given interval or category.\nHistogram: A bar chart for numerical data. Each bar covers a range of values (a “bin”), and the height of the bar shows how many observations fall in that range. Bars touch each other because the data are continuous.\nBin (class interval): The range of values covered by one bar in a histogram. Choosing the number of bins affects how a histogram looks.\nDistribution: The overall pattern of values in a dataset — where values cluster, how spread out they are, and whether they are symmetric or skewed.\nSymmetric distribution: The left and right halves of the histogram mirror each other. The mean and median are approximately equal.\nRight-skewed (positively skewed): The histogram has a long tail extending to the right. Most values are small, but a few are very large. The mean is pulled to the right of the median. Common in income data, species abundance counts, and pollutant concentrations.\nLeft-skewed (negatively skewed): The histogram has a long tail extending to the left. The mean is pulled to the left of the median.\nQuartiles: Values that split a sorted dataset into four equal parts. - Q1 (first quartile) = 25th percentile - Q2 (second quartile) = median = 50th percentile - Q3 (third quartile) = 75th percentile\nInterquartile Range (IQR): \\(IQR = Q3 - Q1\\). It describes the spread of the middle 50% of the data. It is resistant to outliers.\nOutlier: An observation that is far from the rest. A common rule: any value more than \\(1.5 \\times IQR\\) below Q1 or above Q3 is considered a potential outlier.\nBoxplot (box-and-whisker plot): A graphical display showing Q1, median, Q3, and the range of non-outlier values. Outliers are plotted as individual points.",
+    "text": "4.3 Key Concepts and Definitions\nFrequency: The number of observations that fall within a given interval or category.\nHistogram: A bar chart for numerical data. Each bar covers a range of values (a “bin”), and the height of the bar shows how many observations fall in that range. Bars touch each other because the data are continuous.\nBin (class interval): The range of values covered by one bar in a histogram. Choosing the number of bins affects how a histogram looks.\nDistribution: The overall pattern of values in a dataset - where values cluster, how spread out they are, and whether they are symmetric or skewed.\nSymmetric distribution: The left and right halves of the histogram mirror each other. The mean and median are approximately equal.\nRight-skewed (positively skewed): The histogram has a long tail extending to the right. Most values are small, but a few are very large. The mean is pulled to the right of the median. Common in income data, species abundance counts, and pollutant concentrations.\nLeft-skewed (negatively skewed): The histogram has a long tail extending to the left. The mean is pulled to the left of the median.\nQuartiles: Values that split a sorted dataset into four equal parts. - Q1 (first quartile) = 25th percentile - Q2 (second quartile) = median = 50th percentile - Q3 (third quartile) = 75th percentile\nInterquartile Range (IQR): \\(IQR = Q3 - Q1\\). It describes the spread of the middle 50% of the data. It is resistant to outliers.\nOutlier: An observation that is far from the rest. A common rule: any value more than \\(1.5 \\times IQR\\) below Q1 or above Q3 is considered a potential outlier.\nBoxplot (box-and-whisker plot): A graphical display showing Q1, median, Q3, and the range of non-outlier values. Outliers are plotted as individual points.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#how-to-do-it-by-hand",
     "href": "chapters/week03.html#how-to-do-it-by-hand",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.4 How to Do It by Hand",
     "text": "4.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: Soil Nitrate Concentrations\n\n\n\nA water quality specialist measures soil nitrate concentration (mg/kg) at 12 sampling locations across a farm field:\nData: 8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17\n\n\n\n4.4.1 Building a Histogram\nStep 1: Sort the data\n8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 22\nStep 2: Choose bins\nRange = 22 − 8 = 14. With 12 observations, 3–4 bins works well. Use bins of width 4:\n\n\n\nBin\nRange\nObservations\nFrequency\n\n\n\n\n1\n8–11\n8, 9, 10, 11\n4\n\n\n2\n12–15\n12, 13, 14, 15\n4\n\n\n3\n16–19\n16, 17, 19\n3\n\n\n4\n20–23\n22\n1\n\n\n\nStep 3: Draw the histogram\nDraw a horizontal axis (Nitrate concentration), a vertical axis (Frequency), and draw a bar for each bin with height equal to its frequency.\n\n\n4.4.2 Building a Boxplot\nStep 1: Find Q1, median (Q2), Q3\nSorted: 8, 9, 10, 11, 12, 13 | 14, 15, 16, 17, 19, 22\nMedian (Q2) = average of 6th and 7th values = \\(\\frac{13 + 14}{2} = 13.5\\)\nLower half: 8, 9, 10, 11, 12, 13 → Q1 = average of 3rd and 4th = \\(\\frac{10 + 11}{2} = 10.5\\)\nUpper half: 14, 15, 16, 17, 19, 22 → Q3 = average of 3rd and 4th = \\(\\frac{16 + 17}{2} = 16.5\\)\nStep 2: Calculate IQR\n\\[IQR = Q3 - Q1 = 16.5 - 10.5 = 6.0\\]\nStep 3: Calculate fence values (outlier boundaries)\nLower fence = \\(Q1 - 1.5 \\times IQR = 10.5 - 9.0 = 1.5\\)\nUpper fence = \\(Q3 + 1.5 \\times IQR = 16.5 + 9.0 = 25.5\\)\nAll observations fall between 1.5 and 25.5, so there are no outliers.\nStep 4: Draw the boxplot\n\nDraw a box from Q1 (10.5) to Q3 (16.5)\nDraw a line inside the box at the median (13.5)\nDraw whiskers from Q1 down to the minimum (8) and from Q3 up to the maximum (22)",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#how-to-do-it-in-excel",
     "href": "chapters/week03.html#how-to-do-it-in-excel",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.5 How to Do It in Excel",
-    "text": "4.5 How to Do It in Excel\n\n4.5.1 Histogram\n\nEnter your data in column A.\nClick Insert → Charts → select the Histogram icon (it looks like vertical bars).\nExcel will automatically create a histogram. Right-click on the bars and select Format Data Series to adjust the number of bins.\nLabel your axes: right-click each axis, choose Add Axis Title.\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.\n\n\n\n\n4.5.2 Boxplot\n\nSelect your data column.\nClick Insert → Charts → Insert Statistic Chart → Box and Whisker.\nExcel draws the boxplot. Note that Excel calculates quartiles slightly differently from how we did it by hand — small differences are normal.\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.",
+    "text": "4.5 How to Do It in Excel\n\n4.5.1 Histogram\n\nEnter your data in column A.\nClick Insert → Charts → select the Histogram icon (it looks like vertical bars).\nExcel will automatically create a histogram. Right-click on the bars and select Format Data Series to adjust the number of bins.\nLabel your axes: right-click each axis, choose Add Axis Title.\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.\n\n\n\n\n4.5.2 Boxplot\n\nSelect your data column.\nClick Insert → Charts → Insert Statistic Chart → Box and Whisker.\nExcel draws the boxplot. Note that Excel calculates quartiles slightly differently from how we did it by hand - small differences are normal.\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#how-to-do-it-in-r",
     "href": "chapters/week03.html#how-to-do-it-in-r",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.6 How to Do It in R",
     "text": "4.6 How to Do It in R\n\n# Enter the nitrate data\nnitrate &lt;- c(8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17)\n\n# --- Histogram ---\nhist(nitrate,\n     main = \"Soil Nitrate Concentration\",\n     xlab = \"Nitrate (mg/kg)\",\n     ylab = \"Frequency\",\n     col  = \"steelblue\",\n     border = \"white\")\n\n\n\n\n\n\n\n# --- Quartiles and IQR ---\nquantile(nitrate)         # shows min, Q1, median, Q3, max\n\n   0%   25%   50%   75%  100% \n 8.00 10.75 13.50 16.25 22.00 \n\nIQR(nitrate)              # interquartile range\n\n[1] 5.5\n\n# --- Boxplot ---\nboxplot(nitrate,\n        main   = \"Soil Nitrate Concentration\",\n        ylab   = \"Nitrate (mg/kg)\",\n        col    = \"lightgreen\")\n\n\n\n\n\n\n\n# --- Side-by-side boxplots for two groups (example) ---\n# Suppose we have data from Field A and Field B\nfield_A &lt;- c(8, 14, 11, 22, 9, 16, 13, 19, 10, 15, 12, 17)\nfield_B &lt;- c(5, 7, 6, 9, 8, 11, 6, 10, 7, 8, 9, 12)\n\nboxplot(field_A, field_B,\n        names  = c(\"Field A\", \"Field B\"),\n        main   = \"Nitrate by Field\",\n        ylab   = \"Nitrate (mg/kg)\",\n        col    = c(\"lightblue\", \"lightyellow\"))",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#interpretation-and-common-mistakes",
     "href": "chapters/week03.html#interpretation-and-common-mistakes",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.7 Interpretation and Common Mistakes",
     "text": "4.7 Interpretation and Common Mistakes\nReading a boxplot:\n\nA box that is taller (larger IQR) = more variable middle 50%\nIf the median line is not in the center of the box, the data is skewed\nLong upper whisker or outlier points on top = right-skewed\nLong lower whisker or outlier points on bottom = left-skewed\n\nComparing groups:\nWhen you put two boxplots side by side, overlapping boxes suggest the groups are similar; non-overlapping boxes suggest a meaningful difference. (We will test this formally with statistical tests in Units 3 and 4.)\n\n\n\n\n\n\nWarningCommon Mistake: Connecting Histogram Bars\n\n\n\nIn a bar chart for categorical data, bars are separated by spaces. In a histogram for continuous numerical data, bars should touch. If your histogram has gaps between bars, check that you have the right chart type.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Too Few or Too Many Bins\n\n\n\nWith too few bins you lose detail; with too many bins the histogram becomes jagged and noisy. A good rule of thumb: use \\(\\sqrt{n}\\) bins where \\(n\\) is the number of observations. For 12 observations, \\(\\sqrt{12} \\approx 3.5\\), so 3–4 bins is sensible.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Confusing Standard Deviation with IQR\n\n\n\nBoth measure spread, but in different ways. Standard deviation uses all observations and is sensitive to outliers. IQR uses only the middle 50% and is resistant to outliers. Report SD when data are symmetric; consider IQR when data are skewed or have outliers.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#summary",
     "href": "chapters/week03.html#summary",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.8 Summary",
-    "text": "4.8 Summary\n\nA histogram shows the shape of the distribution of a numerical variable.\nCommon shapes: symmetric (bell-shaped), right-skewed (long right tail), left-skewed (long left tail).\nA boxplot displays Q1, median, Q3, whiskers, and outliers — a compact 5-number summary.\nThe IQR is the range of the middle 50% of data; it is resistant to outliers.\nIn Excel: use Insert → Statistical Chart for both histograms and boxplots.\nIn R: use hist() for histograms and boxplot() for boxplots.",
+    "text": "4.8 Summary\n\nA histogram shows the shape of the distribution of a numerical variable.\nCommon shapes: symmetric (bell-shaped), right-skewed (long right tail), left-skewed (long left tail).\nA boxplot displays Q1, median, Q3, whiskers, and outliers - a compact 5-number summary.\nThe IQR is the range of the middle 50% of data; it is resistant to outliers.\nIn Excel: use Insert → Statistical Chart for both histograms and boxplots.\nIn R: use hist() for histograms and boxplot() for boxplots.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week03.html#practice-problems",
     "href": "chapters/week03.html#practice-problems",
-    "title": "4  Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots",
+    "title": "4  Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots",
     "section": "4.9 Practice Problems",
     "text": "4.9 Practice Problems\n\nA forester measures the diameter at breast height (DBH, in cm) of 10 trees in a stand: 12, 8, 35, 14, 11, 9, 42, 13, 10, 16. (a) Create a frequency table with bins of width 10 (0–9, 10–19, 20–29, 30–39, 40–49). (b) Calculate Q1, Q2, Q3, and IQR. (c) Are there any outliers according to the 1.5 × IQR rule?\nA researcher counts the number of invasive plant species found in 8 forest plots: 2, 1, 3, 5, 0, 2, 4, 1. Describe what you would expect the histogram to look like. Would you expect this distribution to be symmetric or skewed? Explain your reasoning.\nTwo ranches record their daily milk production (liters/cow). Ranch A: mean = 22 L, median = 21 L. Ranch B: mean = 22 L, median = 19 L. Without seeing the raw data, what do these statistics suggest about the shape of the distributions at each ranch? Which ranch likely has a few unusually high-producing cows?",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html",
     "href": "chapters/week04.html",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "",
-    "text": "5.1 Learning Objectives\nDates: Wednesday September 9 · Friday September 11\n(Note: Monday September 7 is Labor Day — no class)\nBy the end of this week, you should be able to:",
+    "text": "5.1 Learning Objectives\nDates: Wednesday September 9 · Friday September 11\n(Note: Monday September 7 is Labor Day - no class)\nBy the end of this week, you should be able to:",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#learning-objectives",
     "href": "chapters/week04.html#learning-objectives",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "",
     "text": "Explain the difference between a population and a sample.\nDefine and calculate the standard error of the mean.\nConstruct and interpret a 95% confidence interval using the rule of thumb.\nExplain why larger sample sizes produce more precise estimates.\nRecognize that random sampling introduces variability in our estimates.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#background-and-conceptual-introduction",
     "href": "chapters/week04.html#background-and-conceptual-introduction",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.2 Background and Conceptual Introduction",
-    "text": "5.2 Background and Conceptual Introduction\nSuppose you want to know the average daily milk production of all dairy cows in Tennessee — that is the population. You cannot measure every cow in the state, so you measure a sample of 40 cows. You calculate the sample mean: 24 liters per day.\nBut here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean — maybe 23.5 or 24.8. This variation from sample to sample is called sampling variability, and it is at the heart of statistical inference.\nThink of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good estimate of the average size of all fish in the lake — but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.\nThe standard error and confidence interval are tools that quantify our uncertainty. They tell us how far our sample estimate might be from the true population value.\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nYou sample 5 trees from a large forest and estimate the average diameter at breast height (DBH) to be 22 cm. Your classmate samples 50 trees from the same forest and estimates the average DBH to be 20 cm. Whose estimate is likely to be closer to the true population average? Why?",
+    "text": "5.2 Background and Conceptual Introduction\nSuppose you want to know the average daily milk production of all dairy cows in Tennessee - that is the population. You cannot measure every cow in the state, so you measure a sample of 40 cows. You calculate the sample mean: 24 liters per day.\nBut here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean - maybe 23.5 or 24.8. This variation from sample to sample is called sampling variability, and it is at the heart of statistical inference.\nThink of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good estimate of the average size of all fish in the lake - but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.\nThe standard error and confidence interval are tools that quantify our uncertainty. They tell us how far our sample estimate might be from the true population value.\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nYou sample 5 trees from a large forest and estimate the average diameter at breast height (DBH) to be 22 cm. Your classmate samples 50 trees from the same forest and estimates the average DBH to be 20 cm. Whose estimate is likely to be closer to the true population average? Why?",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#key-concepts-and-definitions",
     "href": "chapters/week04.html#key-concepts-and-definitions",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.3 Key Concepts and Definitions",
     "text": "5.3 Key Concepts and Definitions\nPopulation: The entire group of individuals or objects that you want to study. In practice, it is usually too large to measure completely.\nSample: A subset of the population that you actually measure.\nParameter: A numerical summary of a population (e.g., population mean \\(\\mu\\)). Usually unknown.\nStatistic: A numerical summary calculated from a sample (e.g., sample mean \\(\\bar{y}\\)). Used to estimate the parameter.\nSampling variability: The fact that different random samples from the same population will give slightly different statistics.\nStandard Error of the Mean (SE): A measure of how much the sample mean would vary across repeated samples. Calculated as:\n\\[SE = \\frac{s}{\\sqrt{n}}\\]\nwhere \\(s\\) is the sample standard deviation and \\(n\\) is the sample size. A small SE means our estimate is precise.\nConfidence Interval (CI): A range of values that is likely to contain the true population mean. A 95% CI means that if we repeated the sampling process many times, about 95% of the intervals we constructed would contain the true mean.\n\\[95\\% \\text{ CI} \\approx \\bar{y} \\pm 2 \\times SE\\]\n(This “rule of thumb” uses 2 as an approximation; the exact value depends on sample size and will be refined when we cover t-tests in Week 10.)\nPrecision vs. Accuracy: - Precise estimate: small standard error, values close together. - Accurate estimate: close to the true population value (requires no bias in sampling).",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#how-to-do-it-by-hand",
     "href": "chapters/week04.html#how-to-do-it-by-hand",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.4 How to Do It by Hand",
-    "text": "5.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: American Eel Length\n\n\n\nA fisheries biologist is studying American eels (Anguilla rostrata) in a New England pond. The pond has exactly 100 eels, and their true mean total length is known to be 100 cm. The biologist takes a random sample of 12 eels and records their lengths (cm):\nSample data: 95, 102, 88, 110, 97, 104, 91, 99, 107, 93, 101, 96\n\n\nStep 1: Calculate the sample mean\n\\[\\bar{y} = \\frac{95 + 102 + 88 + 110 + 97 + 104 + 91 + 99 + 107 + 93 + 101 + 96}{12} = \\frac{1183}{12} = 98.6 \\text{ cm}\\]\nStep 2: Calculate the sample standard deviation\nFirst, find each deviation from the mean (\\(\\bar{y} = 98.6\\)):\n\n\n\n\\(y_i\\)\n\\(y_i - \\bar{y}\\)\n\\((y_i - \\bar{y})^2\\)\n\n\n\n\n95\n−3.6\n12.96\n\n\n102\n3.4\n11.56\n\n\n88\n−10.6\n112.36\n\n\n110\n11.4\n129.96\n\n\n97\n−1.6\n2.56\n\n\n104\n5.4\n29.16\n\n\n91\n−7.6\n57.76\n\n\n99\n0.4\n0.16\n\n\n107\n8.4\n70.56\n\n\n93\n−5.6\n31.36\n\n\n101\n2.4\n5.76\n\n\n96\n−2.6\n6.76\n\n\nSum\n0.0\n470.92\n\n\n\n\\[s = \\sqrt{\\frac{470.92}{12-1}} = \\sqrt{\\frac{470.92}{11}} = \\sqrt{42.81} = 6.54 \\text{ cm}\\]\nStep 3: Calculate the standard error\n\\[SE = \\frac{s}{\\sqrt{n}} = \\frac{6.54}{\\sqrt{12}} = \\frac{6.54}{3.46} = 1.89 \\text{ cm}\\]\nStep 4: Calculate the 95% confidence interval\n\\[95\\% \\text{ CI} = \\bar{y} \\pm 2 \\times SE = 98.6 \\pm 2 \\times 1.89 = 98.6 \\pm 3.78\\]\n\\[\\text{Lower bound} = 98.6 - 3.78 = 94.8 \\text{ cm}\\] \\[\\text{Upper bound} = 98.6 + 3.78 = 102.4 \\text{ cm}\\]\nInterpretation: Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval — our sample gave a good estimate!",
+    "text": "5.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: American Eel Length\n\n\n\nA fisheries biologist is studying American eels (Anguilla rostrata) in a New England pond. The pond has exactly 100 eels, and their true mean total length is known to be 100 cm. The biologist takes a random sample of 12 eels and records their lengths (cm):\nSample data: 95, 102, 88, 110, 97, 104, 91, 99, 107, 93, 101, 96\n\n\nStep 1: Calculate the sample mean\n\\[\\bar{y} = \\frac{95 + 102 + 88 + 110 + 97 + 104 + 91 + 99 + 107 + 93 + 101 + 96}{12} = \\frac{1183}{12} = 98.6 \\text{ cm}\\]\nStep 2: Calculate the sample standard deviation\nFirst, find each deviation from the mean (\\(\\bar{y} = 98.6\\)):\n\n\n\n\\(y_i\\)\n\\(y_i - \\bar{y}\\)\n\\((y_i - \\bar{y})^2\\)\n\n\n\n\n95\n−3.6\n12.96\n\n\n102\n3.4\n11.56\n\n\n88\n−10.6\n112.36\n\n\n110\n11.4\n129.96\n\n\n97\n−1.6\n2.56\n\n\n104\n5.4\n29.16\n\n\n91\n−7.6\n57.76\n\n\n99\n0.4\n0.16\n\n\n107\n8.4\n70.56\n\n\n93\n−5.6\n31.36\n\n\n101\n2.4\n5.76\n\n\n96\n−2.6\n6.76\n\n\nSum\n0.0\n470.92\n\n\n\n\\[s = \\sqrt{\\frac{470.92}{12-1}} = \\sqrt{\\frac{470.92}{11}} = \\sqrt{42.81} = 6.54 \\text{ cm}\\]\nStep 3: Calculate the standard error\n\\[SE = \\frac{s}{\\sqrt{n}} = \\frac{6.54}{\\sqrt{12}} = \\frac{6.54}{3.46} = 1.89 \\text{ cm}\\]\nStep 4: Calculate the 95% confidence interval\n\\[95\\% \\text{ CI} = \\bar{y} \\pm 2 \\times SE = 98.6 \\pm 2 \\times 1.89 = 98.6 \\pm 3.78\\]\n\\[\\text{Lower bound} = 98.6 - 3.78 = 94.8 \\text{ cm}\\] \\[\\text{Upper bound} = 98.6 + 3.78 = 102.4 \\text{ cm}\\]\nInterpretation: Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval - our sample gave a good estimate!",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#how-to-do-it-in-excel",
     "href": "chapters/week04.html#how-to-do-it-in-excel",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.5 How to Do It in Excel",
     "text": "5.5 How to Do It in Excel\n\nEnter your 12 eel lengths in column A (cells A1:A12).\nIn separate cells, calculate:\n\n\n\n\nCell\nFormula\nResult\n\n\n\n\nB1\n=AVERAGE(A1:A12)\nMean\n\n\nB2\n=STDEV.S(A1:A12)\nStandard deviation\n\n\nB3\n=COUNT(A1:A12)\nSample size n\n\n\nB4\n=B2/SQRT(B3)\nStandard error\n\n\nB5\n=B1 - 2*B4\nLower bound of 95% CI\n\n\nB6\n=B1 + 2*B4\nUpper bound of 95% CI\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#how-to-do-it-in-r",
     "href": "chapters/week04.html#how-to-do-it-in-r",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.6 How to Do It in R",
     "text": "5.6 How to Do It in R\n\n# Eel length sample\neels &lt;- c(95, 102, 88, 110, 97, 104, 91, 99, 107, 93, 101, 96)\n\n# Sample mean\ny_bar &lt;- mean(eels)\ncat(\"Mean:\", y_bar, \"\\n\")\n\nMean: 98.58333 \n\n# Sample standard deviation\ns &lt;- sd(eels)\ncat(\"Std. deviation:\", round(s, 2), \"\\n\")\n\nStd. deviation: 6.54 \n\n# Sample size\nn &lt;- length(eels)\n\n# Standard error\nSE &lt;- s / sqrt(n)\ncat(\"Standard error:\", round(SE, 2), \"\\n\")\n\nStandard error: 1.89 \n\n# 95% confidence interval (rule of thumb: mean ± 2*SE)\nlower &lt;- y_bar - 2 * SE\nupper &lt;- y_bar + 2 * SE\ncat(\"95% CI (rule of thumb):\", round(lower, 1), \"to\", round(upper, 1), \"\\n\")\n\n95% CI (rule of thumb): 94.8 to 102.4 \n\n# Visualize with a simple plot\n# The true mean (100 cm) is shown as a reference\nplot(x = 1, y = y_bar,\n     xlim = c(0.5, 1.5), ylim = c(85, 115),\n     pch = 16, cex = 2, col = \"blue\",\n     xaxt = \"n\",\n     xlab = \"\", ylab = \"Eel Length (cm)\",\n     main = \"Sample Mean with 95% CI\")\narrows(x0 = 1, y0 = lower, x1 = 1, y1 = upper,\n       angle = 90, code = 3, length = 0.1, col = \"blue\", lwd = 2)\nabline(h = 100, col = \"red\", lty = 2) # true population mean\nlegend(\"topright\", legend = c(\"Sample mean ± 2SE\", \"True mean = 100\"),\n       col = c(\"blue\", \"red\"), lty = c(1, 2), lwd = 2)",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#interpretation-and-common-mistakes",
     "href": "chapters/week04.html#interpretation-and-common-mistakes",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.7 Interpretation and Common Mistakes",
-    "text": "5.7 Interpretation and Common Mistakes\nEffect of sample size on the standard error:\nNotice that \\(SE = s / \\sqrt{n}\\). As \\(n\\) gets larger, the standard error gets smaller. This makes intuitive sense: a larger sample gives you a more precise estimate of the population mean.\n\n\n\nn\ns\nSE\n\n\n\n\n5\n6.54\n2.92\n\n\n12\n6.54\n1.89\n\n\n50\n6.54\n0.92\n\n\n100\n6.54\n0.65\n\n\n\nFor the same level of variability, tripling the sample size roughly cuts the SE in half.\n\n\n\n\n\n\nWarningCommon Mistake: Confusing Standard Deviation and Standard Error\n\n\n\nThe standard deviation (SD) describes how much individuals in your sample vary from one another.\nThe standard error (SE) describes how precisely your sample mean estimates the population mean.\nThe SE is always smaller than the SD (for \\(n &gt; 1\\)). Reporting the SE as a measure of data spread is misleading — it understates the true variability among individuals.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Misinterpreting a 95% CI\n\n\n\nA 95% confidence interval does NOT mean “there is a 95% chance the true mean is in this interval.” Once you have calculated an interval, the true mean is either in it or it is not. The 95% refers to the procedure: if you repeated the sampling 100 times and built 100 CIs, about 95 of them would contain the true mean. This distinction will matter more when we get to hypothesis testing.",
+    "text": "5.7 Interpretation and Common Mistakes\nEffect of sample size on the standard error:\nNotice that \\(SE = s / \\sqrt{n}\\). As \\(n\\) gets larger, the standard error gets smaller. This makes intuitive sense: a larger sample gives you a more precise estimate of the population mean.\n\n\n\nn\ns\nSE\n\n\n\n\n5\n6.54\n2.92\n\n\n12\n6.54\n1.89\n\n\n50\n6.54\n0.92\n\n\n100\n6.54\n0.65\n\n\n\nFor the same level of variability, tripling the sample size roughly cuts the SE in half.\n\n\n\n\n\n\nWarningCommon Mistake: Confusing Standard Deviation and Standard Error\n\n\n\nThe standard deviation (SD) describes how much individuals in your sample vary from one another.\nThe standard error (SE) describes how precisely your sample mean estimates the population mean.\nThe SE is always smaller than the SD (for \\(n &gt; 1\\)). Reporting the SE as a measure of data spread is misleading - it understates the true variability among individuals.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Misinterpreting a 95% CI\n\n\n\nA 95% confidence interval does NOT mean “there is a 95% chance the true mean is in this interval.” Once you have calculated an interval, the true mean is either in it or it is not. The 95% refers to the procedure: if you repeated the sampling 100 times and built 100 CIs, about 95 of them would contain the true mean. This distinction will matter more when we get to hypothesis testing.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#summary",
     "href": "chapters/week04.html#summary",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.8 Summary",
     "text": "5.8 Summary\n\nA sample is used to estimate a population parameter when we cannot measure everyone.\nSampling variability means different samples give different estimates.\nThe standard error measures how much the sample mean varies from sample to sample: \\(SE = s / \\sqrt{n}\\).\nA 95% confidence interval (\\(\\bar{y} \\pm 2 \\times SE\\)) gives a range of plausible values for the true population mean.\nLarger sample sizes reduce the standard error and produce narrower confidence intervals.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week04.html#practice-problems",
     "href": "chapters/week04.html#practice-problems",
-    "title": "5  Week 4 — Uncertainty and Variability",
+    "title": "5  Week 4 - Uncertainty and Variability",
     "section": "5.9 Practice Problems",
     "text": "5.9 Practice Problems\n\nA wildlife manager samples 9 wild turkeys and records their weights (kg): 6.2, 5.8, 7.1, 6.5, 5.9, 6.8, 7.0, 6.3, 6.7. Calculate the mean, standard deviation, standard error, and 95% confidence interval. Show all steps.\nA researcher estimates the average phosphorus concentration in a stream using two studies: Study A used \\(n = 10\\) samples (mean = 0.45 mg/L, SD = 0.12) and Study B used \\(n = 80\\) samples (mean = 0.42 mg/L, SD = 0.11). Calculate the standard error for each study. Which study provides a more precise estimate of the true mean? Why?\nIf you quadrupled the sample size (from \\(n\\) to \\(4n\\)), by what factor would the standard error decrease? Show this using the formula.",
     "crumbs": [
       "Home",
       "Unit 1: Getting Started with Data",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 — Uncertainty and Variability</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 4 - Uncertainty and Variability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html",
     "href": "chapters/week05.html",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "",
     "text": "6.1 Learning Objectives\nDates: Monday September 14 · Wednesday September 16 · Friday September 18\nBy the end of this week, you should be able to:",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#learning-objectives",
     "href": "chapters/week05.html#learning-objectives",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "",
     "text": "Define probability and explain the difference between empirical and theoretical probability.\nConstruct a frequency table and a relative frequency table from a dataset.\nDescribe the properties of a normal distribution.\nUse the empirical rule (68–95–99.7 rule) to answer basic probability questions.\nCalculate a z-score and explain what it means.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#background-and-conceptual-introduction",
     "href": "chapters/week05.html#background-and-conceptual-introduction",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.2 Background and Conceptual Introduction",
-    "text": "6.2 Background and Conceptual Introduction\nProbability is the foundation of all statistical inference. Before we can test whether a fertilizer treatment increases yield or whether a fish population is declining, we need to understand what “by chance alone” looks like.\nThink about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a theoretical probability — derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an empirical probability — derived from observed data. The two values differ slightly because of random chance in the 60 trials.\nIn agriculture and natural resources, we almost always work with empirical probabilities derived from data. For example:\n\nIn 10 years of records, late spring frosts occurred in 3 of those years → estimated probability of a late frost = 3/10 = 30%.\nIn a survey of 200 prairie plots, 74 were occupied by the target bird species → estimated probability of occupancy = 74/200 = 37%.\n\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nA seed company claims their new soybean variety germinates 90% of the time under field conditions. You plant 20 seeds and only 14 germinate (70%). Does this mean the company is lying? Or could a 70% germination rate happen by random chance when the true rate is 90%? How would you decide?",
+    "text": "6.2 Background and Conceptual Introduction\nProbability is the foundation of all statistical inference. Before we can test whether a fertilizer treatment increases yield or whether a fish population is declining, we need to understand what “by chance alone” looks like.\nThink about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a theoretical probability - derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an empirical probability - derived from observed data. The two values differ slightly because of random chance in the 60 trials.\nIn agriculture and natural resources, we almost always work with empirical probabilities derived from data. For example:\n\nIn 10 years of records, late spring frosts occurred in 3 of those years → estimated probability of a late frost = 3/10 = 30%.\nIn a survey of 200 prairie plots, 74 were occupied by the target bird species → estimated probability of occupancy = 74/200 = 37%.\n\n\n\n\n\n\n\nTipThink About It 🧠\n\n\n\nA seed company claims their new soybean variety germinates 90% of the time under field conditions. You plant 20 seeds and only 14 germinate (70%). Does this mean the company is lying? Or could a 70% germination rate happen by random chance when the true rate is 90%? How would you decide?",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#key-concepts-and-definitions",
     "href": "chapters/week05.html#key-concepts-and-definitions",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.3 Key Concepts and Definitions",
-    "text": "6.3 Key Concepts and Definitions\nProbability: A number between 0 and 1 that represents how likely an event is. Probability = 0 means impossible; probability = 1 means certain.\nEmpirical probability: Estimated from observed data — the proportion of times an event occurred in past trials.\n\\[P(\\text{event}) = \\frac{\\text{number of times event occurred}}{\\text{total number of trials}}\\]\nFrequency table: A table showing how many observations fall in each category or value.\nRelative frequency: The proportion (or percentage) of observations in each category. Relative frequency = frequency / total n.\nRandom variable: A variable whose value is determined by a random process (e.g., the weight of a randomly selected deer from a population).\nProbability distribution: A description of all possible values of a random variable and their associated probabilities.\nNormal distribution: A symmetric, bell-shaped probability distribution completely described by its mean (\\(\\mu\\)) and standard deviation (\\(\\sigma\\)). It appears throughout nature — heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.\nThe Empirical Rule (68–95–99.7 Rule): For data that follow a normal distribution: - About 68% of observations fall within 1 standard deviation of the mean (\\(\\mu \\pm 1\\sigma\\)). - About 95% of observations fall within 2 standard deviations of the mean (\\(\\mu \\pm 2\\sigma\\)). - About 99.7% of observations fall within 3 standard deviations of the mean (\\(\\mu \\pm 3\\sigma\\)).\nz-score (standard score): The number of standard deviations an observation is above or below the mean:\n\\[z = \\frac{y - \\mu}{\\sigma}\\]\nA z-score of 0 means the observation is exactly at the mean. A z-score of +2 means the observation is 2 standard deviations above the mean.",
+    "text": "6.3 Key Concepts and Definitions\nProbability: A number between 0 and 1 that represents how likely an event is. Probability = 0 means impossible; probability = 1 means certain.\nEmpirical probability: Estimated from observed data - the proportion of times an event occurred in past trials.\n\\[P(\\text{event}) = \\frac{\\text{number of times event occurred}}{\\text{total number of trials}}\\]\nFrequency table: A table showing how many observations fall in each category or value.\nRelative frequency: The proportion (or percentage) of observations in each category. Relative frequency = frequency / total n.\nRandom variable: A variable whose value is determined by a random process (e.g., the weight of a randomly selected deer from a population).\nProbability distribution: A description of all possible values of a random variable and their associated probabilities.\nNormal distribution: A symmetric, bell-shaped probability distribution completely described by its mean (\\(\\mu\\)) and standard deviation (\\(\\sigma\\)). It appears throughout nature - heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.\nThe Empirical Rule (68–95–99.7 Rule): For data that follow a normal distribution: - About 68% of observations fall within 1 standard deviation of the mean (\\(\\mu \\pm 1\\sigma\\)). - About 95% of observations fall within 2 standard deviations of the mean (\\(\\mu \\pm 2\\sigma\\)). - About 99.7% of observations fall within 3 standard deviations of the mean (\\(\\mu \\pm 3\\sigma\\)).\nz-score (standard score): The number of standard deviations an observation is above or below the mean:\n\\[z = \\frac{y - \\mu}{\\sigma}\\]\nA z-score of 0 means the observation is exactly at the mean. A z-score of +2 means the observation is 2 standard deviations above the mean.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#how-to-do-it-by-hand",
     "href": "chapters/week05.html#how-to-do-it-by-hand",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.4 How to Do It by Hand",
-    "text": "6.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: Germination Counts\n\n\n\nA plant scientist records the number of seeds (out of 10) that germinated in 15 pots treated with a new soil amendment:\nData: 7, 9, 8, 10, 6, 9, 8, 7, 10, 8, 9, 6, 8, 9, 7\n\n\n\n6.4.1 Frequency Table\nStep 1: Count occurrences of each value\n\n\n\nGermination count\nFrequency\nRelative Frequency\n\n\n\n\n6\n2\n2/15 = 0.133\n\n\n7\n3\n3/15 = 0.200\n\n\n8\n4\n4/15 = 0.267\n\n\n9\n4\n4/15 = 0.267\n\n\n10\n2\n2/15 = 0.133\n\n\nTotal\n15\n1.000\n\n\n\nThe most common germination count is 8 or 9 seeds out of 10 (about 27% each). The data center around 8, which suggests roughly 80% germination per pot.\n\n\n6.4.2 Using the Empirical Rule\nSuppose the weight of mature corn ears at a research farm follows a normal distribution with mean \\(\\mu = 185\\) g and standard deviation \\(\\sigma = 15\\) g.\nWhat proportion of ears weigh between 170 g and 200 g?\n\\(170 = 185 - 15 = \\mu - 1\\sigma\\) \\(200 = 185 + 15 = \\mu + 1\\sigma\\)\nBy the empirical rule, about 68% of ears weigh between 170 and 200 g.\nWhat proportion of ears weigh between 155 g and 215 g?\n\\(155 = 185 - 30 = \\mu - 2\\sigma\\) \\(215 = 185 + 30 = \\mu + 2\\sigma\\)\nBy the empirical rule, about 95% of ears fall in this range.\nWhat is the z-score for an ear weighing 220 g?\n\\[z = \\frac{220 - 185}{15} = \\frac{35}{15} = 2.33\\]\nThis ear is 2.33 standard deviations above the mean — it is quite large but not impossible.",
+    "text": "6.4 How to Do It by Hand\n\n\n\n\n\n\nNoteExample: Germination Counts\n\n\n\nA plant scientist records the number of seeds (out of 10) that germinated in 15 pots treated with a new soil amendment:\nData: 7, 9, 8, 10, 6, 9, 8, 7, 10, 8, 9, 6, 8, 9, 7\n\n\n\n6.4.1 Frequency Table\nStep 1: Count occurrences of each value\n\n\n\nGermination count\nFrequency\nRelative Frequency\n\n\n\n\n6\n2\n2/15 = 0.133\n\n\n7\n3\n3/15 = 0.200\n\n\n8\n4\n4/15 = 0.267\n\n\n9\n4\n4/15 = 0.267\n\n\n10\n2\n2/15 = 0.133\n\n\nTotal\n15\n1.000\n\n\n\nThe most common germination count is 8 or 9 seeds out of 10 (about 27% each). The data center around 8, which suggests roughly 80% germination per pot.\n\n\n6.4.2 Using the Empirical Rule\nSuppose the weight of mature corn ears at a research farm follows a normal distribution with mean \\(\\mu = 185\\) g and standard deviation \\(\\sigma = 15\\) g.\nWhat proportion of ears weigh between 170 g and 200 g?\n\\(170 = 185 - 15 = \\mu - 1\\sigma\\) \\(200 = 185 + 15 = \\mu + 1\\sigma\\)\nBy the empirical rule, about 68% of ears weigh between 170 and 200 g.\nWhat proportion of ears weigh between 155 g and 215 g?\n\\(155 = 185 - 30 = \\mu - 2\\sigma\\) \\(215 = 185 + 30 = \\mu + 2\\sigma\\)\nBy the empirical rule, about 95% of ears fall in this range.\nWhat is the z-score for an ear weighing 220 g?\n\\[z = \\frac{220 - 185}{15} = \\frac{35}{15} = 2.33\\]\nThis ear is 2.33 standard deviations above the mean - it is quite large but not impossible.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#how-to-do-it-in-excel",
     "href": "chapters/week05.html#how-to-do-it-in-excel",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.5 How to Do It in Excel",
-    "text": "6.5 How to Do It in Excel\n\n6.5.1 Frequency Table\n\nEnter your raw data in column A.\nIn column C, list all unique values (the “bins”).\nUse =COUNTIF(A:A, C1) in column D to count how many times each value appears.\nCalculate relative frequency in column E: =D1/SUM(D:D).\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.\n\n\n\n\n6.5.2 Normal Distribution Probabilities\nExcel has built-in functions for the normal distribution:\n\n=NORM.DIST(x, mean, std_dev, TRUE) — gives the probability that a normal random variable is ≤ x (cumulative probability).\n=NORM.DIST(200, 185, 15, TRUE) — probability an ear weighs ≤ 200 g.\n=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE) — probability between 170 and 200 g.",
+    "text": "6.5 How to Do It in Excel\n\n6.5.1 Frequency Table\n\nEnter your raw data in column A.\nIn column C, list all unique values (the “bins”).\nUse =COUNTIF(A:A, C1) in column D to count how many times each value appears.\nCalculate relative frequency in column E: =D1/SUM(D:D).\n\n\n\n\n\n\n\nNote\n\n\n\nScreenshot will be added here.\n\n\n\n\n6.5.2 Normal Distribution Probabilities\nExcel has built-in functions for the normal distribution:\n\n=NORM.DIST(x, mean, std_dev, TRUE) - gives the probability that a normal random variable is ≤ x (cumulative probability).\n=NORM.DIST(200, 185, 15, TRUE) - probability an ear weighs ≤ 200 g.\n=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE) - probability between 170 and 200 g.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#how-to-do-it-in-r",
     "href": "chapters/week05.html#how-to-do-it-in-r",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.6 How to Do It in R",
     "text": "6.6 How to Do It in R\n\n# Germination data\ngerm &lt;- c(7, 9, 8, 10, 6, 9, 8, 7, 10, 8, 9, 6, 8, 9, 7)\n\n# Frequency table\ntable(germ)\n\ngerm\n 6  7  8  9 10 \n 2  3  4  4  2 \n\n# Relative frequency table\ntable(germ) / length(germ)\n\ngerm\n        6         7         8         9        10 \n0.1333333 0.2000000 0.2666667 0.2666667 0.1333333 \n\n# Bar plot of frequencies\nbarplot(table(germ),\n        main = \"Germination Counts\",\n        xlab = \"Seeds germinated (out of 10)\",\n        ylab = \"Frequency\",\n        col  = \"darkgreen\")\n\n\n\n\n\n\n\n# --- Normal distribution examples ---\n# Corn ear weight: mean = 185, sd = 15\n\n# P(weight &lt;= 200) using normal distribution\npnorm(200, mean = 185, sd = 15)\n\n[1] 0.8413447\n\n# P(170 &lt;= weight &lt;= 200)\npnorm(200, mean = 185, sd = 15) - pnorm(170, mean = 185, sd = 15)\n\n[1] 0.6826895\n\n# z-score for a 220 g ear\nz &lt;- (220 - 185) / 15\ncat(\"z-score for 220 g:\", z, \"\\n\")\n\nz-score for 220 g: 2.333333 \n\n# Plot a normal distribution curve\nx_vals &lt;- seq(140, 230, length.out = 300)\ny_vals &lt;- dnorm(x_vals, mean = 185, sd = 15)\n\nplot(x_vals, y_vals, type = \"l\", lwd = 2, col = \"blue\",\n     main = \"Normal Distribution: Corn Ear Weight\",\n     xlab = \"Weight (g)\", ylab = \"Probability Density\")\nabline(v = 185, col = \"red\", lty = 2) # mean",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#interpretation-and-common-mistakes",
     "href": "chapters/week05.html#interpretation-and-common-mistakes",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.7 Interpretation and Common Mistakes",
-    "text": "6.7 Interpretation and Common Mistakes\nWhat does probability mean in practice?\nA probability of 0.05 (5%) does not mean something is “impossible” — it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.\n\n\n\n\n\n\nWarningCommon Mistake: Applying the Empirical Rule to Non-Normal Data\n\n\n\nThe 68–95–99.7 rule only applies to data that follow a normal distribution. If your data are strongly skewed or have many outliers, the empirical rule will give wrong answers. Always look at a histogram first to assess whether data appear roughly normal.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Confusing Frequency and Probability\n\n\n\nFrequency is a count (e.g., 4 pots had 8 germinating seeds). Probability is a proportion between 0 and 1 (e.g., 4/15 = 0.267). Make sure you know which one is being asked for.",
+    "text": "6.7 Interpretation and Common Mistakes\nWhat does probability mean in practice?\nA probability of 0.05 (5%) does not mean something is “impossible” - it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.\n\n\n\n\n\n\nWarningCommon Mistake: Applying the Empirical Rule to Non-Normal Data\n\n\n\nThe 68–95–99.7 rule only applies to data that follow a normal distribution. If your data are strongly skewed or have many outliers, the empirical rule will give wrong answers. Always look at a histogram first to assess whether data appear roughly normal.\n\n\n\n\n\n\n\n\nWarningCommon Mistake: Confusing Frequency and Probability\n\n\n\nFrequency is a count (e.g., 4 pots had 8 germinating seeds). Probability is a proportion between 0 and 1 (e.g., 4/15 = 0.267). Make sure you know which one is being asked for.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#summary",
     "href": "chapters/week05.html#summary",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.8 Summary",
     "text": "6.8 Summary\n\nProbability quantifies how likely an event is; it ranges from 0 to 1.\nFrequency tables organize count data; relative frequency tables show proportions.\nThe normal distribution is bell-shaped, symmetric, and described by mean and standard deviation.\nThe empirical rule: 68% of data within 1 SD, 95% within 2 SD, 99.7% within 3 SD.\nA z-score measures how many standard deviations an observation is from the mean.",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {
     "objectID": "chapters/week05.html#practice-problems",
     "href": "chapters/week05.html#practice-problems",
-    "title": "6  Week 5 — Frequency Data and Probability",
+    "title": "6  Week 5 - Frequency Data and Probability",
     "section": "6.9 Practice Problems",
     "text": "6.9 Practice Problems\n\nA wildlife technician checks 20 nest boxes and finds eggs in 8 of them. What is the empirical probability that a randomly selected nest box contains eggs? Express your answer as both a fraction and a decimal.\nCorn grain moisture content at harvest at a particular farm follows a normal distribution with mean = 15% and standard deviation = 2%. (a) What proportion of samples are between 13% and 17%? (b) What proportion are above 19%? (c) Calculate the z-score for a sample with 11% moisture.\nA researcher counts the number of earthworms in 12 soil cores: 3, 5, 2, 8, 4, 6, 3, 7, 5, 4, 6, 5. Construct a relative frequency table. What is the most common count? What proportion of cores had 5 or more earthworms?",
     "crumbs": [
       "Home",
       "Unit 2: Probability and Uncertainty",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 — Frequency Data and Probability</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Week 5 - Frequency Data and Probability</span>"
     ]
   },
   {

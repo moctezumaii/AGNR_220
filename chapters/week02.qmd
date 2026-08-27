@@ -6,238 +6,404 @@ categories:
   - mean-median-mode
 ---
 
-# Week 2 - Describing Data, Part I: Central Tendency and Spread {#sec-week02}
+# Week 2, Part 1: Describing Data in R {#sec-week02}
 
-**Dates:** Monday August 24 · Wednesday August 26 · Friday August 28
+## What you will do
 
-## Learning Objectives
+In class, you will:
 
-By the end of this week, you should be able to:
+1.  Create an RStudio Project.
+2.  Create a Quarto document that renders to a Word document.
+3.  Practice a few basic R commands.
+4.  Import the systolic blood pressure dataset used in our previous class.
+5.  Use R to calculate the mean, median, first quartile, third quartile, standard deviation, variance, and coefficient of variation.
+6.  Create a histogram.
+7.  Submit
 
--   Calculate the mean, median, and mode of a small dataset by hand.
--   Calculate the range, variance, and standard deviation of a small dataset by hand.
--   Choose the most appropriate measure of central tendency given the shape of a distribution.
--   Interpret what the standard deviation tells you about a dataset.
--   Perform these calculations in Excel using built-in functions.
+After class, you will:
 
-------------------------------------------------------------------------
-
-## Background and Conceptual Introduction
-
-Imagine you are a rancher trying to evaluate whether your cattle are gaining weight at the expected rate. You weigh 10 steers and get a list of numbers. A raw list of numbers is hard to interpret - you need a way to summarize it. That is exactly what descriptive statistics does: it turns a list of numbers into a few meaningful summary values.
-
-There are two main things we want to know about any dataset:
-
-1.  **Where is the "center"?** - What is a typical value?
-2.  **How spread out are the values?** - Are all the values close together, or do they vary a lot?
-
-Think of it like describing the weather. Saying "average high temperature in Knoxville in August is 32°C" tells you the center. Saying "temperatures range from 28°C to 38°C" tells you the spread. Both pieces of information together give you a much clearer picture than either one alone.
-
-::: callout-tip
-## Think About It 🧠
-
-A soil scientist measures nitrate concentration (mg/L) in 8 water samples from a stream. One sample has a much higher concentration than the rest. How might that one extreme value affect the mean? The median? Which measure would give a more accurate picture of "typical" nitrate concentration?
-:::
-
-In agriculture and natural resources, both center and spread matter enormously. A crop variety with high *average* yield but very high *variation* from field to field may be less dependable than a variety with slightly lower average yield but very consistent performance.
-
-------------------------------------------------------------------------
-
-## Key Concepts and Definitions
-
-**Mean (**$\bar{y}$): The arithmetic average. Sum all values and divide by the number of observations. The mean uses every value and is sensitive to outliers.
-
-**Median:** The middle value when observations are sorted from smallest to largest. If there is an even number of observations, the median is the average of the two middle values. The median is resistant to outliers.
-
-**Mode:** The value (or values) that appear most often. Useful mainly for categorical data or discrete counts.
-
-**Range:** The difference between the maximum and minimum values. Easy to calculate but sensitive to outliers.
-
-**Deviation:** How far a single observation is from the mean: $deviation_i = y_i - \bar{y}$.
-
-**Variance (**$s^2$): The average of the squared deviations. Because deviations are squared, variance is always non-negative and its units are squared (e.g., kg²).
-
-$$s^2 = \frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}$$
-
-**Standard Deviation (**$s$): The square root of the variance. It is in the same units as the original data (e.g., kg) and is the most commonly used measure of spread.
-
-$$s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}}$$
+1.  Read the rest of this chapter.
+2.  Complete only the sections labeled **Assignment question**.
+3.  Write your R code and answers in your Quarto document.
+4.  Render the document to Word and submit the `.docx` file.
 
 ::: callout-important
-## Why n − 1?
+## What should you submit?
 
-We divide by $n-1$ (not $n$) when calculating sample variance. This is called *Bessel's correction*. When we use a sample to estimate the spread of a whole population, dividing by $n-1$ gives us a better (unbiased) estimate. You will just remember this rule for now - the why becomes clear later in the course.
+Today, you should submit one rendered Word document that includes your name, and answers.
 :::
 
-------------------------------------------------------------------------
+## Part 1: Set up your work
 
-## How to Do It by Hand
+### Create an RStudio Project
 
-::: callout-note
-## Example: Steer Weight Gains
+Projects keep your data, code, and output together. They also make it easier for R to find your files.
 
-A rancher records the daily weight gain (kg) of 10 steers over a 30-day trial period:
+::: callout-important
+## Where to put the project
 
-**Data:** 1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4
+You will be downloading ALL DATA FILES to this folder. Please make it an easy to find folder
 :::
 
-**Step 1: Sort the data**
+1.  Open RStudio.
+2.  Select **File \> New Project \> New Directory \> New Project**.
+3.  Name the project `SNR220` --\> You will use this for the rest of the semester
+4.  Choose a location on your computer that you can find easily.
+5.  Create the project.
+6.  Save the systolic blood pressure `.csv` file inside the project folder.
 
-1.1, 1.2, 1.2, 1.3, 1.4, 1.4, 1.5, 1.6, 1.7, 1.8
+### Create a Quarto document
 
-**Step 2: Calculate the mean**
+1.  Select **File \> New File \> Quarto Document**.
+2.  Enter a title such as `Week 2: Describing Data`.
+3.  Enter your name as the author.
+4.  Select **Word** as the output format.
+5.  Select **Create**.
+6.  Save the file as `week2_describing_data.qmd` inside your project folder.
 
-$$\bar{y} = \frac{1.2 + 1.5 + 1.3 + 1.8 + 1.1 + 1.4 + 1.6 + 1.2 + 1.7 + 1.4}{10} = \frac{14.2}{10} = 1.42 \text{ kg/day}$$
+The top of your file should look similar to this:
 
-**Step 3: Find the median**
+``` yaml
+---
+title: "Week 2: Describing Data"
+author: "Your name"
+format: docx
+---
+```
 
-With $n = 10$ (even), the median is the average of the 5th and 6th sorted values: $$\text{Median} = \frac{1.4 + 1.4}{2} = 1.4 \text{ kg/day}$$
+### Add code and written answers
 
-**Step 4: Find the mode**
+You will complete all work in the `.qmd` file. Add regular text for your written answers. Add executable R code chunks for your code.
 
-The values 1.2 and 1.4 each appear twice - this dataset is **bimodal** (two modes).
+To insert a code chunk, select **Insert \> Executable Cell \> R**. You can also type three backticks followed by `{r}`, add your code, and close the chunk with three more backticks.
 
-**Step 5: Calculate the range**
+For example:
 
-$$\text{Range} = 1.8 - 1.1 = 0.7 \text{ kg/day}$$
+```` markdown
+### My first calculation
 
-**Step 6: Calculate deviations, squared deviations**
-
-| $y_i$   | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
-|---------|-----------------|---------------------|
-| 1.2     | −0.22           | 0.0484              |
-| 1.5     | 0.08            | 0.0064              |
-| 1.3     | −0.12           | 0.0144              |
-| 1.8     | 0.38            | 0.1444              |
-| 1.1     | −0.32           | 0.1024              |
-| 1.4     | −0.02           | 0.0004              |
-| 1.6     | 0.18            | 0.0324              |
-| 1.2     | −0.22           | 0.0484              |
-| 1.7     | 0.28            | 0.0784              |
-| 1.4     | −0.02           | 0.0004              |
-| **Sum** | **0.00**        | **0.4760**          |
-
-*(Note: the sum of deviations is always 0 - a good check!)*
-
-**Step 7: Calculate variance**
-
-$$s^2 = \frac{0.4760}{10 - 1} = \frac{0.4760}{9} = 0.0529 \text{ kg}^2/\text{day}^2$$
-
-**Step 8: Calculate standard deviation**
-
-$$s = \sqrt{0.0529} = 0.230 \text{ kg/day}$$
-
-**Interpretation:** The average daily weight gain is **1.42 kg/day**. Most steers gain between about $1.42 - 0.23 = 1.19$ and $1.42 + 0.23 = 1.65$ kg per day.
-
-------------------------------------------------------------------------
-
-## How to Do It in Excel
-
-1.  Enter your 10 values in cells **A1:A10**.
-2.  In cell **B1**, type a label like "Statistics".
-3.  Calculate each statistic in a separate cell:
-
-| Cell | Formula                    | What it calculates                    |
-|------|----------------------------|---------------------------------------|
-| B2   | `=AVERAGE(A1:A10)`         | Mean                                  |
-| B3   | `=MEDIAN(A1:A10)`          | Median                                |
-| B4   | `=MODE(A1:A10)`            | Mode (returns first mode if multiple) |
-| B5   | `=MAX(A1:A10)-MIN(A1:A10)` | Range                                 |
-| B6   | `=VAR.S(A1:A10)`           | Sample variance ($s^2$)               |
-| B7   | `=STDEV.S(A1:A10)`         | Sample standard deviation ($s$)       |
-
-::: callout-note
-Screenshot will be added here.
-:::
-
-::: callout-warning
-## VAR.S vs. VAR.P
-
-Excel has two variance functions: `VAR.S` (sample variance, divides by $n-1$) and `VAR.P` (population variance, divides by $n$). For this course, **always use `VAR.S` and `STDEV.S`** unless instructed otherwise.
-:::
-
-------------------------------------------------------------------------
-
-## How to Do It in R
+The result means that...
 
 ```{r}
-# Enter the steer weight gain data as a vector
-gains <- c(1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4)
+2 + 2
+```
+````
 
-# --- Measures of central tendency ---
-mean(gains)       # arithmetic mean
-median(gains)     # median
+To run one line or a selected section of code, press **Ctrl + Enter** on Windows or **Command + Enter** on macOS. To create the Word document, click **Render**.
 
-# Mode: R does not have a built-in mode() for numeric data
-# We can find it by creating a frequency table
-table(gains)      # shows how often each value appears
+## Part 2: Play with R
 
-# --- Measures of spread ---
-range(gains)      # returns the min and max (not the difference)
-diff(range(gains)) # this gives us the actual range = max - min
+R can be used as a calculator. In your Quarto document, create an R code chunk and run each of the following commands one at a time.
 
-var(gains)        # sample variance (uses n-1 automatically)
-sd(gains)         # sample standard deviation
+``` r
+5 + 5
 
-# --- Quick summary of everything ---
-summary(gains)    # min, Q1, median, mean, Q3, max
+8^2
+
+sqrt(9)
+
+10 / 4
 ```
 
-**Sample output:**
+R can also store values in objects. The assignment operator `<-` places a value inside an object.
 
-```         
-> mean(gains)
-[1] 1.42
+``` r
+x <- 17
 
-> sd(gains)
-[1] 0.2299
+y <- x * 2
 
-> summary(gains)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
-   1.10    1.20    1.40    1.42    1.60    1.80
+x
+
+y
 ```
 
-------------------------------------------------------------------------
+A vector is a collection of values. The function `c()` combines values into a vector.
 
-## Interpretation and Common Mistakes
+``` r
+practice_values <- c(5, 7, 9, 15, 50)
 
-**What does the standard deviation mean in plain language?**
+practice_values
 
-A standard deviation of 0.23 kg/day means that, on average, individual steer weight gains differ from the mean by about 0.23 kg/day. The larger the standard deviation, the more variable the group.
+mean(practice_values)
 
-::: callout-warning
-## Common Mistake: Using the Mean When the Median Is More Appropriate
+sd(practice_values)
+```
 
-If one steer in our example gained 4.0 kg/day (perhaps a data entry error), the mean would jump to about 1.68 kg/day - a value higher than 9 out of 10 actual observations. The median would barely change. When you suspect outliers or when data is skewed, the **median** is often a better measure of the "typical" value.
+Change one of the values and run the code again. What happens to the mean and standard deviation?
+
+::: callout-tip
+## A note about the Console
+
+The Console is useful for quick experiments, but your assignment code should be written in the Quarto file. Code saved in your Quarto file can be checked, corrected, rerun, and included in your final Word document.
 :::
 
-::: callout-warning
-## Common Mistake: Forgetting to Use n − 1
+## Part 3: Guided activity with the systolic blood pressure data
 
-When computing variance by hand, students often divide by $n$ instead of $n-1$. In this course, we almost always work with *samples*, not entire populations, so we divide by $n-1$.
+You previously estimated descriptive statistics for the systolic blood pressure dataset. Now you will use R to calculate the same values.
+
+### Import the data
+
+Download the dataforR.csv file from Canvas
+
+Create an R code chunk in your Quarto document and enter:
+
+```{r eval=F}
+blood <- read.csv("systolicBloodPressure.csv")
+```
+
+```{r echo=F}
+blood <- read.csv("../systolicBloodPressure.csv")
+```
+
+The assignment operator `<-` stores the imported dataset in an object named `blood`.
+
+Use these functions to inspect the dataset:
+
+``` r
+head(blood)
+
+names(blood)
+
+str(blood)
+
+summary(blood)
+```
+
+- `head()` displays the first few observations.
+- `names()` displays the variable names.
+- `str()` shows the structure and variable types.
+- `summary()` provides a quick summary of each variable.
+
+### Select the systolic blood pressure variable
+
+The column is named `systolicBP`. The `$` symbol selects that column from the dataframe.
+
+```{r}
+systolic <- blood$systolicBP
+```
+
+R is case-sensitive. `Systolic` and `systolic` are different names. Use the exact column name shown by `names(blood)`.
+
+### Calculate the descriptive statistics
+
+Use the following functions to estimate the function in your Quarto document:
+
+``` r
+mean(systolic)
+
+median(systolic)
+
+quantile(systolic, probs = 0.25)
+
+quantile(systolic, probs = 0.75)
+
+sd(systolic)
+
+var(systolic)
+```
+
+$$
+CV = \frac{s}{\bar{y}} \times 100
+$$
+
+Calculate it in R:
+
+``` r
+sd(systolic / mean(systolic) * 100
+```
+
+::: callout-important
+## Before you render and submit
+
+Make sure your values are the same as you got on Excel
 :::
 
-::: callout-warning
-## Common Mistake: Reporting Variance Instead of Standard Deviation
+Now, answer in the Quarto document:
 
-Variance is in squared units (kg²/day²), which is hard to interpret. Always convert to standard deviation (kg/day) so your measure of spread is in the same units as your data.
+Was it easy or hard to do this?
+
+### Create a quick histogram
+
+A histogram displays the distribution of a numerical variable. It can help you see the center, spread, skewness, gaps, and possible extreme values.
+
+Add this code to your Quarto document:
+
+``` r
+hist(
+  systolic,
+  main = "Distribution of systolic blood pressure",
+  xlab = "Systolic blood pressure (mm Hg)",
+  col = "lightblue",
+  border = "white"
+)
+```
+
+The histogram will appear automatically in the rendered Word document. Below the plot, write two or three sentences describing what you see. Consider the center, spread, shape, and any possible extreme values.
+
+::: callout-warning
+That is it! You get to go home. The assignment will be due Wednesday 2nd! After we are back from labor day!
 :::
 
-------------------------------------------------------------------------
+# Part 4: Concepts to review
 
-## Summary
+### Center and spread
 
--   The **mean** is the most common measure of center but is pulled toward extreme values.
--   The **median** is the middle value and is more stable when outliers are present.
--   The **standard deviation** tells you, on average, how far individual observations are from the mean.
--   **Variance** is the square of the standard deviation; it is rarely reported directly.
--   In Excel, use `AVERAGE`, `MEDIAN`, `STDEV.S`, and `VAR.S`.
--   In R, use `mean()`, `median()`, `sd()`, and `var()`.
+Raw observations can be difficult to interpret. Descriptive statistics reduce a dataset to a few useful summaries.
 
-## Practice Problems
+We usually want to know:
 
-1.  A wildlife biologist counts the number of white-tailed deer observed per transect walk on 8 survey days: 4, 7, 3, 9, 5, 6, 4, 10. Calculate the mean, median, mode, range, variance, and standard deviation by hand. Show all steps.
+1.  Where is the center of the distribution?
+2.  How spread out are the observations?
 
-2.  A farmer records wheat yields (bushels/acre) for 6 fields: 52, 48, 55, 61, 47, 50. Calculate the mean and standard deviation. Then suppose a seventh field yielded 110 bushels/acre (an unusually productive irrigated plot). Recalculate the mean. How much did the mean change? What happened to the median?
+Both are important. Two groups can have the same mean but very different amounts of variation.
 
-3.  Two groups of corn plants are grown under different irrigation regimes. Group A has a mean height of 150 cm with a standard deviation of 5 cm. Group B has a mean height of 150 cm with a standard deviation of 20 cm. Without doing any calculations, which group would you say has more consistent growth? Why might that matter for a farmer making planting decisions?
+### Measures of center
+
+**Mean:** Add all observations and divide by the number of observations. The mean uses every value, so extreme values can strongly affect it.
+
+**Median:** Sort the observations and find the middle value. The median is less affected by extreme values and is often useful for skewed data.
+
+**Mode:** The value that occurs most often. It is especially useful for categorical variables and discrete counts. A dataset can have more than one mode or no unique mode.
+
+::: callout-tip
+## Think about it
+
+A soil scientist measures nitrate concentration in eight stream samples. One sample has a much higher concentration than the others. How might that observation affect the mean? How might it affect the median? Which value would better describe a typical sample?
+:::
+
+### Quartiles
+
+After sorting the data:
+
+- The first quartile, Q1, is the 25th percentile.
+- The median, Q2, is the 50th percentile.
+- The third quartile, Q3, is the 75th percentile.
+
+The middle 50 percent of the observations fall between Q1 and Q3.
+
+### Variance and standard deviation
+
+A deviation is the distance between an observation and the mean:
+
+$$
+\text{deviation}_i = y_i - \bar{y}
+$$
+
+Some deviations are positive and some are negative. If we simply add them, they cancel and sum to zero. Variance avoids this problem by squaring the deviations.
+
+For a sample, the variance is:
+
+$$
+s^2 = \frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}
+$$
+
+The standard deviation is the square root of the variance:
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}}
+$$
+
+Variance is expressed in squared units. Standard deviation is expressed in the original units, so it is usually easier to interpret. A larger standard deviation indicates greater variation around the mean.
+
+::: callout-important
+## Why use n - 1?
+
+When we use a sample to estimate variation in a larger population, sample variance divides by $n - 1$. This correction improves the estimate of population variance. For now, remember that `var()` and `sd()` in R use $n - 1$ automatically.
+:::
+
+### Coefficient of variation
+
+The coefficient of variation expresses the standard deviation relative to the mean. Because it is a percentage, it can help compare variation among measurements with different means.
+
+For example, a CV of 12 percent means that the standard deviation is 12 percent of the mean.
+
+Use the CV only when a value of zero is meaningful and the mean is positive. It is not appropriate for every type of measurement.
+
+### A short example
+
+A rancher records daily weight gain for 10 steers:
+
+`1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4`
+
+The main summaries are:
+
+| Statistic          |              Result |
+|--------------------|--------------------:|
+| Mean               |         1.42 kg/day |
+| Median             |         1.40 kg/day |
+| Q1                 |        1.225 kg/day |
+| Q3                 |        1.575 kg/day |
+| Variance           | 0.0529 (kg/day)$^2$ |
+| Standard deviation |        0.230 kg/day |
+| CV                 |               16.2% |
+
+The mean and median are similar, which suggests that the center is not being strongly affected by an extreme value. The standard deviation describes the typical spread around the mean. It does not guarantee that every observation will fall within one standard deviation of the mean.
+
+## Excel reference only
+
+::: callout-note
+## You do not have to complete this section
+
+This section is included as a reference. Do not submit Excel calculations for this assignment. Complete the assignment questions using R.
+:::
+
+If values are stored in cells `A1:A10`, Excel can calculate the following:
+
+| Statistic                 | Excel formula                          |
+|---------------------------|----------------------------------------|
+| Mean                      | `=AVERAGE(A1:A10)`                     |
+| Median                    | `=MEDIAN(A1:A10)`                      |
+| First quartile            | `=QUARTILE.INC(A1:A10,1)`              |
+| Third quartile            | `=QUARTILE.INC(A1:A10,3)`              |
+| Sample variance           | `=VAR.S(A1:A10)`                       |
+| Sample standard deviation | `=STDEV.S(A1:A10)`                     |
+| Coefficient of variation  | `=STDEV.S(A1:A10)/AVERAGE(A1:A10)*100` |
+
+Use `VAR.S` and `STDEV.S` when the observations are a sample. The functions `VAR.P` and `STDEV.P` are used when the data include the entire population of interest.
+
+## Homework: R exercises
+
+Complete both assignment questions in your Quarto document. Include the code, output, plots, and written responses. Do not calculate these answers in Excel.
+
+### Assignment question 1: Deer observations
+
+A wildlife biologist records the number of white-tailed deer observed during eight transect surveys:
+
+`4, 7, 3, 9, 5, 6, 4, 10`
+
+1.  Create a vector named `deer` containing these observations.
+2.  Write R code to calculate the mean, median, Q1, Q3, range, variance, standard deviation, and CV.
+3.  Create a histogram with an informative title and axis label.
+4.  In two or three sentences, describe the center and spread of the observations. Mention whether the mean and median are similar.
+
+::: callout-tip
+## Remember
+
+The R function `range()` returns the minimum and maximum. To calculate the difference between them, use `diff(range(deer))`.
+:::
+
+### Assignment question 2: Wheat yield and an extreme value
+
+A farmer records wheat yield, in bushels per acre, for six fields:
+
+`52, 48, 55, 61, 47, 50`
+
+A seventh irrigated field yields 110 bushels per acre.
+
+1.  Create a vector named `wheat` containing the original six observations.
+2.  Create a second vector named `wheat_with_extreme` that includes all seven observations.
+3.  For each vector, write R code to calculate the mean, median, and standard deviation.
+4.  Create one histogram for each vector. Give each histogram a clear title and use the same x-axis limits so the plots can be compared fairly. You can add `xlim = c(40, 115)` inside each `hist()` function.
+5.  In three or four sentences, explain how the value of 110 affected the mean, median, standard deviation, and shape of the distribution.
+
+## Before submitting
+
+Check that your Word document includes:
+
+- Your name and assignment title
+- All R code used to answer the assignment questions
+- The numerical output from R
+- All required histograms
+- Written interpretations in complete sentences
+
+Click **Render** and open the `.docx` file to make sure the code, output, and plots are visible before submitting it.

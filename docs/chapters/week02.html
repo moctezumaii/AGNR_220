@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Week 2 - Describing Data, Part I: Central Tendency and Spread – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
+<title>3&nbsp; Week 2, Part 1: Describing Data in R – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/week01.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e6327c87da4d77694843264cb205aa05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-603894e74320b3bf3a35aebfe5fe747c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -191,7 +196,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -244,19 +249,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week02.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +278,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,24 +398,46 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</a></li>
-  <li><a href="#background-and-conceptual-introduction" id="toc-background-and-conceptual-introduction" class="nav-link" data-scroll-target="#background-and-conceptual-introduction"><span class="header-section-number">3.2</span> Background and Conceptual Introduction</a></li>
-  <li><a href="#key-concepts-and-definitions" id="toc-key-concepts-and-definitions" class="nav-link" data-scroll-target="#key-concepts-and-definitions"><span class="header-section-number">3.3</span> Key Concepts and Definitions</a></li>
-  <li><a href="#how-to-do-it-by-hand" id="toc-how-to-do-it-by-hand" class="nav-link" data-scroll-target="#how-to-do-it-by-hand"><span class="header-section-number">3.4</span> How to Do It by Hand</a></li>
-  <li><a href="#how-to-do-it-in-excel" id="toc-how-to-do-it-in-excel" class="nav-link" data-scroll-target="#how-to-do-it-in-excel"><span class="header-section-number">3.5</span> How to Do It in Excel</a></li>
-  <li><a href="#how-to-do-it-in-r" id="toc-how-to-do-it-in-r" class="nav-link" data-scroll-target="#how-to-do-it-in-r"><span class="header-section-number">3.6</span> How to Do It in R</a></li>
-  <li><a href="#interpretation-and-common-mistakes" id="toc-interpretation-and-common-mistakes" class="nav-link" data-scroll-target="#interpretation-and-common-mistakes"><span class="header-section-number">3.7</span> Interpretation and Common Mistakes</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.8</span> Summary</a></li>
-  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">3.9</span> Practice Problems</a></li>
+  <li><a href="#what-you-will-do" id="toc-what-you-will-do" class="nav-link active" data-scroll-target="#what-you-will-do"><span class="header-section-number">3.1</span> What you will do</a></li>
+  <li><a href="#part-1-set-up-your-work" id="toc-part-1-set-up-your-work" class="nav-link" data-scroll-target="#part-1-set-up-your-work"><span class="header-section-number">3.2</span> Part 1: Set up your work</a>
+  <ul class="collapse">
+  <li><a href="#create-an-rstudio-project" id="toc-create-an-rstudio-project" class="nav-link" data-scroll-target="#create-an-rstudio-project"><span class="header-section-number">3.2.1</span> Create an RStudio Project</a></li>
+  <li><a href="#create-a-quarto-document" id="toc-create-a-quarto-document" class="nav-link" data-scroll-target="#create-a-quarto-document"><span class="header-section-number">3.2.2</span> Create a Quarto document</a></li>
+  <li><a href="#add-code-and-written-answers" id="toc-add-code-and-written-answers" class="nav-link" data-scroll-target="#add-code-and-written-answers"><span class="header-section-number">3.2.3</span> Add code and written answers</a></li>
+  </ul></li>
+  <li><a href="#part-2-play-with-r" id="toc-part-2-play-with-r" class="nav-link" data-scroll-target="#part-2-play-with-r"><span class="header-section-number">3.3</span> Part 2: Play with R</a></li>
+  <li><a href="#part-3-guided-activity-with-the-systolic-blood-pressure-data" id="toc-part-3-guided-activity-with-the-systolic-blood-pressure-data" class="nav-link" data-scroll-target="#part-3-guided-activity-with-the-systolic-blood-pressure-data"><span class="header-section-number">3.4</span> Part 3: Guided activity with the systolic blood pressure data</a>
+  <ul class="collapse">
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data"><span class="header-section-number">3.4.1</span> Import the data</a></li>
+  <li><a href="#select-the-systolic-blood-pressure-variable" id="toc-select-the-systolic-blood-pressure-variable" class="nav-link" data-scroll-target="#select-the-systolic-blood-pressure-variable"><span class="header-section-number">3.4.2</span> Select the systolic blood pressure variable</a></li>
+  <li><a href="#calculate-the-descriptive-statistics" id="toc-calculate-the-descriptive-statistics" class="nav-link" data-scroll-target="#calculate-the-descriptive-statistics"><span class="header-section-number">3.4.3</span> Calculate the descriptive statistics</a></li>
+  <li><a href="#create-a-quick-histogram" id="toc-create-a-quick-histogram" class="nav-link" data-scroll-target="#create-a-quick-histogram"><span class="header-section-number">3.4.4</span> Create a quick histogram</a></li>
+  </ul></li>
+  <li><a href="#part-4-concepts-to-review" id="toc-part-4-concepts-to-review" class="nav-link" data-scroll-target="#part-4-concepts-to-review"><span class="header-section-number">4</span> Part 4: Concepts to review</a>
+  <ul class="collapse">
+  <li><a href="#center-and-spread" id="toc-center-and-spread" class="nav-link" data-scroll-target="#center-and-spread"><span class="header-section-number">4.0.1</span> Center and spread</a></li>
+  <li><a href="#measures-of-center" id="toc-measures-of-center" class="nav-link" data-scroll-target="#measures-of-center"><span class="header-section-number">4.0.2</span> Measures of center</a></li>
+  <li><a href="#quartiles" id="toc-quartiles" class="nav-link" data-scroll-target="#quartiles"><span class="header-section-number">4.0.3</span> Quartiles</a></li>
+  <li><a href="#variance-and-standard-deviation" id="toc-variance-and-standard-deviation" class="nav-link" data-scroll-target="#variance-and-standard-deviation"><span class="header-section-number">4.0.4</span> Variance and standard deviation</a></li>
+  <li><a href="#coefficient-of-variation" id="toc-coefficient-of-variation" class="nav-link" data-scroll-target="#coefficient-of-variation"><span class="header-section-number">4.0.5</span> Coefficient of variation</a></li>
+  <li><a href="#a-short-example" id="toc-a-short-example" class="nav-link" data-scroll-target="#a-short-example"><span class="header-section-number">4.0.6</span> A short example</a></li>
+  <li><a href="#excel-reference-only" id="toc-excel-reference-only" class="nav-link" data-scroll-target="#excel-reference-only"><span class="header-section-number">4.1</span> Excel reference only</a></li>
+  <li><a href="#homework-r-exercises" id="toc-homework-r-exercises" class="nav-link" data-scroll-target="#homework-r-exercises"><span class="header-section-number">4.2</span> Homework: R exercises</a>
+  <ul class="collapse">
+  <li><a href="#assignment-question-1-deer-observations" id="toc-assignment-question-1-deer-observations" class="nav-link" data-scroll-target="#assignment-question-1-deer-observations"><span class="header-section-number">4.2.1</span> Assignment question 1: Deer observations</a></li>
+  <li><a href="#assignment-question-2-wheat-yield-and-an-extreme-value" id="toc-assignment-question-2-wheat-yield-and-an-extreme-value" class="nav-link" data-scroll-target="#assignment-question-2-wheat-yield-and-an-extreme-value"><span class="header-section-number">4.2.2</span> Assignment question 2: Wheat yield and an extreme value</a></li>
+  </ul></li>
+  <li><a href="#before-submitting" id="toc-before-submitting" class="nav-link" data-scroll-target="#before-submitting"><span class="header-section-number">4.3</span> Before submitting</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-week02" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></span></h1>
+<h1 class="title"><span id="sec-week02" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></span></h1>
   <div class="quarto-categories">
     <div class="quarto-category">descriptive-statistics</div>
     <div class="quarto-category">central-tendency</div>
@@ -433,376 +460,481 @@ window.Quarto = {
 </header>
 
 
-<p><strong>Dates:</strong> Monday August 24 · Wednesday August 26 · Friday August 28</p>
-<section id="learning-objectives" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</h2>
-<p>By the end of this week, you should be able to:</p>
-<ul>
-<li>Calculate the mean, median, and mode of a small dataset by hand.</li>
-<li>Calculate the range, variance, and standard deviation of a small dataset by hand.</li>
-<li>Choose the most appropriate measure of central tendency given the shape of a distribution.</li>
-<li>Interpret what the standard deviation tells you about a dataset.</li>
-<li>Perform these calculations in Excel using built-in functions.</li>
-</ul>
-<hr>
-</section>
-<section id="background-and-conceptual-introduction" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="background-and-conceptual-introduction"><span class="header-section-number">3.2</span> Background and Conceptual Introduction</h2>
-<p>Imagine you are a rancher trying to evaluate whether your cattle are gaining weight at the expected rate. You weigh 10 steers and get a list of numbers. A raw list of numbers is hard to interpret - you need a way to summarize it. That is exactly what descriptive statistics does: it turns a list of numbers into a few meaningful summary values.</p>
-<p>There are two main things we want to know about any dataset:</p>
+<section id="what-you-will-do" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="what-you-will-do"><span class="header-section-number">3.1</span> What you will do</h2>
+<p>In class, you will:</p>
 <ol type="1">
-<li><strong>Where is the “center”?</strong> - What is a typical value?</li>
-<li><strong>How spread out are the values?</strong> - Are all the values close together, or do they vary a lot?</li>
+<li>Create an RStudio Project.</li>
+<li>Create a Quarto document that renders to a Word document.</li>
+<li>Practice a few basic R commands.</li>
+<li>Import the systolic blood pressure dataset used in our previous class.</li>
+<li>Use R to calculate the mean, median, first quartile, third quartile, standard deviation, variance, and coefficient of variation.</li>
+<li>Create a histogram.</li>
+<li>Submit</li>
 </ol>
-<p>Think of it like describing the weather. Saying “average high temperature in Knoxville in August is 32°C” tells you the center. Saying “temperatures range from 28°C to 38°C” tells you the spread. Both pieces of information together give you a much clearer picture than either one alone.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Think About It 🧠
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A soil scientist measures nitrate concentration (mg/L) in 8 water samples from a stream. One sample has a much higher concentration than the rest. How might that one extreme value affect the mean? The median? Which measure would give a more accurate picture of “typical” nitrate concentration?</p>
-</div>
-</div>
-<p>In agriculture and natural resources, both center and spread matter enormously. A crop variety with high <em>average</em> yield but very high <em>variation</em> from field to field may be less dependable than a variety with slightly lower average yield but very consistent performance.</p>
-<hr>
-</section>
-<section id="key-concepts-and-definitions" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="key-concepts-and-definitions"><span class="header-section-number">3.3</span> Key Concepts and Definitions</h2>
-<p><strong>Mean (</strong><span class="math inline">\(\bar{y}\)</span>): The arithmetic average. Sum all values and divide by the number of observations. The mean uses every value and is sensitive to outliers.</p>
-<p><strong>Median:</strong> The middle value when observations are sorted from smallest to largest. If there is an even number of observations, the median is the average of the two middle values. The median is resistant to outliers.</p>
-<p><strong>Mode:</strong> The value (or values) that appear most often. Useful mainly for categorical data or discrete counts.</p>
-<p><strong>Range:</strong> The difference between the maximum and minimum values. Easy to calculate but sensitive to outliers.</p>
-<p><strong>Deviation:</strong> How far a single observation is from the mean: <span class="math inline">\(deviation_i = y_i - \bar{y}\)</span>.</p>
-<p><strong>Variance (</strong><span class="math inline">\(s^2\)</span>): The average of the squared deviations. Because deviations are squared, variance is always non-negative and its units are squared (e.g., kg²).</p>
-<p><span class="math display">\[s^2 = \frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}\]</span></p>
-<p><strong>Standard Deviation (</strong><span class="math inline">\(s\)</span>): The square root of the variance. It is in the same units as the original data (e.g., kg) and is the most commonly used measure of spread.</p>
-<p><span class="math display">\[s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}}\]</span></p>
+<p>After class, you will:</p>
+<ol type="1">
+<li>Read the rest of this chapter.</li>
+<li>Complete only the sections labeled <strong>Assignment question</strong>.</li>
+<li>Write your R code and answers in your Quarto document.</li>
+<li>Render the document to Word and submit the <code>.docx</code> file.</li>
+</ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Why n − 1?
+<span class="screen-reader-only">Important</span>What should you submit?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We divide by <span class="math inline">\(n-1\)</span> (not <span class="math inline">\(n\)</span>) when calculating sample variance. This is called <em>Bessel’s correction</em>. When we use a sample to estimate the spread of a whole population, dividing by <span class="math inline">\(n-1\)</span> gives us a better (unbiased) estimate. You will just remember this rule for now - the why becomes clear later in the course.</p>
+<p>Today, you should submit one rendered Word document that includes your name, and answers.</p>
 </div>
 </div>
-<hr>
 </section>
-<section id="how-to-do-it-by-hand" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="how-to-do-it-by-hand"><span class="header-section-number">3.4</span> How to Do It by Hand</h2>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="part-1-set-up-your-work" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="part-1-set-up-your-work"><span class="header-section-number">3.2</span> Part 1: Set up your work</h2>
+<section id="create-an-rstudio-project" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="create-an-rstudio-project"><span class="header-section-number">3.2.1</span> Create an RStudio Project</h3>
+<p>Projects keep your data, code, and output together. They also make it easier for R to find your files.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Example: Steer Weight Gains
+<span class="screen-reader-only">Important</span>Where to put the project
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A rancher records the daily weight gain (kg) of 10 steers over a 30-day trial period:</p>
-<p><strong>Data:</strong> 1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4</p>
+<p>You will be downloading ALL DATA FILES to this folder. Please make it an easy to find folder</p>
 </div>
 </div>
-<p><strong>Step 1: Sort the data</strong></p>
-<p>1.1, 1.2, 1.2, 1.3, 1.4, 1.4, 1.5, 1.6, 1.7, 1.8</p>
-<p><strong>Step 2: Calculate the mean</strong></p>
-<p><span class="math display">\[\bar{y} = \frac{1.2 + 1.5 + 1.3 + 1.8 + 1.1 + 1.4 + 1.6 + 1.2 + 1.7 + 1.4}{10} = \frac{14.2}{10} = 1.42 \text{ kg/day}\]</span></p>
-<p><strong>Step 3: Find the median</strong></p>
-<p>With <span class="math inline">\(n = 10\)</span> (even), the median is the average of the 5th and 6th sorted values: <span class="math display">\[\text{Median} = \frac{1.4 + 1.4}{2} = 1.4 \text{ kg/day}\]</span></p>
-<p><strong>Step 4: Find the mode</strong></p>
-<p>The values 1.2 and 1.4 each appear twice - this dataset is <strong>bimodal</strong> (two modes).</p>
-<p><strong>Step 5: Calculate the range</strong></p>
-<p><span class="math display">\[\text{Range} = 1.8 - 1.1 = 0.7 \text{ kg/day}\]</span></p>
-<p><strong>Step 6: Calculate deviations, squared deviations</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(y_i\)</span></th>
-<th><span class="math inline">\(y_i - \bar{y}\)</span></th>
-<th><span class="math inline">\((y_i - \bar{y})^2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1.2</td>
-<td>−0.22</td>
-<td>0.0484</td>
-</tr>
-<tr class="even">
-<td>1.5</td>
-<td>0.08</td>
-<td>0.0064</td>
-</tr>
-<tr class="odd">
-<td>1.3</td>
-<td>−0.12</td>
-<td>0.0144</td>
-</tr>
-<tr class="even">
-<td>1.8</td>
-<td>0.38</td>
-<td>0.1444</td>
-</tr>
-<tr class="odd">
-<td>1.1</td>
-<td>−0.32</td>
-<td>0.1024</td>
-</tr>
-<tr class="even">
-<td>1.4</td>
-<td>−0.02</td>
-<td>0.0004</td>
-</tr>
-<tr class="odd">
-<td>1.6</td>
-<td>0.18</td>
-<td>0.0324</td>
-</tr>
-<tr class="even">
-<td>1.2</td>
-<td>−0.22</td>
-<td>0.0484</td>
-</tr>
-<tr class="odd">
-<td>1.7</td>
-<td>0.28</td>
-<td>0.0784</td>
-</tr>
-<tr class="even">
-<td>1.4</td>
-<td>−0.02</td>
-<td>0.0004</td>
-</tr>
-<tr class="odd">
-<td><strong>Sum</strong></td>
-<td><strong>0.00</strong></td>
-<td><strong>0.4760</strong></td>
-</tr>
-</tbody>
-</table>
-<p><em>(Note: the sum of deviations is always 0 - a good check!)</em></p>
-<p><strong>Step 7: Calculate variance</strong></p>
-<p><span class="math display">\[s^2 = \frac{0.4760}{10 - 1} = \frac{0.4760}{9} = 0.0529 \text{ kg}^2/\text{day}^2\]</span></p>
-<p><strong>Step 8: Calculate standard deviation</strong></p>
-<p><span class="math display">\[s = \sqrt{0.0529} = 0.230 \text{ kg/day}\]</span></p>
-<p><strong>Interpretation:</strong> The average daily weight gain is <strong>1.42 kg/day</strong>. Most steers gain between about <span class="math inline">\(1.42 - 0.23 = 1.19\)</span> and <span class="math inline">\(1.42 + 0.23 = 1.65\)</span> kg per day.</p>
-<hr>
-</section>
-<section id="how-to-do-it-in-excel" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="how-to-do-it-in-excel"><span class="header-section-number">3.5</span> How to Do It in Excel</h2>
 <ol type="1">
-<li>Enter your 10 values in cells <strong>A1:A10</strong>.</li>
-<li>In cell <strong>B1</strong>, type a label like “Statistics”.</li>
-<li>Calculate each statistic in a separate cell:</li>
+<li>Open RStudio.</li>
+<li>Select <strong>File &gt; New Project &gt; New Directory &gt; New Project</strong>.</li>
+<li>Name the project <code>SNR220</code> –&gt; You will use this for the rest of the semester</li>
+<li>Choose a location on your computer that you can find easily.</li>
+<li>Create the project.</li>
+<li>Save the systolic blood pressure <code>.csv</code> file inside the project folder.</li>
 </ol>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 38%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Cell</th>
-<th>Formula</th>
-<th>What it calculates</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>B2</td>
-<td><code>=AVERAGE(A1:A10)</code></td>
-<td>Mean</td>
-</tr>
-<tr class="even">
-<td>B3</td>
-<td><code>=MEDIAN(A1:A10)</code></td>
-<td>Median</td>
-</tr>
-<tr class="odd">
-<td>B4</td>
-<td><code>=MODE(A1:A10)</code></td>
-<td>Mode (returns first mode if multiple)</td>
-</tr>
-<tr class="even">
-<td>B5</td>
-<td><code>=MAX(A1:A10)-MIN(A1:A10)</code></td>
-<td>Range</td>
-</tr>
-<tr class="odd">
-<td>B6</td>
-<td><code>=VAR.S(A1:A10)</code></td>
-<td>Sample variance (<span class="math inline">\(s^2\)</span>)</td>
-</tr>
-<tr class="even">
-<td>B7</td>
-<td><code>=STDEV.S(A1:A10)</code></td>
-<td>Sample standard deviation (<span class="math inline">\(s\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Screenshot will be added here.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>VAR.S vs.&nbsp;VAR.P
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Excel has two variance functions: <code>VAR.S</code> (sample variance, divides by <span class="math inline">\(n-1\)</span>) and <code>VAR.P</code> (population variance, divides by <span class="math inline">\(n\)</span>). For this course, <strong>always use <code>VAR.S</code> and <code>STDEV.S</code></strong> unless instructed otherwise.</p>
-</div>
-</div>
-<hr>
 </section>
-<section id="how-to-do-it-in-r" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="how-to-do-it-in-r"><span class="header-section-number">3.6</span> How to Do It in R</h2>
+<section id="create-a-quarto-document" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="create-a-quarto-document"><span class="header-section-number">3.2.2</span> Create a Quarto document</h3>
+<ol type="1">
+<li>Select <strong>File &gt; New File &gt; Quarto Document</strong>.</li>
+<li>Enter a title such as <code>Week 2: Describing Data</code>.</li>
+<li>Enter your name as the author.</li>
+<li>Select <strong>Word</strong> as the output format.</li>
+<li>Select <strong>Create</strong>.</li>
+<li>Save the file as <code>week2_describing_data.qmd</code> inside your project folder.</li>
+</ol>
+<p>The top of your file should look similar to this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Week 2: Describing Data"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your name"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> docx</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="add-code-and-written-answers" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="add-code-and-written-answers"><span class="header-section-number">3.2.3</span> Add code and written answers</h3>
+<p>You will complete all work in the <code>.qmd</code> file. Add regular text for your written answers. Add executable R code chunks for your code.</p>
+<p>To insert a code chunk, select <strong>Insert &gt; Executable Cell &gt; R</strong>. You can also type three backticks followed by <code>{r}</code>, add your code, and close the chunk with three more backticks.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### My first calculation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>The result means that...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-stdout}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">[1] 4</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To run one line or a selected section of code, press <strong>Ctrl + Enter</strong> on Windows or <strong>Command + Enter</strong> on macOS. To create the Word document, click <strong>Render</strong>.</p>
+</section>
+</section>
+<section id="part-2-play-with-r" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="part-2-play-with-r"><span class="header-section-number">3.3</span> Part 2: Play with R</h2>
+<p>R can be used as a calculator. In your Quarto document, create an R code chunk and run each of the following commands one at a time.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">9</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R can also store values in objects. The assignment operator <code>&lt;-</code> places a value inside an object.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">17</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A vector is a collection of values. The function <code>c()</code> combines values into a vector.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>practice_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">15</span>, <span class="dv">50</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>practice_values</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(practice_values)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(practice_values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Change one of the values and run the code again. What happens to the mean and standard deviation?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A note about the Console
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Console is useful for quick experiments, but your assignment code should be written in the Quarto file. Code saved in your Quarto file can be checked, corrected, rerun, and included in your final Word document.</p>
+</div>
+</div>
+</section>
+<section id="part-3-guided-activity-with-the-systolic-blood-pressure-data" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="part-3-guided-activity-with-the-systolic-blood-pressure-data"><span class="header-section-number">3.4</span> Part 3: Guided activity with the systolic blood pressure data</h2>
+<p>You previously estimated descriptive statistics for the systolic blood pressure dataset. Now you will use R to calculate the same values.</p>
+<section id="import-the-data" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="import-the-data"><span class="header-section-number">3.4.1</span> Import the data</h3>
+<p>Download the dataforR.csv file from Canvas</p>
+<p>Create an R code chunk in your Quarto document and enter:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the steer weight gain data as a vector</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gains <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">1.3</span>, <span class="fl">1.8</span>, <span class="fl">1.1</span>, <span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">1.2</span>, <span class="fl">1.7</span>, <span class="fl">1.4</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Measures of central tendency ---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gains)       <span class="co"># arithmetic mean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.42</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>blood <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"systolicBloodPressure.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(gains)     <span class="co"># median</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mode: R does not have a built-in mode() for numeric data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find it by creating a frequency table</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(gains)      <span class="co"># shows how often each value appears</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>gains
-1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 
-  1   2   1   2   1   1   1   1 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Measures of spread ---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(gains)      <span class="co"># returns the min and max (not the difference)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.1 1.8</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(gains)) <span class="co"># this gives us the actual range = max - min</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(gains)        <span class="co"># sample variance (uses n-1 automatically)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05288889</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(gains)         <span class="co"># sample standard deviation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2299758</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Quick summary of everything ---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gains)    <span class="co"># min, Q1, median, mean, Q3, max</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  1.100   1.225   1.400   1.420   1.575   1.800 </code></pre>
-</div>
-</div>
-<p><strong>Sample output:</strong></p>
-<pre><code>&gt; mean(gains)
-[1] 1.42
-
-&gt; sd(gains)
-[1] 0.2299
-
-&gt; summary(gains)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
-   1.10    1.20    1.40    1.42    1.60    1.80</code></pre>
-<hr>
-</section>
-<section id="interpretation-and-common-mistakes" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="interpretation-and-common-mistakes"><span class="header-section-number">3.7</span> Interpretation and Common Mistakes</h2>
-<p><strong>What does the standard deviation mean in plain language?</strong></p>
-<p>A standard deviation of 0.23 kg/day means that, on average, individual steer weight gains differ from the mean by about 0.23 kg/day. The larger the standard deviation, the more variable the group.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common Mistake: Using the Mean When the Median Is More Appropriate
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If one steer in our example gained 4.0 kg/day (perhaps a data entry error), the mean would jump to about 1.68 kg/day - a value higher than 9 out of 10 actual observations. The median would barely change. When you suspect outliers or when data is skewed, the <strong>median</strong> is often a better measure of the “typical” value.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common Mistake: Forgetting to Use n − 1
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When computing variance by hand, students often divide by <span class="math inline">\(n\)</span> instead of <span class="math inline">\(n-1\)</span>. In this course, we almost always work with <em>samples</em>, not entire populations, so we divide by <span class="math inline">\(n-1\)</span>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common Mistake: Reporting Variance Instead of Standard Deviation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Variance is in squared units (kg²/day²), which is hard to interpret. Always convert to standard deviation (kg/day) so your measure of spread is in the same units as your data.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="summary" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.8</span> Summary</h2>
+<p>The assignment operator <code>&lt;-</code> stores the imported dataset in an object named <code>blood</code>.</p>
+<p>Use these functions to inspect the dataset:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(blood)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(blood)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(blood)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(blood)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>The <strong>mean</strong> is the most common measure of center but is pulled toward extreme values.</li>
-<li>The <strong>median</strong> is the middle value and is more stable when outliers are present.</li>
-<li>The <strong>standard deviation</strong> tells you, on average, how far individual observations are from the mean.</li>
-<li><strong>Variance</strong> is the square of the standard deviation; it is rarely reported directly.</li>
-<li>In Excel, use <code>AVERAGE</code>, <code>MEDIAN</code>, <code>STDEV.S</code>, and <code>VAR.S</code>.</li>
-<li>In R, use <code>mean()</code>, <code>median()</code>, <code>sd()</code>, and <code>var()</code>.</li>
+<li><code>head()</code> displays the first few observations.</li>
+<li><code>names()</code> displays the variable names.</li>
+<li><code>str()</code> shows the structure and variable types.</li>
+<li><code>summary()</code> provides a quick summary of each variable.</li>
 </ul>
 </section>
-<section id="practice-problems" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">3.9</span> Practice Problems</h2>
+<section id="select-the-systolic-blood-pressure-variable" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="select-the-systolic-blood-pressure-variable"><span class="header-section-number">3.4.2</span> Select the systolic blood pressure variable</h3>
+<p>The column is named <code>systolicBP</code>. The <code>$</code> symbol selects that column from the dataframe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> blood<span class="sc">$</span>systolicBP</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>R is case-sensitive. <code>Systolic</code> and <code>systolic</code> are different names. Use the exact column name shown by <code>names(blood)</code>.</p>
+</section>
+<section id="calculate-the-descriptive-statistics" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="calculate-the-descriptive-statistics"><span class="header-section-number">3.4.3</span> Calculate the descriptive statistics</h3>
+<p>Use the following functions to estimate the function in your Quarto document:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(systolic)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(systolic)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(systolic, <span class="at">probs =</span> <span class="fl">0.25</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(systolic, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(systolic)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(systolic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+CV = \frac{s}{\bar{y}} \times 100
+\]</span></p>
+<p>Calculate it in R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(systolic <span class="sc">/</span> <span class="fu">mean</span>(systolic) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Before you render and submit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure your values are the same as you got on Excel</p>
+</div>
+</div>
+<p>Now, answer in the Quarto document:</p>
+<p>Was it easy or hard to do this?</p>
+</section>
+<section id="create-a-quick-histogram" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="create-a-quick-histogram"><span class="header-section-number">3.4.4</span> Create a quick histogram</h3>
+<p>A histogram displays the distribution of a numerical variable. It can help you see the center, spread, skewness, gaps, and possible extreme values.</p>
+<p>Add this code to your Quarto document:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  systolic,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Distribution of systolic blood pressure"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Systolic blood pressure (mm Hg)"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"white"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The histogram will appear automatically in the rendered Word document. Below the plot, write two or three sentences describing what you see. Consider the center, spread, shape, and any possible extreme values.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>That is it! You get to go home. The assignment will be due Wednesday 2nd! After we are back from labor day!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-4-concepts-to-review" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Part 4: Concepts to review</h1>
+<section id="center-and-spread" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="center-and-spread"><span class="header-section-number">4.0.1</span> Center and spread</h3>
+<p>Raw observations can be difficult to interpret. Descriptive statistics reduce a dataset to a few useful summaries.</p>
+<p>We usually want to know:</p>
 <ol type="1">
-<li><p>A wildlife biologist counts the number of white-tailed deer observed per transect walk on 8 survey days: 4, 7, 3, 9, 5, 6, 4, 10. Calculate the mean, median, mode, range, variance, and standard deviation by hand. Show all steps.</p></li>
-<li><p>A farmer records wheat yields (bushels/acre) for 6 fields: 52, 48, 55, 61, 47, 50. Calculate the mean and standard deviation. Then suppose a seventh field yielded 110 bushels/acre (an unusually productive irrigated plot). Recalculate the mean. How much did the mean change? What happened to the median?</p></li>
-<li><p>Two groups of corn plants are grown under different irrigation regimes. Group A has a mean height of 150 cm with a standard deviation of 5 cm. Group B has a mean height of 150 cm with a standard deviation of 20 cm. Without doing any calculations, which group would you say has more consistent growth? Why might that matter for a farmer making planting decisions?</p></li>
+<li>Where is the center of the distribution?</li>
+<li>How spread out are the observations?</li>
 </ol>
+<p>Both are important. Two groups can have the same mean but very different amounts of variation.</p>
+</section>
+<section id="measures-of-center" class="level3" data-number="4.0.2">
+<h3 data-number="4.0.2" class="anchored" data-anchor-id="measures-of-center"><span class="header-section-number">4.0.2</span> Measures of center</h3>
+<p><strong>Mean:</strong> Add all observations and divide by the number of observations. The mean uses every value, so extreme values can strongly affect it.</p>
+<p><strong>Median:</strong> Sort the observations and find the middle value. The median is less affected by extreme values and is often useful for skewed data.</p>
+<p><strong>Mode:</strong> The value that occurs most often. It is especially useful for categorical variables and discrete counts. A dataset can have more than one mode or no unique mode.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think about it
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A soil scientist measures nitrate concentration in eight stream samples. One sample has a much higher concentration than the others. How might that observation affect the mean? How might it affect the median? Which value would better describe a typical sample?</p>
+</div>
+</div>
+</section>
+<section id="quartiles" class="level3" data-number="4.0.3">
+<h3 data-number="4.0.3" class="anchored" data-anchor-id="quartiles"><span class="header-section-number">4.0.3</span> Quartiles</h3>
+<p>After sorting the data:</p>
+<ul>
+<li>The first quartile, Q1, is the 25th percentile.</li>
+<li>The median, Q2, is the 50th percentile.</li>
+<li>The third quartile, Q3, is the 75th percentile.</li>
+</ul>
+<p>The middle 50 percent of the observations fall between Q1 and Q3.</p>
+</section>
+<section id="variance-and-standard-deviation" class="level3" data-number="4.0.4">
+<h3 data-number="4.0.4" class="anchored" data-anchor-id="variance-and-standard-deviation"><span class="header-section-number">4.0.4</span> Variance and standard deviation</h3>
+<p>A deviation is the distance between an observation and the mean:</p>
+<p><span class="math display">\[
+\text{deviation}_i = y_i - \bar{y}
+\]</span></p>
+<p>Some deviations are positive and some are negative. If we simply add them, they cancel and sum to zero. Variance avoids this problem by squaring the deviations.</p>
+<p>For a sample, the variance is:</p>
+<p><span class="math display">\[
+s^2 = \frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}
+\]</span></p>
+<p>The standard deviation is the square root of the variance:</p>
+<p><span class="math display">\[
+s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \bar{y})^2}{n - 1}}
+\]</span></p>
+<p>Variance is expressed in squared units. Standard deviation is expressed in the original units, so it is usually easier to interpret. A larger standard deviation indicates greater variation around the mean.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Why use n - 1?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When we use a sample to estimate variation in a larger population, sample variance divides by <span class="math inline">\(n - 1\)</span>. This correction improves the estimate of population variance. For now, remember that <code>var()</code> and <code>sd()</code> in R use <span class="math inline">\(n - 1\)</span> automatically.</p>
+</div>
+</div>
+</section>
+<section id="coefficient-of-variation" class="level3" data-number="4.0.5">
+<h3 data-number="4.0.5" class="anchored" data-anchor-id="coefficient-of-variation"><span class="header-section-number">4.0.5</span> Coefficient of variation</h3>
+<p>The coefficient of variation expresses the standard deviation relative to the mean. Because it is a percentage, it can help compare variation among measurements with different means.</p>
+<p>For example, a CV of 12 percent means that the standard deviation is 12 percent of the mean.</p>
+<p>Use the CV only when a value of zero is meaningful and the mean is positive. It is not appropriate for every type of measurement.</p>
+</section>
+<section id="a-short-example" class="level3" data-number="4.0.6">
+<h3 data-number="4.0.6" class="anchored" data-anchor-id="a-short-example"><span class="header-section-number">4.0.6</span> A short example</h3>
+<p>A rancher records daily weight gain for 10 steers:</p>
+<p><code>1.2, 1.5, 1.3, 1.8, 1.1, 1.4, 1.6, 1.2, 1.7, 1.4</code></p>
+<p>The main summaries are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td style="text-align: right;">1.42 kg/day</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td style="text-align: right;">1.40 kg/day</td>
+</tr>
+<tr class="odd">
+<td>Q1</td>
+<td style="text-align: right;">1.225 kg/day</td>
+</tr>
+<tr class="even">
+<td>Q3</td>
+<td style="text-align: right;">1.575 kg/day</td>
+</tr>
+<tr class="odd">
+<td>Variance</td>
+<td style="text-align: right;">0.0529 (kg/day)<span class="math inline">\(^2\)</span></td>
+</tr>
+<tr class="even">
+<td>Standard deviation</td>
+<td style="text-align: right;">0.230 kg/day</td>
+</tr>
+<tr class="odd">
+<td>CV</td>
+<td style="text-align: right;">16.2%</td>
+</tr>
+</tbody>
+</table>
+<p>The mean and median are similar, which suggests that the center is not being strongly affected by an extreme value. The standard deviation describes the typical spread around the mean. It does not guarantee that every observation will fall within one standard deviation of the mean.</p>
+</section>
+<section id="excel-reference-only" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="excel-reference-only"><span class="header-section-number">4.1</span> Excel reference only</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>You do not have to complete this section
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section is included as a reference. Do not submit Excel calculations for this assignment. Complete the assignment questions using R.</p>
+</div>
+</div>
+<p>If values are stored in cells <code>A1:A10</code>, Excel can calculate the following:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Excel formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td><code>=AVERAGE(A1:A10)</code></td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td><code>=MEDIAN(A1:A10)</code></td>
+</tr>
+<tr class="odd">
+<td>First quartile</td>
+<td><code>=QUARTILE.INC(A1:A10,1)</code></td>
+</tr>
+<tr class="even">
+<td>Third quartile</td>
+<td><code>=QUARTILE.INC(A1:A10,3)</code></td>
+</tr>
+<tr class="odd">
+<td>Sample variance</td>
+<td><code>=VAR.S(A1:A10)</code></td>
+</tr>
+<tr class="even">
+<td>Sample standard deviation</td>
+<td><code>=STDEV.S(A1:A10)</code></td>
+</tr>
+<tr class="odd">
+<td>Coefficient of variation</td>
+<td><code>=STDEV.S(A1:A10)/AVERAGE(A1:A10)*100</code></td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>VAR.S</code> and <code>STDEV.S</code> when the observations are a sample. The functions <code>VAR.P</code> and <code>STDEV.P</code> are used when the data include the entire population of interest.</p>
+</section>
+<section id="homework-r-exercises" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="homework-r-exercises"><span class="header-section-number">4.2</span> Homework: R exercises</h2>
+<p>Complete both assignment questions in your Quarto document. Include the code, output, plots, and written responses. Do not calculate these answers in Excel.</p>
+<section id="assignment-question-1-deer-observations" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="assignment-question-1-deer-observations"><span class="header-section-number">4.2.1</span> Assignment question 1: Deer observations</h3>
+<p>A wildlife biologist records the number of white-tailed deer observed during eight transect surveys:</p>
+<p><code>4, 7, 3, 9, 5, 6, 4, 10</code></p>
+<ol type="1">
+<li>Create a vector named <code>deer</code> containing these observations.</li>
+<li>Write R code to calculate the mean, median, Q1, Q3, range, variance, standard deviation, and CV.</li>
+<li>Create a histogram with an informative title and axis label.</li>
+<li>In two or three sentences, describe the center and spread of the observations. Mention whether the mean and median are similar.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The R function <code>range()</code> returns the minimum and maximum. To calculate the difference between them, use <code>diff(range(deer))</code>.</p>
+</div>
+</div>
+</section>
+<section id="assignment-question-2-wheat-yield-and-an-extreme-value" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="assignment-question-2-wheat-yield-and-an-extreme-value"><span class="header-section-number">4.2.2</span> Assignment question 2: Wheat yield and an extreme value</h3>
+<p>A farmer records wheat yield, in bushels per acre, for six fields:</p>
+<p><code>52, 48, 55, 61, 47, 50</code></p>
+<p>A seventh irrigated field yields 110 bushels per acre.</p>
+<ol type="1">
+<li>Create a vector named <code>wheat</code> containing the original six observations.</li>
+<li>Create a second vector named <code>wheat_with_extreme</code> that includes all seven observations.</li>
+<li>For each vector, write R code to calculate the mean, median, and standard deviation.</li>
+<li>Create one histogram for each vector. Give each histogram a clear title and use the same x-axis limits so the plots can be compared fairly. You can add <code>xlim = c(40, 115)</code> inside each <code>hist()</code> function.</li>
+<li>In three or four sentences, explain how the value of 110 affected the mean, median, standard deviation, and shape of the distribution.</li>
+</ol>
+</section>
+</section>
+<section id="before-submitting" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="before-submitting"><span class="header-section-number">4.3</span> Before submitting</h2>
+<p>Check that your Word document includes:</p>
+<ul>
+<li>Your name and assignment title</li>
+<li>All R code used to answer the assignment questions</li>
+<li>The numerical output from R</li>
+<li>All required histograms</li>
+<li>Written interpretations in complete sentences</li>
+</ul>
+<p>Click <strong>Render</strong> and open the <code>.docx</code> file to make sure the code, output, and plots are visible before submitting it.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1213,8 +1345,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/week03.html" class="pagination-link" aria-label="Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/week03.html" class="pagination-link" aria-label="Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

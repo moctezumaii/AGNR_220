@@ -14,11 +14,11 @@ categories:
 
 By the end of this week, you should be able to:
 
--   Explain why data and statistics are important in agriculture and natural resources.
--   Define the terms *variable*, *observation*, and *dataset*.
--   Classify variables as categorical or numerical (and within each type, name the subtypes).
--   Give at least two real-world agricultural or natural resource examples for each data type.
--   Describe how this course is organized and what to expect each week.
+- Explain why data and statistics are important in agriculture and natural resources.
+- Define the terms *variable*, *observation*, and *dataset*.
+- Classify variables as categorical or numerical (and within each type, name the subtypes).
+- Give at least two real-world agricultural or natural resource examples for each data type.
+- Describe how this course is organized and what to expect each week.
 
 ------------------------------------------------------------------------
 
@@ -26,10 +26,10 @@ By the end of this week, you should be able to:
 
 Every day, people working in agriculture and natural resources face questions that data can help answer:
 
--   Is this new corn variety producing higher yields than the old one?
--   Are deer populations in this county growing, stable, or declining?
--   Does adding fertilizer to these fields actually improve grass production, or does the variation between fields just make it look that way?
--   Is the water in this stream safe for fish?
+- Is this new corn variety producing higher yields than the old one?
+- Are deer populations in this county growing, stable, or declining?
+- Does adding fertilizer to these fields actually improve grass production, or does the variation between fields just make it look that way?
+- Is the water in this stream safe for fish?
 
 Without data, we can only guess at the answers. With data - and the right tools to analyze them - we can make confident, defensible decisions.
 
@@ -172,12 +172,11 @@ We will use Excel first (Weeks 2–3) and introduce R gradually starting in Week
 
 ## Summary
 
--   Statistics helps us make sound decisions in agriculture and natural resources by turning raw data into reliable conclusions.
--   A dataset is a table of observations (rows) and variables (columns).
--   Variables are either **categorical** (nominal or ordinal) or **numerical** (discrete or continuous).
--   Knowing the type of a variable is the first step in choosing the right analysis.
--   This course progresses from describing data → understanding probability → testing hypotheses → comparing groups → modeling relationships.
-
+- Statistics helps us make sound decisions in agriculture and natural resources by turning raw data into reliable conclusions.
+- A dataset is a table of observations (rows) and variables (columns).
+- Variables are either **categorical** (nominal or ordinal) or **numerical** (discrete or continuous).
+- Knowing the type of a variable is the first step in choosing the right analysis.
+- This course progresses from describing data → understanding probability → testing hypotheses → comparing groups → modeling relationships.
 
 # Assignment 1
 
@@ -187,20 +186,21 @@ We will use Excel first (Weeks 2–3) and introduce R gradually starting in Week
 Read the four steps to take a random sample, sample of convenience and volunteer bias. Then come up with one example of each that is relevant to your major or career interest. Be prepared to share your examples in class.
 
 ## Question 2
-Answer the practice problems at the end of the chapter. You may work with a partner, but each student must submit their own answers. No use of AI tools is allowed for this assignment. You may use your notes, the textbook, and other course materials. You get full credit for honest attempts, even if your answers are not correct. 
+
+Answer the practice problems at the end of the chapter. You may work with a partner, but each student must submit their own answers. No use of AI tools is allowed for this assignment. You may use your notes, the textbook, and other course materials. You get full credit for honest attempts, even if your answers are not correct.
 :::
 
 ## 1. Four steps to take a random sample
 
 A **random sample** gives every individual in the population a known and equal chance of being selected.
 
-1. **Define the population.** Clearly identify the group you want to study. For example, all ponds within a wildlife management area.
+1.  **Define the population.** Clearly identify the group you want to study. For example, all ponds within a wildlife management area.
 
-2. **Create a sampling frame.** Make a list of all individuals or sampling units in the population, such as a list of every pond in the management area.
+2.  **Create a sampling frame.** Make a list of all individuals or sampling units in the population, such as a list of every pond in the management area.
 
-3. **Randomly select the sample.** Use a random number generator or another random method to select ponds from the complete list.
+3.  **Randomly select the sample.** Use a random number generator or another random method to select ponds from the complete list.
 
-4. **Sample the selected units.** Collect data from the ponds that were randomly selected. Avoid replacing difficult-to-sample ponds with easier ones, since this could introduce bias.
+4.  **Sample the selected units.** Collect data from the ponds that were randomly selected. Avoid replacing difficult-to-sample ponds with easier ones, since this could introduce bias.
 
 ## 2. Sample of convenience
 

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Week 5 — Frequency Data and Probability – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
+<title>6&nbsp; Week 5 - Frequency Data and Probability – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/week04.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e6327c87da4d77694843264cb205aa05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-603894e74320b3bf3a35aebfe5fe747c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -191,7 +196,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week05.html">Unit 2: Probability and Uncertainty</a></li><li class="breadcrumb-item"><a href="../chapters/week05.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week05.html">Unit 2: Probability and Uncertainty</a></li><li class="breadcrumb-item"><a href="../chapters/week05.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -244,19 +249,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +278,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -416,9 +421,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week05.html">Unit 2: Probability and Uncertainty</a></li><li class="breadcrumb-item"><a href="../chapters/week05.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week05.html">Unit 2: Probability and Uncertainty</a></li><li class="breadcrumb-item"><a href="../chapters/week05.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-week05" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span></h1>
+<h1 class="title"><span id="sec-week05" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></span></h1>
   <div class="quarto-categories">
     <div class="quarto-category">probability</div>
     <div class="quarto-category">frequency</div>
@@ -457,7 +462,7 @@ window.Quarto = {
 <section id="background-and-conceptual-introduction" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="background-and-conceptual-introduction"><span class="header-section-number">6.2</span> Background and Conceptual Introduction</h2>
 <p>Probability is the foundation of all statistical inference. Before we can test whether a fertilizer treatment increases yield or whether a fish population is declining, we need to understand what “by chance alone” looks like.</p>
-<p>Think about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a <em>theoretical probability</em> — derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an <em>empirical probability</em> — derived from observed data. The two values differ slightly because of random chance in the 60 trials.</p>
+<p>Think about rolling a fair six-sided die. You know ahead of time that the probability of rolling a 4 is 1/6 ≈ 16.7%. That is a <em>theoretical probability</em> - derived from reasoning about the die. Now imagine you actually rolled the die 60 times and got a 4 on 12 of those rolls (12/60 = 20%). That is an <em>empirical probability</em> - derived from observed data. The two values differ slightly because of random chance in the 60 trials.</p>
 <p>In agriculture and natural resources, we almost always work with empirical probabilities derived from data. For example:</p>
 <ul>
 <li>In 10 years of records, late spring frosts occurred in 3 of those years → estimated probability of a late frost = 3/10 = 30%.</li>
@@ -481,13 +486,13 @@ window.Quarto = {
 <section id="key-concepts-and-definitions" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="key-concepts-and-definitions"><span class="header-section-number">6.3</span> Key Concepts and Definitions</h2>
 <p><strong>Probability:</strong> A number between 0 and 1 that represents how likely an event is. Probability = 0 means impossible; probability = 1 means certain.</p>
-<p><strong>Empirical probability:</strong> Estimated from observed data — the proportion of times an event occurred in past trials.</p>
+<p><strong>Empirical probability:</strong> Estimated from observed data - the proportion of times an event occurred in past trials.</p>
 <p><span class="math display">\[P(\text{event}) = \frac{\text{number of times event occurred}}{\text{total number of trials}}\]</span></p>
 <p><strong>Frequency table:</strong> A table showing how many observations fall in each category or value.</p>
 <p><strong>Relative frequency:</strong> The proportion (or percentage) of observations in each category. Relative frequency = frequency / total n.</p>
 <p><strong>Random variable:</strong> A variable whose value is determined by a random process (e.g., the weight of a randomly selected deer from a population).</p>
 <p><strong>Probability distribution:</strong> A description of all possible values of a random variable and their associated probabilities.</p>
-<p><strong>Normal distribution:</strong> A symmetric, bell-shaped probability distribution completely described by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). It appears throughout nature — heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.</p>
+<p><strong>Normal distribution:</strong> A symmetric, bell-shaped probability distribution completely described by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). It appears throughout nature - heights, weights, measurement errors, and many other biological quantities follow approximately normal distributions.</p>
 <p><strong>The Empirical Rule (68–95–99.7 Rule):</strong> For data that follow a normal distribution: - About <strong>68%</strong> of observations fall within 1 standard deviation of the mean (<span class="math inline">\(\mu \pm 1\sigma\)</span>). - About <strong>95%</strong> of observations fall within 2 standard deviations of the mean (<span class="math inline">\(\mu \pm 2\sigma\)</span>). - About <strong>99.7%</strong> of observations fall within 3 standard deviations of the mean (<span class="math inline">\(\mu \pm 3\sigma\)</span>).</p>
 <p><strong>z-score (standard score):</strong> The number of standard deviations an observation is above or below the mean:</p>
 <p><span class="math display">\[z = \frac{y - \mu}{\sigma}\]</span></p>
@@ -567,7 +572,7 @@ window.Quarto = {
 <p>By the empirical rule, about <strong>95%</strong> of ears fall in this range.</p>
 <p><strong>What is the z-score for an ear weighing 220 g?</strong></p>
 <p><span class="math display">\[z = \frac{220 - 185}{15} = \frac{35}{15} = 2.33\]</span></p>
-<p>This ear is 2.33 standard deviations above the mean — it is quite large but not impossible.</p>
+<p>This ear is 2.33 standard deviations above the mean - it is quite large but not impossible.</p>
 <hr>
 </section>
 </section>
@@ -599,9 +604,9 @@ Note
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="normal-distribution-probabilities"><span class="header-section-number">6.5.2</span> Normal Distribution Probabilities</h3>
 <p>Excel has built-in functions for the normal distribution:</p>
 <ul>
-<li><code>=NORM.DIST(x, mean, std_dev, TRUE)</code> — gives the probability that a normal random variable is ≤ x (cumulative probability).</li>
-<li><code>=NORM.DIST(200, 185, 15, TRUE)</code> — probability an ear weighs ≤ 200 g.</li>
-<li><code>=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE)</code> — probability between 170 and 200 g.</li>
+<li><code>=NORM.DIST(x, mean, std_dev, TRUE)</code> - gives the probability that a normal random variable is ≤ x (cumulative probability).</li>
+<li><code>=NORM.DIST(200, 185, 15, TRUE)</code> - probability an ear weighs ≤ 200 g.</li>
+<li><code>=NORM.DIST(200,185,15,TRUE) - NORM.DIST(170,185,15,TRUE)</code> - probability between 170 and 200 g.</li>
 </ul>
 <hr>
 </section>
@@ -679,7 +684,7 @@ Note
 <section id="interpretation-and-common-mistakes" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="interpretation-and-common-mistakes"><span class="header-section-number">6.7</span> Interpretation and Common Mistakes</h2>
 <p><strong>What does probability mean in practice?</strong></p>
-<p>A probability of 0.05 (5%) does not mean something is “impossible” — it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.</p>
+<p>A probability of 0.05 (5%) does not mean something is “impossible” - it means it happens about 1 time in 20. This number (5%) plays a central role in hypothesis testing, which we will cover in Weeks 8–9.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1132,8 +1137,8 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/week04.html" class="pagination-link" aria-label="Week 4 — Uncertainty and Variability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span>
+      <a href="../chapters/week04.html" class="pagination-link" aria-label="Week 4 - Uncertainty and Variability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

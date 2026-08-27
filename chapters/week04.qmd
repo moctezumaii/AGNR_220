@@ -17,13 +17,13 @@ categories:
 
 By the end of this week, you should be able to:
 
-- Explain the difference between a population and a sample.
-- Define and calculate the standard error of the mean.
-- Construct and interpret a 95% confidence interval using the rule of thumb.
-- Explain why larger sample sizes produce more precise estimates.
-- Recognize that random sampling introduces variability in our estimates.
+-   Explain the difference between a population and a sample.
+-   Define and calculate the standard error of the mean.
+-   Construct and interpret a 95% confidence interval using the rule of thumb.
+-   Explain why larger sample sizes produce more precise estimates.
+-   Recognize that random sampling introduces variability in our estimates.
 
----
+------------------------------------------------------------------------
 
 ## Background and Conceptual Introduction
 
@@ -35,13 +35,13 @@ Think of it like casting a fishing net. Each time you cast your net, you catch a
 
 The **standard error** and **confidence interval** are tools that quantify our uncertainty. They tell us how far our sample estimate might be from the true population value.
 
-::: {.callout-tip}
+::: callout-tip
 ## Think About It 🧠
 
 You sample 5 trees from a large forest and estimate the average diameter at breast height (DBH) to be 22 cm. Your classmate samples 50 trees from the same forest and estimates the average DBH to be 20 cm. Whose estimate is likely to be closer to the true population average? Why?
 :::
 
----
+------------------------------------------------------------------------
 
 ## Key Concepts and Definitions
 
@@ -67,15 +67,13 @@ $$95\% \text{ CI} \approx \bar{y} \pm 2 \times SE$$
 
 *(This "rule of thumb" uses 2 as an approximation; the exact value depends on sample size and will be refined when we cover t-tests in Week 10.)*
 
-**Precision vs. Accuracy:**
-- **Precise** estimate: small standard error, values close together.
-- **Accurate** estimate: close to the true population value (requires no bias in sampling).
+**Precision vs. Accuracy:** - **Precise** estimate: small standard error, values close together. - **Accurate** estimate: close to the true population value (requires no bias in sampling).
 
----
+------------------------------------------------------------------------
 
 ## How to Do It by Hand
 
-::: {.callout-note}
+::: callout-note
 ## Example: American Eel Length
 
 A fisheries biologist is studying American eels (*Anguilla rostrata*) in a New England pond. The pond has exactly 100 eels, and their true mean total length is known to be 100 cm. The biologist takes a random sample of 12 eels and records their lengths (cm):
@@ -91,21 +89,21 @@ $$\bar{y} = \frac{95 + 102 + 88 + 110 + 97 + 104 + 91 + 99 + 107 + 93 + 101 + 96
 
 First, find each deviation from the mean ($\bar{y} = 98.6$):
 
-| $y_i$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
-|-------|-----------------|---------------------|
-| 95 | −3.6 | 12.96 |
-| 102 | 3.4 | 11.56 |
-| 88 | −10.6 | 112.36 |
-| 110 | 11.4 | 129.96 |
-| 97 | −1.6 | 2.56 |
-| 104 | 5.4 | 29.16 |
-| 91 | −7.6 | 57.76 |
-| 99 | 0.4 | 0.16 |
-| 107 | 8.4 | 70.56 |
-| 93 | −5.6 | 31.36 |
-| 101 | 2.4 | 5.76 |
-| 96 | −2.6 | 6.76 |
-| **Sum** | 0.0 | **470.92** |
+| $y_i$   | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
+|---------|-----------------|---------------------|
+| 95      | −3.6            | 12.96               |
+| 102     | 3.4             | 11.56               |
+| 88      | −10.6           | 112.36              |
+| 110     | 11.4            | 129.96              |
+| 97      | −1.6            | 2.56                |
+| 104     | 5.4             | 29.16               |
+| 91      | −7.6            | 57.76               |
+| 99      | 0.4             | 0.16                |
+| 107     | 8.4             | 70.56               |
+| 93      | −5.6            | 31.36               |
+| 101     | 2.4             | 5.76                |
+| 96      | −2.6            | 6.76                |
+| **Sum** | 0.0             | **470.92**          |
 
 $$s = \sqrt{\frac{470.92}{12-1}} = \sqrt{\frac{470.92}{11}} = \sqrt{42.81} = 6.54 \text{ cm}$$
 
@@ -117,32 +115,31 @@ $$SE = \frac{s}{\sqrt{n}} = \frac{6.54}{\sqrt{12}} = \frac{6.54}{3.46} = 1.89 \t
 
 $$95\% \text{ CI} = \bar{y} \pm 2 \times SE = 98.6 \pm 2 \times 1.89 = 98.6 \pm 3.78$$
 
-$$\text{Lower bound} = 98.6 - 3.78 = 94.8 \text{ cm}$$
-$$\text{Upper bound} = 98.6 + 3.78 = 102.4 \text{ cm}$$
+$$\text{Lower bound} = 98.6 - 3.78 = 94.8 \text{ cm}$$ $$\text{Upper bound} = 98.6 + 3.78 = 102.4 \text{ cm}$$
 
 **Interpretation:** Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval - our sample gave a good estimate!
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in Excel
 
-1. Enter your 12 eel lengths in column A (cells A1:A12).
-2. In separate cells, calculate:
+1.  Enter your 12 eel lengths in column A (cells A1:A12).
+2.  In separate cells, calculate:
 
-| Cell | Formula | Result |
-|------|---------|--------|
-| B1 | `=AVERAGE(A1:A12)` | Mean |
-| B2 | `=STDEV.S(A1:A12)` | Standard deviation |
-| B3 | `=COUNT(A1:A12)` | Sample size n |
-| B4 | `=B2/SQRT(B3)` | Standard error |
-| B5 | `=B1 - 2*B4` | Lower bound of 95% CI |
-| B6 | `=B1 + 2*B4` | Upper bound of 95% CI |
+| Cell | Formula            | Result                |
+|------|--------------------|-----------------------|
+| B1   | `=AVERAGE(A1:A12)` | Mean                  |
+| B2   | `=STDEV.S(A1:A12)` | Standard deviation    |
+| B3   | `=COUNT(A1:A12)`   | Sample size n         |
+| B4   | `=B2/SQRT(B3)`     | Standard error        |
+| B5   | `=B1 - 2*B4`       | Lower bound of 95% CI |
+| B6   | `=B1 + 2*B4`       | Upper bound of 95% CI |
 
-::: {.callout-note}
+::: callout-note
 Screenshot will be added here.
 :::
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in R
 
@@ -185,7 +182,7 @@ legend("topright", legend = c("Sample mean ± 2SE", "True mean = 100"),
        col = c("blue", "red"), lty = c(1, 2), lwd = 2)
 ```
 
----
+------------------------------------------------------------------------
 
 ## Interpretation and Common Mistakes
 
@@ -193,16 +190,16 @@ legend("topright", legend = c("Sample mean ± 2SE", "True mean = 100"),
 
 Notice that $SE = s / \sqrt{n}$. As $n$ gets larger, the standard error gets smaller. This makes intuitive sense: a larger sample gives you a more precise estimate of the population mean.
 
-| n | s | SE |
-|---|---|---|
-| 5 | 6.54 | 2.92 |
-| 12 | 6.54 | 1.89 |
-| 50 | 6.54 | 0.92 |
+| n   | s    | SE   |
+|-----|------|------|
+| 5   | 6.54 | 2.92 |
+| 12  | 6.54 | 1.89 |
+| 50  | 6.54 | 0.92 |
 | 100 | 6.54 | 0.65 |
 
 For the same level of variability, tripling the sample size roughly cuts the SE in half.
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Confusing Standard Deviation and Standard Error
 
 The **standard deviation (SD)** describes how much individuals in your sample vary from one another.
@@ -212,26 +209,26 @@ The **standard error (SE)** describes how precisely your sample mean estimates t
 The SE is always smaller than the SD (for $n > 1$). Reporting the SE as a measure of data spread is misleading - it understates the true variability among individuals.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Misinterpreting a 95% CI
 
 A 95% confidence interval does NOT mean "there is a 95% chance the true mean is in this interval." Once you have calculated an interval, the true mean is either in it or it is not. The 95% refers to the procedure: if you repeated the sampling 100 times and built 100 CIs, about 95 of them would contain the true mean. This distinction will matter more when we get to hypothesis testing.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Summary
 
-- A **sample** is used to estimate a **population** parameter when we cannot measure everyone.
-- **Sampling variability** means different samples give different estimates.
-- The **standard error** measures how much the sample mean varies from sample to sample: $SE = s / \sqrt{n}$.
-- A **95% confidence interval** ($\bar{y} \pm 2 \times SE$) gives a range of plausible values for the true population mean.
-- Larger sample sizes reduce the standard error and produce narrower confidence intervals.
+-   A **sample** is used to estimate a **population** parameter when we cannot measure everyone.
+-   **Sampling variability** means different samples give different estimates.
+-   The **standard error** measures how much the sample mean varies from sample to sample: $SE = s / \sqrt{n}$.
+-   A **95% confidence interval** ($\bar{y} \pm 2 \times SE$) gives a range of plausible values for the true population mean.
+-   Larger sample sizes reduce the standard error and produce narrower confidence intervals.
 
 ## Practice Problems
 
-1. A wildlife manager samples 9 wild turkeys and records their weights (kg): 6.2, 5.8, 7.1, 6.5, 5.9, 6.8, 7.0, 6.3, 6.7. Calculate the mean, standard deviation, standard error, and 95% confidence interval. Show all steps.
+1.  A wildlife manager samples 9 wild turkeys and records their weights (kg): 6.2, 5.8, 7.1, 6.5, 5.9, 6.8, 7.0, 6.3, 6.7. Calculate the mean, standard deviation, standard error, and 95% confidence interval. Show all steps.
 
-2. A researcher estimates the average phosphorus concentration in a stream using two studies: Study A used $n = 10$ samples (mean = 0.45 mg/L, SD = 0.12) and Study B used $n = 80$ samples (mean = 0.42 mg/L, SD = 0.11). Calculate the standard error for each study. Which study provides a more precise estimate of the true mean? Why?
+2.  A researcher estimates the average phosphorus concentration in a stream using two studies: Study A used $n = 10$ samples (mean = 0.45 mg/L, SD = 0.12) and Study B used $n = 80$ samples (mean = 0.42 mg/L, SD = 0.11). Calculate the standard error for each study. Which study provides a more precise estimate of the true mean? Why?
 
-3. If you quadrupled the sample size (from $n$ to $4n$), by what factor would the standard error decrease? Show this using the formula.
+3.  If you quadrupled the sample size (from $n$ to $4n$), by what factor would the standard error decrease? Show this using the formula.

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Week 4 — Uncertainty and Variability – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
+<title>5&nbsp; Week 4 - Uncertainty and Variability – Introduction to Statistical Analysis in Agriculture and the Natural Resources</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/week03.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e6327c87da4d77694843264cb205aa05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-603894e74320b3bf3a35aebfe5fe747c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -191,7 +196,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -244,19 +249,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2 - Describing Data, Part I: Central Tendency and Spread</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2, Part 1: Describing Data in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +278,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/week05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -408,9 +413,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/week01.html">Unit 1: Getting Started with Data</a></li><li class="breadcrumb-item"><a href="../chapters/week04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-week04" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 — Uncertainty and Variability</span></span></h1>
+<h1 class="title"><span id="sec-week04" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Uncertainty and Variability</span></span></h1>
   <div class="quarto-categories">
     <div class="quarto-category">uncertainty</div>
     <div class="quarto-category">variability</div>
@@ -435,7 +440,7 @@ window.Quarto = {
 
 
 <p><strong>Dates:</strong> Wednesday September 9 · Friday September 11</p>
-<p><em>(Note: Monday September 7 is Labor Day — no class)</em></p>
+<p><em>(Note: Monday September 7 is Labor Day - no class)</em></p>
 <section id="learning-objectives" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">5.1</span> Learning Objectives</h2>
 <p>By the end of this week, you should be able to:</p>
@@ -450,9 +455,9 @@ window.Quarto = {
 </section>
 <section id="background-and-conceptual-introduction" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="background-and-conceptual-introduction"><span class="header-section-number">5.2</span> Background and Conceptual Introduction</h2>
-<p>Suppose you want to know the average daily milk production of all dairy cows in Tennessee — that is the <strong>population</strong>. You cannot measure every cow in the state, so you measure a <strong>sample</strong> of 40 cows. You calculate the sample mean: 24 liters per day.</p>
-<p>But here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean — maybe 23.5 or 24.8. This variation from sample to sample is called <strong>sampling variability</strong>, and it is at the heart of statistical inference.</p>
-<p>Think of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good <em>estimate</em> of the average size of all fish in the lake — but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.</p>
+<p>Suppose you want to know the average daily milk production of all dairy cows in Tennessee - that is the <strong>population</strong>. You cannot measure every cow in the state, so you measure a <strong>sample</strong> of 40 cows. You calculate the sample mean: 24 liters per day.</p>
+<p>But here is the key question: how confident are you that the true population mean is close to 24? If you had sampled a different set of 40 cows, you would likely get a slightly different mean - maybe 23.5 or 24.8. This variation from sample to sample is called <strong>sampling variability</strong>, and it is at the heart of statistical inference.</p>
+<p>Think of it like casting a fishing net. Each time you cast your net, you catch a different mix of fish. The average size of fish in your net is a good <em>estimate</em> of the average size of all fish in the lake - but it will not be perfect every time. How close your estimate is to the truth depends on the size of your net (sample size) and how variable the fish sizes are.</p>
 <p>The <strong>standard error</strong> and <strong>confidence interval</strong> are tools that quantify our uncertainty. They tell us how far our sample estimate might be from the true population value.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -587,7 +592,7 @@ window.Quarto = {
 <p><strong>Step 4: Calculate the 95% confidence interval</strong></p>
 <p><span class="math display">\[95\% \text{ CI} = \bar{y} \pm 2 \times SE = 98.6 \pm 2 \times 1.89 = 98.6 \pm 3.78\]</span></p>
 <p><span class="math display">\[\text{Lower bound} = 98.6 - 3.78 = 94.8 \text{ cm}\]</span> <span class="math display">\[\text{Upper bound} = 98.6 + 3.78 = 102.4 \text{ cm}\]</span></p>
-<p><strong>Interpretation:</strong> Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval — our sample gave a good estimate!</p>
+<p><strong>Interpretation:</strong> Based on our sample of 12 eels, we estimate that the true mean eel length is between 94.8 and 102.4 cm. The true mean (100 cm) falls inside our confidence interval - our sample gave a good estimate!</p>
 <hr>
 </section>
 <section id="how-to-do-it-in-excel" class="level2" data-number="5.5">
@@ -757,7 +762,7 @@ Note
 <div class="callout-body-container callout-body">
 <p>The <strong>standard deviation (SD)</strong> describes how much individuals in your sample vary from one another.</p>
 <p>The <strong>standard error (SE)</strong> describes how precisely your sample mean estimates the population mean.</p>
-<p>The SE is always smaller than the SD (for <span class="math inline">\(n &gt; 1\)</span>). Reporting the SE as a measure of data spread is misleading — it understates the true variability among individuals.</p>
+<p>The SE is always smaller than the SD (for <span class="math inline">\(n &gt; 1\)</span>). Reporting the SE as a measure of data spread is misleading - it understates the true variability among individuals.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -1199,13 +1204,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/week03.html" class="pagination-link" aria-label="Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 — Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span>
+      <a href="../chapters/week03.html" class="pagination-link" aria-label="Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/week05.html" class="pagination-link" aria-label="Week 5 — Frequency Data and Probability">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 — Frequency Data and Probability</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/week05.html" class="pagination-link" aria-label="Week 5 - Frequency Data and Probability">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Frequency Data and Probability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

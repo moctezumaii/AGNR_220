@@ -174,32 +174,24 @@ summary(blood)
 - `str()` shows the structure and variable types.
 - `summary()` provides a quick summary of each variable.
 
-### Select the systolic blood pressure variable
 
-The column is named `systolicBP`. The `$` symbol selects that column from the dataframe.
-
-```{r}
-systolic <- blood$systolicBP
-```
-
-R is case-sensitive. `Systolic` and `systolic` are different names. Use the exact column name shown by `names(blood)`.
 
 ### Calculate the descriptive statistics
 
 Use the following functions to estimate the function in your Quarto document:
 
 ``` r
-mean(systolic)
+mean(blood)
 
-median(systolic)
+median(blood)
 
-quantile(systolic, probs = 0.25)
+quantile(blood, probs = 0.25)
 
-quantile(systolic, probs = 0.75)
+quantile(blood, probs = 0.75)
 
-sd(systolic)
+sd(blood)
 
-var(systolic)
+var(blood)
 ```
 
 $$
@@ -209,7 +201,7 @@ $$
 Calculate it in R:
 
 ``` r
-sd(systolic / mean(systolic) * 100
+sd(blood / mean(blood) * 100
 ```
 
 ::: callout-important
@@ -230,7 +222,7 @@ Add this code to your Quarto document:
 
 ``` r
 hist(
-  systolic,
+  blood,
   main = "Distribution of systolic blood pressure",
   xlab = "Systolic blood pressure (mm Hg)",
   col = "lightblue",

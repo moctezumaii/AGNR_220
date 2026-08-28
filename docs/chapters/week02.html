@@ -409,9 +409,8 @@ window.Quarto = {
   <li><a href="#part-3-guided-activity-with-the-systolic-blood-pressure-data" id="toc-part-3-guided-activity-with-the-systolic-blood-pressure-data" class="nav-link" data-scroll-target="#part-3-guided-activity-with-the-systolic-blood-pressure-data"><span class="header-section-number">3.4</span> Part 3: Guided activity with the systolic blood pressure data</a>
   <ul class="collapse">
   <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data"><span class="header-section-number">3.4.1</span> Import the data</a></li>
-  <li><a href="#select-the-systolic-blood-pressure-variable" id="toc-select-the-systolic-blood-pressure-variable" class="nav-link" data-scroll-target="#select-the-systolic-blood-pressure-variable"><span class="header-section-number">3.4.2</span> Select the systolic blood pressure variable</a></li>
-  <li><a href="#calculate-the-descriptive-statistics" id="toc-calculate-the-descriptive-statistics" class="nav-link" data-scroll-target="#calculate-the-descriptive-statistics"><span class="header-section-number">3.4.3</span> Calculate the descriptive statistics</a></li>
-  <li><a href="#create-a-quick-histogram" id="toc-create-a-quick-histogram" class="nav-link" data-scroll-target="#create-a-quick-histogram"><span class="header-section-number">3.4.4</span> Create a quick histogram</a></li>
+  <li><a href="#calculate-the-descriptive-statistics" id="toc-calculate-the-descriptive-statistics" class="nav-link" data-scroll-target="#calculate-the-descriptive-statistics"><span class="header-section-number">3.4.2</span> Calculate the descriptive statistics</a></li>
+  <li><a href="#create-a-quick-histogram" id="toc-create-a-quick-histogram" class="nav-link" data-scroll-target="#create-a-quick-histogram"><span class="header-section-number">3.4.3</span> Create a quick histogram</a></li>
   </ul></li>
   <li><a href="#part-4-concepts-to-review" id="toc-part-4-concepts-to-review" class="nav-link" data-scroll-target="#part-4-concepts-to-review"><span class="header-section-number">4</span> Part 4: Concepts to review</a>
   <ul class="collapse">
@@ -632,33 +631,25 @@ window.Quarto = {
 <li><code>summary()</code> provides a quick summary of each variable.</li>
 </ul>
 </section>
-<section id="select-the-systolic-blood-pressure-variable" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="select-the-systolic-blood-pressure-variable"><span class="header-section-number">3.4.2</span> Select the systolic blood pressure variable</h3>
-<p>The column is named <code>systolicBP</code>. The <code>$</code> symbol selects that column from the dataframe.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> blood<span class="sc">$</span>systolicBP</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>R is case-sensitive. <code>Systolic</code> and <code>systolic</code> are different names. Use the exact column name shown by <code>names(blood)</code>.</p>
-</section>
-<section id="calculate-the-descriptive-statistics" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="calculate-the-descriptive-statistics"><span class="header-section-number">3.4.3</span> Calculate the descriptive statistics</h3>
+<section id="calculate-the-descriptive-statistics" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="calculate-the-descriptive-statistics"><span class="header-section-number">3.4.2</span> Calculate the descriptive statistics</h3>
 <p>Use the following functions to estimate the function in your Quarto document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(systolic)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(systolic)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(systolic, <span class="at">probs =</span> <span class="fl">0.25</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(systolic, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(systolic)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(systolic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(blood)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(blood)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(blood, <span class="at">probs =</span> <span class="fl">0.25</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(blood, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(blood)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(blood)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="math display">\[
 CV = \frac{s}{\bar{y}} \times 100
 \]</span></p>
 <p>Calculate it in R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(systolic <span class="sc">/</span> <span class="fu">mean</span>(systolic) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(blood <span class="sc">/</span> <span class="fu">mean</span>(blood) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -675,17 +666,17 @@ CV = \frac{s}{\bar{y}} \times 100
 <p>Now, answer in the Quarto document:</p>
 <p>Was it easy or hard to do this?</p>
 </section>
-<section id="create-a-quick-histogram" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="create-a-quick-histogram"><span class="header-section-number">3.4.4</span> Create a quick histogram</h3>
+<section id="create-a-quick-histogram" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="create-a-quick-histogram"><span class="header-section-number">3.4.3</span> Create a quick histogram</h3>
 <p>A histogram displays the distribution of a numerical variable. It can help you see the center, spread, skewness, gaps, and possible extreme values.</p>
 <p>Add this code to your Quarto document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  systolic,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Distribution of systolic blood pressure"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Systolic blood pressure (mm Hg)"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"white"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  blood,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Distribution of systolic blood pressure"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Systolic blood pressure (mm Hg)"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"white"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The histogram will appear automatically in the rendered Word document. Below the plot, write two or three sentences describing what you see. Consider the center, spread, shape, and any possible extreme values.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">

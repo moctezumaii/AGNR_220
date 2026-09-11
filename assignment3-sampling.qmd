@@ -76,7 +76,7 @@ $$
 So, to estimate the mean use:
 
 ```{r eval=F}
-mean<-mean()
+mean<-mean(sampled.eels)
 std.dev<-sd(sampled.eels)
 ```
 

@@ -76,7 +76,8 @@ $$
 So, to estimate the mean use:
 
 ```{r eval=F}
-std.dev<-mean(sampled.eels)
+mean<-mean()
+std.dev<-sd(sampled.eels)
 ```
 
 And to estimate the standard error you use:

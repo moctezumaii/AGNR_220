@@ -7,11 +7,9 @@ categories:
   - sampling
 ---
 
-# Week 4 - Uncertainty and Variability {#sec-week04}
+# Uncertainty and Variability {#sec-week04}
 
-**Dates:** Wednesday September 9 · Friday September 11
 
-*(Note: Monday September 7 is Labor Day - no class)*
 
 ## Learning Objectives
 

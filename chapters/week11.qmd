@@ -6,9 +6,8 @@ categories:
   - paired-t-test
 ---
 
-# Week 11 — Comparing Means: Two-Sample Tests {#sec-week11}
+#  Comparing Means: Two-Sample Tests {#sec-week11}
 
-**Dates:** Monday October 26 · Wednesday October 28 · Friday October 30
 
 ## Learning Objectives
 

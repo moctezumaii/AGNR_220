@@ -6,9 +6,8 @@ categories:
   - pearson-r
 ---
 
-# Week 14 — Continuous Variables and Correlation {#sec-week14}
+# Continuous Variables and Correlation {#sec-week14}
 
-**Dates:** Monday November 16 · Wednesday November 18 · Friday November 20
 
 ## Learning Objectives
 

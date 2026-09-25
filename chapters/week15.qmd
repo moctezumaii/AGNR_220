@@ -7,11 +7,9 @@ categories:
   - r-squared
 ---
 
-# Week 15 — Linear Regression {#sec-week15}
+# Linear Regression {#sec-week15}
 
-**Dates:** Monday November 23
 
-*(Note: Wednesday November 25 and Friday November 27 — no class, Thanksgiving)*
 
 ## Learning Objectives
 

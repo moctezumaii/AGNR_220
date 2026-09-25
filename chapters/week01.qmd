@@ -6,7 +6,7 @@ categories:
   - statistics-overview
 ---
 
-# Week 1 - Welcome and What Is Data? {#sec-week01}
+# Welcome and What Is Data? {#sec-week01}
 
 **Dates:** Monday August 17 · Wednesday August 19 · Friday August 21
 

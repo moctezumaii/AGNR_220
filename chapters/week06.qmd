@@ -6,9 +6,9 @@ categories:
   - bernoulli-trials
 ---
 
-# Week 6 — Binomial Proportions {#sec-week06}
+#  Binomial Proportions {#sec-week06}
 
-**Dates:** Monday September 21 · Wednesday September 23 · Friday September 25
+
 
 ## Learning Objectives
 

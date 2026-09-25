@@ -7,11 +7,10 @@ categories:
   - nhst
 ---
 
-# Week 8 — Hypothesis Testing: Conceptual Introduction {#sec-week08}
+# Hypothesis Testing: Conceptual Introduction {#sec-week08}
 
-**Dates:** Wednesday October 7 · Friday October 9
 
-*(Note: Monday October 5 — no class)*
+
 
 ## Learning Objectives
 

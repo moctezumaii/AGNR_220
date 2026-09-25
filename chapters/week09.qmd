@@ -7,9 +7,9 @@ categories:
   - z-test
 ---
 
-# Week 9 — Hypothesis Testing: Complete {#sec-week09}
+# Hypothesis Testing: Complete {#sec-week09}
 
-**Dates:** Monday October 12 · Wednesday October 14 · Friday October 16
+
 
 ## Learning Objectives
 

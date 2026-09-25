@@ -6,7 +6,7 @@ categories:
   - mean-median-mode
 ---
 
-# Week 2, Part 1: Describing Data in R {#sec-week02}
+# Part 1: Describing Data in R {#sec-week02}
 
 ## What you will do
 

@@ -6,9 +6,7 @@ categories:
   - frequency-test
 ---
 
-# Week 13 — Contingency Analysis: Chi-Square Tests {#sec-week13}
-
-**Dates:** Monday November 9 · Wednesday November 11 · Friday November 13
+# Contingency Analysis: Chi-Square Tests {#sec-week13}
 
 ## Learning Objectives
 
@@ -20,7 +18,7 @@ By the end of this week, you should be able to:
 - Calculate the chi-square statistic by hand.
 - Conduct a chi-square test in Excel and R, and interpret the output.
 
----
+------------------------------------------------------------------------
 
 ## Background and Conceptual Introduction
 
@@ -34,23 +32,23 @@ For questions like these, we use the **chi-square test** ($\chi^2$ test). Instea
 
 Think of it this way: if farm management type has no effect on disease prevalence, then we would expect the same proportion of infected animals on organic farms as on conventional farms. If the observed proportions are very different from this expectation, the chi-square statistic will be large, and we reject the null hypothesis of independence.
 
-::: {.callout-tip}
+::: callout-tip
 ## Think About It 🧠
 
 You survey 100 farms and categorize each by management type (conventional vs. organic) and whether a specific plant disease was observed (present vs. absent). You find disease on 40% of conventional farms but only 20% of organic farms. Is this difference due to a real association, or could it happen by chance? How large does the difference need to be before you are convinced it is real?
 :::
 
----
+------------------------------------------------------------------------
 
 ## Key Concepts and Definitions
 
-**Chi-square test of independence ($\chi^2$):** Tests whether two categorical variables are associated (not independent) in a population.
+**Chi-square test of independence (**$\chi^2$): Tests whether two categorical variables are associated (not independent) in a population.
 
 **Contingency table:** A table displaying the frequencies of two categorical variables. Also called a cross-tabulation or "cross-tab."
 
-**Observed counts ($O$):** The actual counts from your data.
+**Observed counts (**$O$): The actual counts from your data.
 
-**Expected counts ($E$):** The counts you would expect if the two variables were completely independent:
+**Expected counts (**$E$): The counts you would expect if the two variables were completely independent:
 
 $$E_{ij} = \frac{(\text{row total}_i) \times (\text{column total}_j)}{\text{grand total } N}$$
 
@@ -64,22 +62,22 @@ A large $\chi^2$ means observed counts are far from expected counts → evidence
 
 **Assumption:** Expected cell counts should all be ≥ 5 (or at least 80% of cells ≥ 5). With very small expected counts, the chi-square approximation breaks down.
 
----
+------------------------------------------------------------------------
 
 ## How to Do It by Hand
 
-::: {.callout-note}
+::: callout-note
 ## Example: Cattle Disease and Farm Type
 
 A veterinarian surveys 120 cattle farms and records: (1) farm type (conventional vs. organic) and (2) whether bovine respiratory disease (BRD) was detected in the past year (yes vs. no).
 
 **Observed contingency table:**
 
-|  | BRD Yes | BRD No | Row Total |
-|--|---------|--------|-----------|
-| Conventional | 36 | 44 | 80 |
-| Organic | 8 | 32 | 40 |
-| **Column Total** | **44** | **76** | **120** |
+|                  | BRD Yes | BRD No | Row Total |
+|------------------|---------|--------|-----------|
+| Conventional     | 36      | 44     | 80        |
+| Organic          | 8       | 32     | 40        |
+| **Column Total** | **44**  | **76** | **120**   |
 :::
 
 **Step 1: State hypotheses**
@@ -100,14 +98,14 @@ $$E_{organic, no} = \frac{40 \times 76}{120} = \frac{3040}{120} = 25.33$$
 
 **Expected counts table:**
 
-|  | BRD Yes | BRD No |
-|--|---------|--------|
-| Conventional | 29.33 | 50.67 |
-| Organic | 14.67 | 25.33 |
+|              | BRD Yes | BRD No |
+|--------------|---------|--------|
+| Conventional | 29.33   | 50.67  |
+| Organic      | 14.67   | 25.33  |
 
 All expected counts ≥ 5 ✓
 
-**Step 3: Calculate $\chi^2$**
+**Step 3: Calculate** $\chi^2$
 
 $$\chi^2 = \frac{(36 - 29.33)^2}{29.33} + \frac{(44 - 50.67)^2}{50.67} + \frac{(8 - 14.67)^2}{14.67} + \frac{(32 - 25.33)^2}{25.33}$$
 
@@ -123,25 +121,25 @@ $df = (2-1)(2-1) = 1$
 
 From a $\chi^2$ table: $\chi^2_{crit}$ at $\alpha = 0.05$, $df = 1$ is **3.841**.
 
-$7.183 > 3.841$ → **Reject $H_0$**, $p \approx 0.007$
+$7.183 > 3.841$ → **Reject** $H_0$, $p \approx 0.007$
 
 **Conclusion:** There is significant evidence ($\chi^2_1 = 7.18$, $p = 0.007$) that BRD occurrence is associated with farm type. Conventional farms had a higher observed disease rate (45%) compared to organic farms (20%).
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in Excel
 
-1. Enter your contingency table including marginal totals.
-2. Calculate expected counts in a separate table using the formula: `=(row total × column total) / grand total`.
-3. In a third table, calculate $(O-E)^2/E$ for each cell using formulas.
-4. Sum all $(O-E)^2/E$ values to get $\chi^2$.
-5. Find the p-value: `=CHISQ.DIST.RT(chi_sq, df)`.
+1.  Enter your contingency table including marginal totals.
+2.  Calculate expected counts in a separate table using the formula: `=(row total × column total) / grand total`.
+3.  In a third table, calculate $(O-E)^2/E$ for each cell using formulas.
+4.  Sum all $(O-E)^2/E$ values to get $\chi^2$.
+5.  Find the p-value: `=CHISQ.DIST.RT(chi_sq, df)`.
 
-::: {.callout-note}
+::: callout-note
 Screenshot will be added here.
 :::
 
----
+------------------------------------------------------------------------
 
 ## How to Do It in R
 
@@ -179,29 +177,29 @@ mosaicplot(tab,
            ylab  = "BRD Status")
 ```
 
----
+------------------------------------------------------------------------
 
 ## Interpretation and Common Mistakes
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Expected Counts Too Small
 
 If any expected cell count is less than 5, the $\chi^2$ approximation may be inaccurate. In R, you will see a warning: "Chi-squared approximation may be incorrect." Options: (1) combine categories if it makes biological sense, (2) use Fisher's Exact Test (`fisher.test(tab)`), which works for small samples.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Using Chi-Square for Numerical Data
 
 Chi-square tests categorical data (counts of individuals in categories). Do not use it to test whether the *means* of a numerical variable differ between groups — use t-tests or ANOVA for that.
 :::
 
-::: {.callout-warning}
+::: callout-warning
 ## Common Mistake: Chi-Square with n = 1 Per Cell
 
 A 2×2 table with very small counts (e.g., 4 total observations across 4 cells) violates the expected-count assumption badly. Always check your sample size before running a chi-square test.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Summary
 
@@ -214,8 +212,8 @@ A 2×2 table with very small counts (e.g., 4 total observations across 4 cells) 
 
 ## Practice Problems
 
-1. A wildlife biologist surveys 80 prairie dogs and classifies each by colony type (large vs. small) and plague infection status (infected vs. not). Results: large colony, infected = 18; large colony, not = 22; small colony, infected = 8; small colony, not = 32. (a) Construct the contingency table with row/column totals. (b) Calculate expected counts. (c) Calculate the chi-square statistic. (d) State your conclusion at $\alpha = 0.05$ ($\chi^2_{crit} = 3.841$).
+1.  A wildlife biologist surveys 80 prairie dogs and classifies each by colony type (large vs. small) and plague infection status (infected vs. not). Results: large colony, infected = 18; large colony, not = 22; small colony, infected = 8; small colony, not = 32. (a) Construct the contingency table with row/column totals. (b) Calculate expected counts. (c) Calculate the chi-square statistic. (d) State your conclusion at $\alpha = 0.05$ ($\chi^2_{crit} = 3.841$).
 
-2. A crop scientist plants 150 soybean plants and classifies them by seed treatment (inoculated vs. control) and nodulation status (nodules present vs. absent). He finds all expected cell counts ≥ 5 and obtains $\chi^2 = 2.1$ with $df = 1$. Is nodulation independent of seed treatment ($\alpha = 0.05$)? Explain.
+2.  A crop scientist plants 150 soybean plants and classifies them by seed treatment (inoculated vs. control) and nodulation status (nodules present vs. absent). He finds all expected cell counts ≥ 5 and obtains $\chi^2 = 2.1$ with $df = 1$. Is nodulation independent of seed treatment ($\alpha = 0.05$)? Explain.
 
-3. In a chi-square test of independence, what does it mean for the two variables to be "independent"? Give an agricultural example of two categorical variables that you would expect to be associated, and two that you would expect to be independent.
+3.  In a chi-square test of independence, what does it mean for the two variables to be "independent"? Give an agricultural example of two categorical variables that you would expect to be associated, and two that you would expect to be independent.

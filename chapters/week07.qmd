@@ -7,9 +7,9 @@ categories:
   - randomization
 ---
 
-# Week 7 — Experimental Design and the Scientific Method {#sec-week07}
+# Experimental Design and the Scientific Method {#sec-week07}
 
-**Dates:** Monday September 28 · Wednesday September 30 · Friday October 2
+
 
 ## Learning Objectives
 

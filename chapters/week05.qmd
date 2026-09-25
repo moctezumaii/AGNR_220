@@ -6,9 +6,9 @@ categories:
   - random-variables
 ---
 
-# Week 5 - Frequency Data and Probability {#sec-week05}
+# Frequency Data and Probability {#sec-week05}
 
-**Dates:** Monday September 14 · Wednesday September 16 · Friday September 18
+
 
 ## Learning Objectives
 

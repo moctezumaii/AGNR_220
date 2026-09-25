@@ -6,9 +6,9 @@ categories:
   - boxplots
 ---
 
-# Week 3 - Describing Data, Part II: Distributions, Histograms, and Boxplots {#sec-week03}
+#  Describing Data, Part II: Distributions, Histograms, and Boxplots {#sec-week03}
 
-**Dates:** Monday August 31 · Wednesday September 2 · Friday September 4
+
 
 ## Learning Objectives
 

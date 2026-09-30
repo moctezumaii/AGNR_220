@@ -1,10 +1,12 @@
 ---
 title: "Sampling"
-format: pdf
+format:
+  html:
+    df-print: kable
+    embed-resources: true
 ---
 
-# In class assignment 9//11/2026
-
+# In class assignment 9/11/2026
 
 You will submit:
 
@@ -14,16 +16,13 @@ You will submit:
 
 Raise your hand if you have any questions.
 
-# PArt 1: 
+# PArt 1:
 
 Estimate the Standard Error by hand (you can use a calculator) from the systolic blood dataset. You have the standard deviation and the n, so it should be pretty straightforward!
 
-The equation for the standard error is:
-$$
+The equation for the standard error is: $$
 SE = \frac{s}{\sqrt{n}}
-$$
-where $s$ is the standard deviation and $n$ is the sample size. 
-# Part 2
+$$ where $s$ is the standard deviation and $n$ is the sample size. \# Part 2
 
 ## Random sampling
 
@@ -34,7 +33,6 @@ You are working in a small pond in New England. This pond has exactly 100 Americ
 We will be doing this pretty straightforward exercise in program R.
 
 On Canvas there should be an `eel.csv` file for program R.
-
 
 ### Program R
 
@@ -66,7 +64,6 @@ Then, let's sample 12 individuals using:
 sampled.eels<-sample(eel$Length,12)
 ```
 
-
 You need to estimate the mean using `mean`, the standard deviation using `sd`, and the confidence interval using the following equation:
 
 $$
@@ -87,7 +84,6 @@ std.err = st.dev \div  \sqrt{n}
 $$
 
 And remember that n is 12.
-
 
 Answer:
 

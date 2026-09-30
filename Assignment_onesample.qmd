@@ -1,92 +1,399 @@
 ---
 title: "One sample t-test"
+subtitle: "AGNR/SNR 220 comparing means - one sample"
+author: "Dr. Alejandro Molina"
 format:
   html:
     df-print: kable
+    embed-resources: true
 ---
 
-💻Run this exercise in `EXCEL`
+💻 Run Tasks 1–4 in **Excel**. If you do not have a laptop, you can complete these tasks by hand with a calculator, except Task 3.2. Complete Task 3.2 and the R tasks when you have access to a computer.
 
 Normal human body temperature, as kids are taught in North America, is 98.6°F. But how well is this supported by data? Researchers obtained body-temperature measurements on randomly chosen healthy people (Shoemaker 1996). The data for 25 of those people are as follows:
 
-```{r echo=FALSE}
-read.csv("datatable.csv")
+```{r}
+#| echo: false
+res <- read.csv("datatable.csv")
+knitr::kable(res)
 ```
 
-You can download the data from Canvas: `dataframe.csv`
+You can download the data from Canvas: `datatable.csv`
 
-You are testing whether the claim that 98.6 is the average body temperature. Do the following:
+You are testing whether the population mean body temperature differs from 98.6°F. Use a significance level of $\alpha = 0.05$.
 
-### Task 1
+## Task 1 
+#### Excel 💻 or by hand
 
-Write your null and alternative hypotheses
+Write your null and alternative hypotheses. Define what $\mu$ represents.
+Write them in words and in symbols.
 
-### Task 2
+## Task 2
+#### Excel 💻 or by hand
 
-Run a t-test! You will do this in Excel. Use the following equation:
+
+Calculate your t value! Use the following equation:
 
 $$
-t = \frac{ \bar{Y} - \mu}{S.E._\bar{y}} 
+t = \frac{\bar{Y} - \mu_0}{SE_{\bar{Y}}}
 $$
 
-You can use the `average` function to estimate the mean, the `stdev` function to estimate the standard deviation. To obtain the Standard error, you have to check the standard error equation! It is available on the last slidshow PDF I uploaded to Canvas.
+Here, $\mu_0$ is the population mean specified by the null hypothesis.
 
-Report the t value
+In Excel, use `AVERAGE()` to calculate the sample mean and `STDEV.S()` to calculate the sample standard deviation. If you are working by hand, calculate these using your notes and a calculator.
 
-### Task 3
+Calculate the standard error using:
+
+$$
+SE_{\bar{Y}} = \frac{s}{\sqrt{n}}
+$$
+
+Here, $s$ is the sample standard deviation and $n$ is the sample size. In Excel, use `SQRT()` to calculate the square root.
+
+Report:
+
+- Sample size.
+- Sample mean.
+- Sample standard deviation.
+- Standard error.
+- t value.
+
+Keep several decimal places during your calculations. Round your final t value to three decimal places.
+
+## Task 3
 
 Find a P-value.
 
-#### Task 3.1 approximate P-value
+### Task 3.1 Approximate P-value
 
-Read the Statistical Tables section in the Book (page 711)
+**Read these instructions before opening the tables.**
 
-Read the Student-t distribution section (page 717)
+The t distribution is symmetric and bell-shaped, with heavier tails than the normal distribution. These heavier tails account for the uncertainty from estimating the population standard deviation using a sample.
 
-Find an approximate P-value using the table.
+Its shape depends on the **degrees of freedom**, so different degrees of freedom require different tables. With more degrees of freedom, the t distribution gets closer to the standard normal distribution.
 
-Remember! We are doing a two tail test! And degrees of freedom are n-1
+For a one-sample t-test:
 
-#### Task 3.2 Exact P-value
+$$
+df = n - 1
+$$
 
-In Excel use:
+#### How to use the tables
 
-```         
-= 2*(1-T.DIST(ABS(t),df,TRUE))
+1. Calculate your degrees of freedom and open the matching tab.
+2. Find the absolute value of your t statistic, $|t|$. Use its distance from zero, regardless of whether it is positive or negative.
+3. Compare $|t|$ with the critical t values in the table.
+4. Read the corresponding **two-tailed probabilities**. If your value falls between two critical t values, your P-value falls between their probabilities.
+
+For example, if $|t|$ falls between the critical values for probabilities of 0.10 and 0.05, report:
+
+$$
+0.05 < P < 0.10
+$$
+
+If $|t|$ is smaller than the first critical value, report $P > 0.50$. If it is larger than the last critical value, report $P < 0.001$.
+
+**Remember! We are doing a two-tailed test.** The probabilities in these tables already include both tails. You do not need to double them.
+
+Each graph shows the rejection regions for $\alpha = 0.05$. Each tail contains 0.025 of the total area. A t value in either shaded region leads us to reject the null hypothesis at this significance level.
+
+**Report your degrees of freedom and the approximate P-value range from the appropriate table.**
+
+*Click the box to open tha tables, after you have read the instructions*
+
+:::: {.callout-note collapse="true"}
+## Show or hide the t-tables and graphs
+
+::: {.panel-tabset}
+
+```{r}
+#| echo: false
+#| results: asis
+#| fig-width: 7
+#| fig-height: 4
+#| out-width: "100%"
+
+df_values <- c(5, 10, 15, 20, 22, 24, 25, 30, 35, 40, 60, 100, 200)
+two_tailed_p <- c(
+  0.50, 0.40, 0.30, 0.25,
+  0.20, 0.19, 0.18, 0.17, 0.16,
+  0.15, 0.14, 0.13, 0.12, 0.11,
+  0.10, 0.09, 0.08, 0.07, 0.06,
+  0.05, 0.045, 0.04, 0.035, 0.03,
+  0.025, 0.02, 0.015, 0.01,
+  0.008, 0.006, 0.004, 0.002, 0.001
+)
+
+for (d in df_values) {
+  cat("\n\n#### df = ", d, "\n\n", sep = "")
+
+  cat(
+    "Use this table when your degrees of freedom equal ", d,
+    ". Compare your absolute t value with the critical values below ",
+    "and read across to find the two-tailed probability.\n\n",
+    sep = ""
+  )
+
+  t_table <- data.frame(
+    "Critical |t|" = sprintf("%.3f", qt(1 - two_tailed_p / 2, df = d)),
+    "Two-tailed probability" = sprintf("%.3f", two_tailed_p),
+    check.names = FALSE
+  )
+
+  cat(knitr::kable(t_table, format = "pipe", align = c("r", "r")),
+      sep = "\n")
+  cat("\n\n")
+
+  critical_t <- qt(0.975, df = d)
+  x <- seq(-5, 5, length.out = 2001)
+
+  plot(
+    x, dt(x, df = d),
+    type = "n",
+    main = paste("t distribution with", d, "degrees of freedom"),
+    xlab = "t value",
+    ylab = "Density",
+    ylim = c(0, 0.45),
+    bty = "l"
+  )
+
+  left_tail <- seq(-5, -critical_t, length.out = 500)
+  right_tail <- seq(critical_t, 5, length.out = 500)
+
+  polygon(
+    c(left_tail, rev(left_tail)),
+    c(dt(left_tail, df = d), rep(0, length(left_tail))),
+    col = "#F4A582", border = NA
+  )
+
+  polygon(
+    c(right_tail, rev(right_tail)),
+    c(dt(right_tail, df = d), rep(0, length(right_tail))),
+    col = "#F4A582", border = NA
+  )
+
+  lines(x, dt(x, df = d), lwd = 2)
+
+  abline(
+    v = c(-critical_t, critical_t),
+    lty = 2, col = "#B2182B"
+  )
+
+  legend(
+    "topright",
+    legend = c(
+      "Shaded tails: rejection regions",
+      paste("Critical values: ±", round(critical_t, 3))
+    ),
+    fill = c("#F4A582", NA),
+    border = NA,
+    bty = "n",
+    cex = 0.8
+  )
+
+  cat("\n\n")
+}
 ```
 
-Make sure to replace `t` and `df` with your values!
+:::
+::::
 
-### Task 4
+### Task 3.2 Exact P-value
+#### Excel 💻 
 
-Make your statistical decision
+In Excel, use:
 
-### Task 5
-
-💻Run this task in `R`
-
-Now estimate it in R.
-
-First, calculate the mean using `mean()`, calculate the s.d. using `sd()` and calclulate the standard error.
-
-Second, find the real p value using:
-
-```{r eval=F}
-2*pt(q = abs(t),df = ,lower.tail = FALSE)
+```text
+=T.DIST.2T(ABS(t),df)
 ```
 
-Replace t by your t value, and add degrees of freedom.
+Replace `t` and `df` with your values or the cells containing them.
 
-#### Task 5.1 Run the whole thing as a test in R
+This function gives the two-tailed P-value.
 
-Do the following:
+If you are working by hand, complete this step later when you have access to a computer.
 
-```{r eval=FALSE}
-t.test(res$temperature,mu=98.6)
+Report your P-value. Does it fall within the range you found using the table?
+
+## Task 4
+
+Make your statistical decision using $\alpha = 0.05$.
+
+Do you reject or fail to reject the null hypothesis? Explain what your decision means for the claim that the population mean body temperature is 98.6°F.
+
+## Task 5
+#### 💻 Run this task in **R**
+
+::: {.callout-warning}
+## Download the data again before starting in R
+
+Re-download `datatable.csv` from Canvas and save it in your R project folder. **Do not use the file you modified in Excel**, as those changes can cause issues when reading and analyzing the data in R.
+:::
+
+First, read the data into an object called `res`. Make sure `datatable.csv` is in your project folder.
+
+
+```{r}
+#| eval: false
+
+library(readr)
+
+res <- read_csv("datatable.csv")
+
+# Check the column names and the first few rows.
+names(res)
+head(res)
 ```
 
-Replace x by a vector containing the temperatures.
 
-## Submit
+::: {.callout-important}
+## Calculate it step by step
 
-Submit your excel file and your R code either as an r file or you can copy and paste it in Canvas
+For this task, calculate the mean, standard deviation, standard error, t value, and P-value step by step. Do not use `t.test()` yet! You will use it in Task 5.1 to check your calculations.
+:::
+
+Calculate the mean using `mean()`, calculate the standard deviation using `sd()`, and calculate the standard error.
+
+Then calculate your t value.
+
+```{r}
+#| eval: false
+
+n <- length(res$temperature)
+
+sample_mean <- mean(res$temperature)
+sample_sd <- sd(res$temperature)
+
+# Replace NA with your calculations.
+standard_error <- NA
+t_value <- NA
+```
+
+Find the two-tailed P-value using:
+
+```{r}
+#| eval: false
+
+2 * pt(q = abs(t_value), df = n - 1, lower.tail = FALSE)
+```
+
+Compare your results with your earlier calculations.
+
+### Task 5.1 Run the whole test in R
+#### 💻 Run this task in **R**.
+
+Run:
+
+```{r}
+#| eval: false
+
+t.test(res$temperature, mu = 98.6, alternative = "two.sided")
+```
+
+Find the t value, degrees of freedom, and P-value in the output. Do they match your calculations?
+
+## Task 6
+#### 💻 Run this task in **R**.
+
+
+Plot the t distribution, rejection regions, and your observed t value.
+
+If the population mean temperature truly is 98.6°F, imagine repeatedly taking random samples of 25 people and calculating a t value for each sample. Assuming population temperatures are normally distributed, these values follow a t distribution with 24 degrees of freedom.
+
+The shaded regions below represent the rejection regions for a two-tailed test with $\alpha = 0.05$. Each tail contains 0.025 of the total area.
+
+Replace the first `NA` with your degrees of freedom and the second `NA` with your calculated t value.
+
+```{r}
+#| eval: false
+
+# Replace these two values.
+df <- NA
+t_value <- NA
+
+# Find the critical t value for a two-tailed test.
+alpha <- 0.05
+critical_t <- qt(1 - alpha / 2, df = df)
+
+# Set the horizontal range.
+x_limit <- max(4, abs(t_value) + 1, critical_t + 1)
+x <- seq(-x_limit, x_limit, length.out = 2001)
+
+# Draw the t distribution.
+plot(
+  x, dt(x, df = df),
+  type = "n",
+  main = "t distribution if the population mean is 98.6°F",
+  xlab = "t value",
+  ylab = "Density",
+  bty = "l"
+)
+
+# Shade the rejection regions for alpha = 0.05.
+left_tail <- seq(-x_limit, -critical_t, length.out = 500)
+right_tail <- seq(critical_t, x_limit, length.out = 500)
+
+polygon(
+  c(left_tail, rev(left_tail)),
+  c(dt(left_tail, df = df), rep(0, length(left_tail))),
+  col = "#92C5DE",
+  border = NA
+)
+
+polygon(
+  c(right_tail, rev(right_tail)),
+  c(dt(right_tail, df = df), rep(0, length(right_tail))),
+  col = "#92C5DE",
+  border = NA
+)
+
+# Add the distribution curve.
+lines(x, dt(x, df = df), lwd = 2)
+
+# Mark the boundaries of the rejection regions.
+abline(
+  v = c(-critical_t, critical_t),
+  col = "gray40",
+  lty = 3
+)
+
+# Mark the observed t value and its opposite.
+abline(v = t_value, col = "#B2182B", lwd = 2)
+abline(v = -t_value, col = "#B2182B", lty = 2, lwd = 2)
+
+legend(
+  "topright",
+  legend = c(
+    "Observed t value",
+    "Equally extreme value",
+    "Critical values"
+  ),
+  col = c("#B2182B", "#B2182B", "gray40"),
+  lty = c(1, 2, 3),
+  lwd = c(2, 2, 1),
+  bty = "n",
+  cex = 0.8
+)
+
+mtext(
+  paste0(
+    "Shaded rejection regions: alpha = 0.05; critical values = ±",
+    round(critical_t, 3)
+  ),
+  side = 3,
+  line = 0.3,
+  cex = 0.8
+)
+```
+
+### How to interpret your graph
+
+The solid red line marks your observed t value. The dashed red line marks an equally extreme value on the opposite side of zero. The dotted gray lines mark the critical values.
+
+If your observed t value falls in either shaded region, it is among the most extreme 5% of t values expected under the null hypothesis. **Reject the null hypothesis** at $\alpha = 0.05$.
+
+If your observed t value falls between the critical values, **fail to reject the null hypothesis**. Your sample does not provide sufficient evidence that the population mean differs from 98.6°F. This does not establish that the population mean equals 98.6°F.
+
+The shaded area is fixed at 0.05. Your P-value is the area beyond your observed t value and the equally extreme value in the opposite tail.
+
+**Use your graph to explain your decision in two or three sentences.** Describe where your observed t value falls relative to the rejection regions, explain why you rejected or failed to reject the null hypothesis, and state what this means for the population mean body temperature.

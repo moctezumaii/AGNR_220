@@ -1,0 +1,777 @@
+---
+title: "Critical thinking assignment 1"
+subtitle: "AGNR/SNR 220 hypothesis testing and comparing means"
+author: "Dr. Alejandro Molina"
+format:
+  html:
+    df-print: kable
+    embed-resources: true
+    toc: true
+---
+
+*Assignment 1 of 3. Worth 5% of your total course grade.*
+
+::: callout-important
+## How to submit this assignment
+
+Submit your work on Canvas. Organize your answers by task number in one document (Word or PDF). Include your written answers, summary tables, relevant R output, plots, screenshots, and the seven critical thinking answers. I can always help with technical issues (how to add a screenshot to qmd, etc)
+
+Make sure to submit:
+
+- All your R code (this should be part of the qmd
+- Your Excel workbook, `song_study.xlsx`, including your sampling lists and data.
+- Your song dataset, `songs.csv`.
+- A clear photo or scan of your handwritten calculations for Task 11. This can be added to the qmd
+- Screenshots of the provided t-tables with the relevant P-value entries highlighted, for Tasks 3.1 and 11. Can be added to the qmd
+
+You may place the calculation photo and table screenshots directly in your answers document. Label each image with its task number and make sure it is readable. Whenever you use a provided t-table to make a decision, include the highlighted table screenshot alongside your explanation.
+:::
+
+::: callout-note
+## What you will do
+
+In Part 1, you will work through a one-sample t-test using body temperature data. In Part 2, you will collect song lengths for two genres, calculate a t-test by hand, and use R to check assumptions and choose a test. Finish with seven short critical thinking questions.
+
+Most R code is provided. Your job is to collect real data, show your calculations, and explain your choices. You do not need to write a formal research report.
+:::
+
+::: callout-important
+## Your work and your reasoning
+
+You may use help with R or Excel syntax, including AI, following the course AI policy. Your prediction, data collection, handwritten calculations, and explanations must reflect your own work. Use specific songs, values, and decisions in your answers. Disclose any AI use as required by the course policy.
+:::
+
+::: callout-tip
+## Need help?
+
+If you need help with this, ask Dr. Molina or Tara. Bring your data and your work so far.
+:::
+
+💻 **Tools.** Complete Tasks 1 to 4 in Excel or by hand with a calculator, except Task 3.2, which needs Excel. Use R for Tasks 5 and 6. In Part 2, you may use R or Excel to calculate the summary statistics, but complete Task 11 by hand with a calculator.
+
+# Part 1: Warm-up with body temperature
+
+Normal human body temperature, as kids are taught in North America, is 98.6°F. But how well is this supported by data? Researchers obtained body-temperature measurements on randomly chosen healthy people (Shoemaker 1996). The data for 25 of those people are as follows:
+
+```{r}
+#| echo: false
+if (file.exists("datatable.csv")) {
+  res <- read.csv("datatable.csv")
+  knitr::kable(res)
+} else {
+  cat("Download datatable.csv from Canvas to view the data table.")
+}
+```
+
+You can download the data from Canvas: `datatable.csv`
+
+You are testing whether the population mean body temperature differs from 98.6°F. Use a significance level of $\alpha = 0.05$.
+
+## Task 1
+
+#### Excel 💻 or by hand
+
+Write your null and alternative hypotheses. Define what $\mu$ represents. Write them in words and in symbols. (you can write these in your qmd, you do not need to write them in Excel)
+
+## Task 2
+
+#### Excel 💻 or by hand
+
+Calculate your t value! Use the following equation:
+
+$$
+t = \frac{\bar{Y} - \mu_0}{SE_{\bar{Y}}}
+$$
+
+Here, $\mu_0$ is the population mean specified by the null hypothesis.
+
+In Excel, use `AVERAGE()` to calculate the sample mean and `STDEV.S()` to calculate the sample standard deviation. If you are working by hand, calculate these using your notes and a calculator.
+
+Calculate the standard error using:
+
+$$
+SE_{\bar{Y}} = \frac{s}{\sqrt{n}}
+$$
+
+Here, $s$ is the sample standard deviation and $n$ is the sample size. In Excel, use `SQRT()` to calculate the square root.
+
+Report:
+
+- Sample size.
+- Sample mean.
+- Sample standard deviation.
+- Standard error.
+- t value.
+
+Keep several decimal places during your calculations. Round your final t value to three decimal places.
+
+## Task 3
+
+Find a P-value.
+
+### Task 3.1 Approximate P-value
+
+**Read these instructions before opening the tables.**
+
+The t distribution is symmetric and bell-shaped, with heavier tails than the normal distribution. These heavier tails account for the uncertainty from estimating the population standard deviation using a sample.
+
+Its shape depends on the degrees of freedom, so different degrees of freedom require different tables. With more degrees of freedom, the t distribution gets closer to the standard normal distribution.
+
+For a one-sample t-test:
+
+$$
+df = n - 1
+$$
+
+#### How to use the tables
+
+1.  Calculate your degrees of freedom and open the matching tab.
+2.  Find the absolute value of your t statistic, $|t|$. Use its distance from zero, regardless of whether it is positive or negative.
+3.  Compare $|t|$ with the critical t values in the table.
+4.  Read the corresponding two-tailed probabilities. If your value falls between two critical t values, your P-value falls between their probabilities.
+
+For example, if $|t|$ falls between the critical values for probabilities of 0.10 and 0.05, report:
+
+$$
+0.05 < P < 0.10
+$$
+
+If $|t|$ is smaller than the first critical value, report $P > 0.50$. If it is larger than the last critical value, report $P < 0.001$.
+
+**Remember! We are doing a two-tailed test.** The probabilities in these tables already include both tails. You do not need to double them.
+
+Each graph shows the rejection regions for $\alpha = 0.05$. Each tail contains 0.025 of the total area. A t value in either shaded region leads us to reject the null hypothesis at this significance level.
+
+**Report your degrees of freedom and the approximate P-value range from the appropriate table.**
+
+::: callout-important
+## Highlight the table and take a screenshot
+
+Whenever you use a provided t-table to make a decision, highlight the two-tailed P-value entry you used. If your t value falls between two critical values, highlight both rows that bound your P-value, including the probabilities and corresponding critical t values.
+
+Take a screenshot showing the degrees-of-freedom heading and highlighted entries. You may use a screenshot annotation tool to add the highlighting. If your value falls beyond the table's range, highlight the boundary row and note the appropriate inequality, such as $P < 0.001$.
+
+Include the screenshot with your Task 3.1 answer. Label it with the task number and your calculated $|t|$. Use this screenshot to support your decision in Task 4.
+:::
+
+*Click the box to open the tables, after you have read the instructions. You will use these same tables again in Part 2.*
+
+:::: {.callout-note collapse="true"}
+## Show or hide the t-tables and graphs
+
+::: panel-tabset
+```{r}
+#| echo: false
+#| results: asis
+#| fig-width: 7
+#| fig-height: 4
+#| out-width: "100%"
+
+df_values <- c(5, 10, 15, 20, 22, 24, 25, 30, 35, 40, 60, 100, 200)
+two_tailed_p <- c(
+  0.50, 0.40, 0.30, 0.25,
+  0.20, 0.19, 0.18, 0.17, 0.16,
+  0.15, 0.14, 0.13, 0.12, 0.11,
+  0.10, 0.09, 0.08, 0.07, 0.06,
+  0.05, 0.045, 0.04, 0.035, 0.03,
+  0.025, 0.02, 0.015, 0.01,
+  0.008, 0.006, 0.004, 0.002, 0.001
+)
+
+for (d in df_values) {
+  cat("\n\n#### df = ", d, "\n\n", sep = "")
+
+  cat(
+    "Use this table when your degrees of freedom equal ", d,
+    ". Compare your absolute t value with the critical values below ",
+    "and read across to find the two-tailed probability.\n\n",
+    sep = ""
+  )
+
+  t_table <- data.frame(
+    "Critical |t|" = sprintf("%.3f", qt(1 - two_tailed_p / 2, df = d)),
+    "Two-tailed probability" = sprintf("%.3f", two_tailed_p),
+    check.names = FALSE
+  )
+
+  cat(knitr::kable(t_table, format = "pipe", align = c("r", "r")),
+      sep = "\n")
+  cat("\n\n")
+
+  critical_t <- qt(0.975, df = d)
+  x <- seq(-5, 5, length.out = 2001)
+
+  plot(
+    x, dt(x, df = d),
+    type = "n",
+    main = paste("t distribution with", d, "degrees of freedom"),
+    xlab = "t value",
+    ylab = "Density",
+    ylim = c(0, 0.45),
+    bty = "l"
+  )
+
+  left_tail <- seq(-5, -critical_t, length.out = 500)
+  right_tail <- seq(critical_t, 5, length.out = 500)
+
+  polygon(
+    c(left_tail, rev(left_tail)),
+    c(dt(left_tail, df = d), rep(0, length(left_tail))),
+    col = "#F4A582", border = NA
+  )
+
+  polygon(
+    c(right_tail, rev(right_tail)),
+    c(dt(right_tail, df = d), rep(0, length(right_tail))),
+    col = "#F4A582", border = NA
+  )
+
+  lines(x, dt(x, df = d), lwd = 2)
+
+  abline(
+    v = c(-critical_t, critical_t),
+    lty = 2, col = "#B2182B"
+  )
+
+  legend(
+    "topright",
+    legend = c(
+      "Shaded tails: rejection regions",
+      paste("Critical values: ±", round(critical_t, 3))
+    ),
+    fill = c("#F4A582", NA),
+    border = NA,
+    bty = "n",
+    cex = 0.8
+  )
+
+  cat("\n\n")
+}
+```
+:::
+::::
+
+### Task 3.2 Exact P-value
+
+#### Excel 💻
+
+In Excel, use:
+
+``` text
+=T.DIST.2T(ABS(t),df)
+```
+
+Replace `t` and `df` with your values or the cells containing them.
+
+This function gives the two-tailed P-value.
+
+If you are working by hand, complete this step later when you have access to a computer.
+
+Report your P-value. Does it fall within the range you found using the table?
+
+## Task 4
+
+Make your statistical decision using $\alpha = 0.05$.
+
+Do you reject or fail to reject the null hypothesis? Explain what your decision means for the claim that the population mean body temperature is 98.6°F.
+
+Refer to your highlighted table screenshot from Task 3.1 when explaining your decision. You do not need a second screenshot of the same table.
+
+## Task 5
+
+#### 💻 Run this task in **R**
+
+::: callout-warning
+## Download the data again before starting in R
+
+Re-download `datatable.csv` from Canvas and save it in your R project folder. **Do not use the file you modified in Excel**, as those changes can cause issues when reading and analyzing the data in R.
+:::
+
+First, read the data into an object called `res`. Make sure `datatable.csv` is in your project folder.
+
+```{r}
+#| eval: false
+
+res <- read.csv("datatable.csv")
+
+# Check the column names and the first few rows.
+names(res)
+head(res)
+```
+
+::: callout-important
+## Calculate it step by step
+
+For this task, calculate the mean, standard deviation, standard error, t value, and P-value step by step. Do not use `t.test()` yet! You will use it in Task 5.1 to check your calculations.
+:::
+
+Calculate the mean using `mean()`, calculate the standard deviation using `sd()`, and calculate the standard error.
+
+Then calculate your t value.
+
+```{r}
+#| eval: false
+
+n <- length(res$temperature)
+
+sample_mean <- mean(res$temperature)
+sample_sd <- sd(res$temperature)
+
+standard_error <- sample_sd / sqrt(n)
+t_value <- (sample_mean - 98.6) / standard_error
+```
+
+Find the two-tailed P-value using:
+
+```{r}
+#| eval: false
+
+2 * pt(q = abs(t_value), df = n - 1, lower.tail = FALSE)
+```
+
+Compare your results with your earlier calculations.
+
+### Task 5.1 Run the whole test in R
+
+#### 💻 Run this task in **R**.
+
+Run:
+
+```{r}
+#| eval: false
+
+t.test(res$temperature, mu = 98.6, alternative = "two.sided")
+```
+
+Find the t value, degrees of freedom, and P-value in the output. Do they match your calculations?
+
+## Task 6
+
+#### 💻 Run this task in **R**.
+
+Plot the t distribution, rejection regions, and your observed t value.
+
+If the population mean temperature truly is 98.6°F, imagine repeatedly taking random samples of 25 people and calculating a t value for each sample. Assuming population temperatures are normally distributed, these values follow a t distribution with 24 degrees of freedom.
+
+The shaded regions below represent the rejection regions for a two-tailed test with $\alpha = 0.05$. Each tail contains 0.025 of the total area.
+
+The code uses the sample size and t value you calculated in Task 5.
+
+```{r}
+#| eval: false
+
+# Use the values calculated in Task 5.
+df <- n - 1
+
+# Find the critical t value for a two-tailed test.
+alpha <- 0.05
+critical_t <- qt(1 - alpha / 2, df = df)
+
+# Set the horizontal range.
+x_limit <- max(4, abs(t_value) + 1, critical_t + 1)
+x <- seq(-x_limit, x_limit, length.out = 2001)
+
+# Draw the t distribution.
+plot(
+  x, dt(x, df = df),
+  type = "n",
+  main = "t distribution if the population mean is 98.6°F",
+  xlab = "t value",
+  ylab = "Density",
+  bty = "l"
+)
+
+# Shade the rejection regions for alpha = 0.05.
+left_tail <- seq(-x_limit, -critical_t, length.out = 500)
+right_tail <- seq(critical_t, x_limit, length.out = 500)
+
+polygon(
+  c(left_tail, rev(left_tail)),
+  c(dt(left_tail, df = df), rep(0, length(left_tail))),
+  col = "#92C5DE",
+  border = NA
+)
+
+polygon(
+  c(right_tail, rev(right_tail)),
+  c(dt(right_tail, df = df), rep(0, length(right_tail))),
+  col = "#92C5DE",
+  border = NA
+)
+
+# Add the distribution curve.
+lines(x, dt(x, df = df), lwd = 2)
+
+# Mark the boundaries of the rejection regions.
+abline(
+  v = c(-critical_t, critical_t),
+  col = "gray40",
+  lty = 3
+)
+
+# Mark the observed t value and its opposite.
+abline(v = t_value, col = "#B2182B", lwd = 2)
+abline(v = -t_value, col = "#B2182B", lty = 2, lwd = 2)
+
+legend(
+  "topright",
+  legend = c(
+    "Observed t value",
+    "Equally extreme value",
+    "Critical values"
+  ),
+  col = c("#B2182B", "#B2182B", "gray40"),
+  lty = c(1, 2, 3),
+  lwd = c(2, 2, 1),
+  bty = "n",
+  cex = 0.8
+)
+
+mtext(
+  paste0(
+    "Shaded rejection regions: alpha = 0.05; critical values = ±",
+    round(critical_t, 3)
+  ),
+  side = 3,
+  line = 0.3,
+  cex = 0.8
+)
+```
+
+### How to interpret your graph
+
+The solid red line marks your observed t value. The dashed red line marks an equally extreme value on the opposite side of zero. The dotted gray lines mark the critical values.
+
+If your observed t value falls in either shaded region, it is among the most extreme 5% of t values expected under the null hypothesis. Reject the null hypothesis at $\alpha = 0.05$.
+
+If your observed t value falls between the critical values, fail to reject the null hypothesis. Your sample does not provide sufficient evidence that the population mean differs from 98.6°F. This does not establish that the population mean equals 98.6°F.
+
+The shaded area is fixed at 0.05. Your P-value is the area beyond your observed t value and the equally extreme value in the opposite tail.
+
+Use your graph to explain your decision in two or three sentences. Describe where your observed t value falls relative to the rejection regions, explain why you rejected or failed to reject the null hypothesis, and state what this means for the population mean body temperature.
+
+# Part 2: Your own study
+
+Do the tasks in order. You will compare the mean song length, in total seconds, for two genres you like. Use $\alpha = 0.05$ and two-tailed tests throughout.
+
+## Task 7
+
+#### Before collecting data
+
+Choose your two genres. Write a short paragraph that includes:
+
+- Your research question and a scientific hypothesis, including a possible reason for a difference in song lengths.
+- Your prediction about which genre will have longer songs, or whether you expect similar lengths, and why.
+- Your null and alternative statistical hypotheses, in words and symbols. Define $\mu_1$ and $\mu_2$ using your genres and the populations you intend to study.
+
+::: callout-important
+## Save your original prediction
+
+Write this before looking up song lengths. Keep the original paragraph, even if your results surprise you. Include it in your submission.
+:::
+
+## Task 8
+
+#### Plan and select your sample
+
+Collect **12 songs per genre**, for **24 songs total**.
+
+1.  Describe the population you want to learn about. For each genre, choose or make a list of at least 20 eligible songs.
+2.  Add them to Excel. In any way.
+3.  Randomly select 12 songs from each list using Excel:
+    - Place each list on its own worksheet, with one song per row.
+    - Type `=RAND()` next to each song and fill down.
+    - Copy the random numbers and use **Paste Special \> Values** to freeze them.
+    - Sort the **song and random-number columns together** by the random numbers. Select the first 12 songs.
+
+Keep the lists, frozen random numbers, and selected songs in your Excel workbook. Do not replace a selected song because its length is unexpected.
+
+::: callout-note
+## Keep the scope manageable
+
+You do not need to build a list of every song ever released. Choose a clear, manageable population and acknowledge the limits of the list you used. Each song should appear only once in your sample.
+:::
+
+## Task 9
+
+#### Build your dataset in Excel
+
+Make a worksheet called `Data` with exactly **three columns** and **24 data rows**, plus a header row:
+
+| Song | Genre | Length_seconds |
+|------------------|------------------|-------------------------------------|
+| Title and artist of a selected song | Your genre name | Total seconds as a number |
+
+You can include the artist in the `Song` cell so the recording can be identified. Use consistent genre names. Do not add summary calculations to this worksheet.
+
+Convert minutes and seconds to total seconds. For example, **3:45 is 225 seconds**. If minutes are in D2 and seconds in E2 on a working worksheet, use:
+
+``` text
+=D2*60+E2
+```
+
+Copy the results into `Length_seconds` using Paste Special \> Values. Keep any working columns on a separate worksheet.
+
+Save the Excel workbook as `song_study.xlsx`. Export only the `Data` worksheet as **CSV**, named `songs.csv`, in your R project folder.
+
+::: callout-warning
+## Check before saving
+
+Use the column names `Song`, `Genre`, and `Length_seconds` exactly. Length must be a plain number, not an Excel time. Check for blank cells, extra columns, and inconsistent genre spelling. You should have 12 songs in each genre.
+:::
+
+## Task 10
+
+#### Calculate summary statistics
+
+You may use Excel or the supplied R code below. If using Excel, use `COUNT()`, `AVERAGE()`, `STDEV.S()`, and `VAR.S()` for each genre. You will need the R setup below for the later tasks regardless of which tool you choose here.
+
+Replace the two genre names in quotes with your own**.** Use the same Group 1 and Group 2 order in your hand calculation and R analysis.
+
+```{r}
+#| eval: false
+
+songs <- read.csv("songs.csv")
+
+# Check your data.
+head(songs)
+str(songs)
+table(songs$Genre)
+
+# Replace these two names with your exact genre names.
+genre1 <- "REPLACE_WITH_GENRE_1"
+genre2 <- "REPLACE_WITH_GENRE_2"
+
+group1 <- songs$Length_seconds[songs$Genre == genre1]
+group2 <- songs$Length_seconds[songs$Genre == genre2]
+
+
+summary_table <- data.frame(
+  Genre = c(genre1, genre2),
+  n = c(length(group1), length(group2)),
+  Mean = c(mean(group1), mean(group2)),
+  SD = c(sd(group1), sd(group2)),
+  Variance = c(var(group1), var(group2))
+)
+
+summary_table
+```
+
+Include the summary table in your answers. Keep several decimal places for your hand calculation.
+
+## Task 11
+
+#### Calculate the test by hand
+
+For this calculation, assume the two population variances are equal. Later, you will investigate that assumption in R.
+
+Use your summary statistics from Task 10. Write each step with the numbers substituted into the equation. Use a calculator and include a clear photo or scan of your handwritten work. Do not use `t.test()` or an Excel t-test function for this task.
+
+**Step 1. Difference between sample means**
+
+$$
+\bar{Y}_1 - \bar{Y}_2
+$$
+
+**Step 2. Pooled variance**
+
+$$
+s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+$$
+
+Here, $n_1$ and $n_2$ are sample sizes, and $s_1^2$ and $s_2^2$ are sample variances. The pooled variance combines the two estimates under the equal-variance assumption.
+
+**Step 3. Standard error of the difference**
+
+$$
+SE_{\bar{Y}_1 - \bar{Y}_2} = \sqrt{s_p^2\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+$$
+
+**Step 4. t value**
+
+$$
+t = \frac{(\bar{Y}_1 - \bar{Y}_2) - \Delta_0}{SE_{\bar{Y}_1 - \bar{Y}_2}}
+$$
+
+$\Delta_0$ is the difference specified by the null hypothesis. For a test of equal population means, $\Delta_0 = 0$.
+
+**Step 5. Degrees of freedom**
+
+$$
+df = n_1 + n_2 - 2
+$$
+
+**Step 6. Use the tables and make a decision**
+
+Use the **df = 22** table in Task 3.1. Report the approximate two-tailed P-value range and decide whether to reject or fail to reject the null hypothesis at $\alpha = 0.05$.
+
+Highlight the P-value entry, or both rows bounding your P-value, and take a screenshot. Follow the screenshot instructions in Task 3.1. Include the **df = 22** heading and the highlighted probabilities and critical t values. Label the image with **Task 11** and your calculated $|t|$, and include it alongside your decision.
+
+Keep several decimal places during your calculation. Round your final t value to three decimal places. Include the mean difference, pooled variance, standard error, t value, df, P-value range, and decision.
+
+::: callout-important
+## Finish the hand calculation first
+
+Complete this task before running a t-test in R. Your later analysis may use a different variance assumption. That does not change the purpose of this hand calculation.
+:::
+
+## Task 12
+
+#### Look at your data
+
+Run the supplied code to show the distribution of lengths in each genre. Both histograms use the same bins and horizontal scale. The marks along the bottom show individual songs; the red line shows the sample mean.
+
+```{r}
+#| eval: false
+
+breaks <- pretty(range(songs$Length_seconds), n = 6)
+x_range <- range(breaks)
+h1 <- hist(group1, breaks = breaks, plot = FALSE)
+h2 <- hist(group2, breaks = breaks, plot = FALSE)
+y_range <- c(0, max(c(h1$counts, h2$counts)) + 1)
+
+old_par <- par(mfrow = c(1, 2))
+
+hist(group1, breaks = breaks, xlim = x_range, ylim = y_range,
+     main = genre1, xlab = "Song length (seconds)",
+     col = "#92C5DE", border = "white")
+rug(group1)
+abline(v = mean(group1), col = "#B2182B", lwd = 2)
+
+hist(group2, breaks = breaks, xlim = x_range, ylim = y_range,
+     main = genre2, xlab = "Song length (seconds)",
+     col = "#F4A582", border = "white")
+rug(group2)
+abline(v = mean(group2), col = "#B2182B", lwd = 2)
+
+par(old_par)
+```
+
+Include the figure. In two or three sentences, describe the shapes and whether any song is unusually far from the others. Decide whether you see a concern about using a t-test, and point to evidence in your plots.
+
+::: callout-note
+## What these plots can tell you
+
+With 12 songs per group, plots give only a rough view of the population distributions. Look for strong asymmetry or unusually extreme observations. A plot cannot establish normality. If either plot shows a serious concern, ask Dr. Molina or Tara before drawing a firm conclusion. Keep all selected songs in your analysis.
+:::
+
+## Task 13
+
+#### Investigate the variance assumption
+
+In Task 11, you assumed equal population variances. Now use R to investigate that assumption.
+
+```{r}
+#| eval: false
+
+variance_result <- var.test(group1, group2,
+                            alternative = "two.sided")
+variance_result
+```
+
+This is an **F-test of variances**, not a test of means. Write its null and alternative hypotheses in words. Report the F value and P-value, then state whether you reject or fail to reject its null hypothesis at $\alpha = 0.05$.
+
+::: callout-important
+## Interpreting this check
+
+A small P-value provides evidence of unequal population variances. A large P-value does **not** prove the variances are equal, especially with a small sample.
+
+The F-test assumes normally distributed populations, so interpret it alongside your plots. Welch's t-test allows unequal variances, but it does not fix problems with dependence or strongly unusual distributions.
+:::
+
+## Task 14
+
+#### Choose and run your test
+
+There are **two separate choices**: whether the observations are paired, and whether an independent-samples test assumes equal variances. Choose using your study design and the variance check, before comparing the t-test P-values.
+
+A paired test requires meaningful matches established by the design, such as the same subjects measured twice. Two groups having the same number of observations does not establish pairing.
+
+**For independent samples, both options are provided below. Run both so you can compare them, then identify the one you will use for your final conclusion.**
+
+**Option A**
+
+```{r}
+#| eval: false
+
+pooled_result <- t.test(group1, group2,
+                        paired = FALSE, var.equal = TRUE,
+                        alternative = "two.sided")
+pooled_result
+```
+
+This option assumes equal population variances and should match your hand calculation, apart from rounding.
+
+**Option B**
+
+```{r}
+#| eval: false
+
+welch_result <- t.test(group1, group2,
+                       paired = FALSE, var.equal = FALSE,
+                       alternative = "two.sided")
+welch_result
+```
+
+This is Welch's t-test. It estimates the variances separately and adjusts the degrees of freedom, which may not be a whole number.
+
+Fill in this table:
+
+| Method                            | t   | df  | P-value           |
+|-----------------------------------|-----|-----|-------------------|
+| By hand, assuming equal variances |     |     | Approximate range |
+| R, Option A                       |     |     |                   |
+| R, Option B                       |     |     |                   |
+
+State whether your design calls for paired or independent samples. For independent samples, select A or B and explain your choice in **two or three sentences**, using your F-test and plots. If the F-test provides evidence of unequal variances, use the option that allows unequal variances. If it does not, equal variances may be a working assumption for this exercise, although Welch's test is also reasonable. Do not select a test because its P-value matches your prediction.
+
+**If observations are genuinely paired**, the code is:
+
+```{r}
+#| eval: false
+
+# Only use this for an analysis when the design establishes real pairs.
+# The first value in group1 must match the first in group2, and so on.
+t.test(group1, group2, paired = TRUE, alternative = "two.sided")
+```
+
+For a paired test, the analysis uses the within-pair differences. Equal variance between the two original groups is not the requirement being tested.
+
+## Task 15
+
+#### Seven critical thinking questions
+
+Answer each question in **two to four sentences**. Refer to your own data, choices, or numerical results. Brief, specific answers are sufficient.
+
+::: callout-note
+## A reminder about reasoning
+
+**Deductive reasoning** moves from a general rule to a conclusion that follows if the premises are true. **Inductive reasoning** uses observations to draw a broader, uncertain conclusion. **Abductive reasoning** proposes a plausible explanation for an observation.
+:::
+
+1.  **Your prediction:** Which type of reasoning best describes how you made your original prediction? Explain using the actual knowledge or observations you relied on, rather than only naming a type.
+2.  **Your hypotheses:** How does your scientific hypothesis differ from your statistical hypotheses? If your sample means differ, propose another explanation for that difference besides the reason in your scientific hypothesis.
+3.  **Your sample:** What population can your selected songs reasonably represent? Identify one specific sampling or independence concern in your own song list, such as a playlist that favors certain artists or several songs from the same album, and explain its consequence.
+4.  **Your design:** Is your study observational or experimental? Can your results establish that genre causes a change in song length? Explain using one other factor that could differ between your groups.
+5.  **Your test:** What happened to the paired and independent results after shuffling? Explain why the order matters for one test but not the other, and what this means for your choice of paired or independent samples. If the paired values happen to be similar, does that establish meaningful pairs?
+6.  **Your conclusion:** Using your chosen test, state your decision at $\alpha = 0.05$ and what it means for the mean lengths in the populations you studied. Include the estimated difference in seconds and P-value. Explain why this conclusion does not prove either statistical hypothesis true.
+7.  **Your reflection:** Did your findings agree with your original prediction? Describe one specific result or difficulty that made you reconsider something, and one change you would make to improve the study next time.
+
+# What to submit
+
+::: callout-important
+## Submission checklist
+
+Submit the following on Canvas:
+
+1.  **Your answers and results**, organized by task, including your original prediction, both parts of the assignment, the song histograms, and the seven final answers.
+2.  **Your Excel workbook**, `song_study.xlsx`, including the sampling lists, frozen random numbers, selected songs, and `Data` worksheet.
+3.  **Your data file**, `songs.csv`.
+4.  **Your handwritten calculation** for Task 11, as a clear photo or scan.
+5.  **All the R code you used**, in a `.qmd` file or `.R` script. Include the relevant output in your answers. The supplied code is welcome; change the genre names and run it with your own data.
+6.  **Highlighted t-table screenshots for Tasks 3.1 and 11**, showing the relevant P-value entry or range, corresponding critical t values, and degrees-of-freedom heading. Include them alongside the answers they support.
+
+If submitting a student QMD, use executable R chunks without `#| eval: false` so your code runs when you render it. That setting in this instruction document only displays the sample code.
+
+Check that your code runs from start to finish with the data files in your project folder. If you need help with this, ask Dr. Molina or Tara.
+:::

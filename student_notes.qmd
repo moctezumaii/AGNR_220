@@ -1,0 +1,38 @@
+---
+title: "T-Test Challenge Stations — Group Notes"
+format:
+  html:
+    toc: false
+    embed-resources: true
+editor: visual
+---
+
+**Names:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+You do not need to complete every station. For each station your group completes, record enough reasoning that another group could understand why you made your decision.
+
+# Station \_\_\_\_\_
+
+**What did you decide?**
+
+<br><br>
+
+<br><br>
+
+**What evidence from the research question, design, or data led you to that decision?**
+
+<br><br><br>
+
+<br><br>
+
+**If you ran a test, what did you run and what did you conclude?**
+
+<br><br>
+
+<br><br>
+
+**What was the hardest or most uncertain part of this station?**
+
+<br><br><br>
+
+#

@@ -1,0 +1,512 @@
+---
+title: "Friday T-Test Consolidation"
+subtitle: "Critical-thinking station lesson — instructor guide"
+format:
+  html:
+    toc: true
+    embed-resources: true
+editor: visual
+---
+
+# Purpose
+
+This is a 50-minute consolidation class after students have learned t-tests and practiced running them in Excel and R.
+
+The goal is **not** to add another inferential test before fall break. Instead, students practice the harder part of statistical analysis:
+
+> **Deciding whether the test they know actually matches the question, design, and data.**
+
+The stations are intentionally less procedural than a normal lab. Several include analyses that R will happily run but that students should reject or reinterpret.
+
+# Learning objectives
+
+Students should be able to:
+
+1.  Distinguish one-sample, independent two-sample, and paired t-tests.
+2.  Explain why the experimental unit determines independence and replication.
+3.  Recognize basic confounding and pseudoreplication.
+4.  Use Welch's two-sample t-test when equal variance is not justified.
+5.  Explain why test choice should not be based on which p-value is preferred.
+6.  Recognize that paired designs can remove important between-unit variation.
+7.  Inspect data before running a test and distinguish data validation from arbitrary outlier removal.
+8.  Decide when a t-test is inappropriate because of the question, response, number of groups, or design.
+
+# 50-minute structure
+
+| Time | Activity |
+|------------------------------------|------------------------------------|
+| 0–4 min | Retrieval/opening question |
+| 4–16 min | Mini-lecture: why correct calculations can still answer the wrong question |
+| 16–19 min | Explain station activity |
+| 19–42 min | Open station work |
+| 42–48 min | Whole-class debrief |
+| 48–50 min | Exit ticket |
+
+# 0–4 min — Opening question
+
+Display:
+
+> You know how to run a t-test. What could still make the answer wrong?
+
+Give students \~1 minute individually, then collect ideas.
+
+Likely responses:
+
+- wrong test,
+- bad data,
+- groups not independent,
+- wrong variables,
+- too many groups,
+- confounding,
+- unequal variance,
+- incorrect interpretation.
+
+Transition:
+
+> Today, R is going to give you answers even when the analysis is questionable. Your job is to decide what you believe.
+
+# 4–16 min — Mini-lecture
+
+Keep this discussion-based. The goal is recognition, not a complete experimental-design lecture.
+
+## 1. Start with the experimental unit
+
+Example:
+
+> Twenty fish receive Diet A in one tank and twenty fish receive Diet B in another tank.
+
+Ask:
+
+- How many fish are there?
+- How many tanks?
+- What actually received the treatment?
+- If all fish in a tank share the same water, temperature, disease exposure, and diet, are they independent treatment replicates?
+
+Talking points:
+
+- The experimental unit is the smallest unit independently assigned to a treatment.
+- Subsamples can give better information about an experimental unit without creating additional independent experimental units.
+- More rows in a dataset do not automatically mean more replication.
+
+Introduce **pseudoreplication** only as a label after they recognize the issue.
+
+## 2. Confounding: what else changed?
+
+Example:
+
+> Fertilizer plants are all grown in Greenhouse A and control plants are all grown in Greenhouse B.
+
+Ask:
+
+> If plants differ, what caused the difference?
+
+Talking points:
+
+- Fertilizer changes.
+- Greenhouse changes.
+- Temperature/light may change.
+- These explanations cannot be separated.
+- Replication within a confounded setup does not necessarily remove the confounding.
+
+Simple definition:
+
+> A confounding factor is another difference that changes together with the factor we actually want to study.
+
+## 3. Pairing is about the design, not the spreadsheet
+
+Example:
+
+> Same 15 trees before and after treatment.
+
+Ask:
+
+- Are there 30 unrelated observations?
+- Or 15 units measured twice?
+
+Talking points:
+
+- Pairing preserves the connection between measurements.
+- A paired t-test analyzes the **within-pair differences**.
+- Pairing can also be deliberately built into experiments by matching similar units.
+
+## 4. Equal variance versus Welch
+
+Talking points:
+
+- The pooled/equal-variance t-test assumes a common population variance.
+- Welch's test allows different variances.
+- If equal variance is not scientifically justified or is unknown, Welch is a good default.
+- R's `t.test()` uses Welch by default for independent two-sample tests.
+- Students do **not** need to run a separate test of variance equality today.
+
+Emphasize:
+
+> Never run several versions and then choose the one that gives the p-value you want.
+
+## 5. Data checking comes before inferential testing
+
+Ask:
+
+> If one plant is 85 cm and every other plant is around 50 cm, what should you do?
+
+Talking points:
+
+- First verify the observation.
+- It might be real.
+- It might be a measurement or transcription error.
+- Do not delete a valid value simply because it is inconvenient.
+- Correct a value only when there is evidence it was entered incorrectly.
+
+# 16–19 min — Station instructions
+
+Students work in groups of approximately 3–4.
+
+There are eight stations, but **do not synchronize rotations**.
+
+Instructions:
+
+1.  Assign each group a different starting station.
+2.  When a group reaches a defensible answer, they may move to any available station.
+3.  Groups do not need to finish all stations.
+4.  Encourage them to call over the instructor or TA when genuinely uncertain.
+5.  Require explanations, not merely test names or p-values.
+
+Suggested message to students:
+
+> Some stations are intentionally ambiguous or contain a trap. If you are stuck, ask us a specific question such as, “We think the tank is the experimental unit — is that the right way to think about it?” The goal is not to race through all eight.
+
+# 19–42 min — Open station work
+
+## Instructor/TA strategy
+
+Do not immediately answer, “Use a paired t-test.”
+
+Instead ask questions such as:
+
+- What received the treatment?
+- What is the experimental unit?
+- Are these observations linked?
+- Is that number a known benchmark or another sample estimate?
+- What assumption are you making?
+- What changed besides the treatment?
+- Why are you choosing that version of the test?
+- Would your answer change if the p-value were 0.06 instead of 0.04?
+
+A good division of labor:
+
+**Instructor:** Stations 2, 6, 7, and 8, emphasizing experimental design.
+
+**TA:** Stations 1, 3, and 4, emphasizing R/data structure and test choice.
+
+Both can help with Station 5.
+
+# Station answer key and teaching notes
+
+## Station 1 — Historical estimate versus known benchmark
+
+Correct reasoning:
+
+- The historical mean of 7.0 is itself estimated from a sample.
+- Therefore uncertainty exists in both historical and current samples.
+- A two-sample comparison is more defensible than pretending 7.0 is known without error.
+- Welch is a reasonable default because equal variances are not established.
+
+Approximate results:
+
+- Historical mean = 7.00 mg/L.
+- Current mean = 6.53 mg/L.
+- Welch p \< 0.001.
+
+Important extension:
+
+- If 7.0 were genuinely a fixed management or regulatory benchmark, a one-sample t-test against `mu = 7` would make sense.
+
+Main concept:
+
+> The correct test depends on what the reference number *means*, not merely on seeing one sample and the number 7.
+
+## Station 2 — Fish nested within tanks
+
+The naive fish-level t-test treats 48 fish as independent treatment replicates.
+
+Approximate naive result:
+
+- p \< 0.001.
+
+But treatment was assigned to tanks.
+
+Tank means:
+
+- Control: 19, 20, 21, 22 g
+- Treatment: 21, 22, 23, 24 g
+
+Using the eight tank means:
+
+- Welch p ≈ 0.071.
+
+Main concepts:
+
+- Experimental unit = tank.
+- Fish are subsamples within tanks.
+- More fish within the same tanks improve estimates of tank means but do not create new independent treatment replicates.
+- To increase treatment replication, add independently assigned tanks.
+
+Do not tell students that tank averaging is always the ideal analysis. For this 200-level exercise it is a way to make the experimental-unit issue visible without introducing mixed models.
+
+## Station 3 — Paired with one missing pair
+
+The observations are paired because the same plots are measured twice.
+
+Use only complete pairs for the paired t-test in this simple exercise.
+
+Approximate result:
+
+- 11 complete pairs.
+- Mean change ≈ 1.57 g.
+- Paired p \< 0.001.
+
+If they incorrectly use the independent two-sample test:
+
+- p ≈ 0.11.
+
+This dramatic contrast is deliberate.
+
+Ask:
+
+> Why does pairing help?
+
+Expected:
+
+- Plot-to-plot baseline differences are controlled because the analysis focuses on change within each plot.
+
+Do not encourage arbitrary imputation for the missing value.
+
+## Station 4 — Welch versus pooled
+
+Approximate summaries:
+
+- Control n = 8, mean ≈ 4.79, SD ≈ 0.68.
+- Treatment n = 20, mean ≈ 5.72, SD ≈ 1.47.
+
+Approximate tests:
+
+- Welch p ≈ 0.032.
+- Pooled/equal-variance p ≈ 0.101.
+
+This is intentionally provocative.
+
+Correct decision:
+
+- Report Welch because equal variance was not justified, sample sizes differ, and the observed spreads differ substantially.
+- Do not choose a test based on significance.
+
+Main concept:
+
+> Test choice comes from assumptions and design, not desired outcome.
+
+If students ask whether they should first run a formal variance test, tell them that for this course exercise they should not use a preliminary significance test to decide. Welch is the safer default when equality is not justified.
+
+## Station 5 — Could R run it? Should you?
+
+### A
+
+Independent quantitative response, two independently replicated groups.
+
+- Two-sample t-test is reasonable.
+
+### B
+
+Binary response: survived/died.
+
+- Not a t-test question.
+
+### C
+
+Same deer before/after.
+
+- Paired t-test.
+
+### D
+
+Quantitative mean versus a fixed target.
+
+- One-sample t-test.
+
+### E
+
+Four treatment means.
+
+- Not a single two-sample t-test; later this motivates methods for \>2 groups.
+
+### F
+
+Relationship between two quantitative variables.
+
+- Not a t-test question.
+
+### G
+
+The response is quantitative and there are nominally two groups, but there is only one north-facing and one south-facing slope.
+
+- The design does not provide independent replication of slope aspect.
+- Twenty quadrats are subsamples within the two slopes.
+
+### H
+
+Same logic: one restored stream and one unrestored stream do not provide independent replication of restoration treatment.
+
+Main concept:
+
+> A question can look like “two means” and still have a design that does not support the intended inference.
+
+## Station 6 — Confounded greenhouse experiment
+
+They should identify:
+
+- fertilizer,
+- greenhouse,
+- temperature,
+- light,
+
+as changing together.
+
+The 100 plants per treatment do not separate fertilizer from greenhouse.
+
+Five trays per greenhouse also do not fix the complete treatment-by-greenhouse confounding if all treated trays remain in one greenhouse and all controls in the other.
+
+Possible redesign:
+
+- Put both treatments within multiple greenhouses, if feasible.
+- Randomly assign treatment within greenhouse.
+- Replicate treatments across independent experimental units.
+
+At this level, reward any redesign that separates fertilizer from greenhouse conditions.
+
+## Station 7 — Pairing by design
+
+Independent analysis:
+
+- p ≈ 0.71.
+
+Paired analysis:
+
+- p ≈ 0.001.
+- Mean paired increase ≈ 4.17 yield units.
+
+Why?
+
+There is enormous spatial variation across the field. Pairing removes much of that between-location variation by comparing neighboring plots.
+
+This is an excellent station to ask:
+
+> Did the fertilizer effect suddenly get bigger when we clicked `paired = TRUE`?
+
+No. The analysis became better aligned with the design and used the information about matched plots.
+
+Main concept:
+
+> Pairing can be a design strategy for controlling known variation.
+
+## Station 8 — Check the data
+
+Students should notice the value **85 cm**.
+
+Do **not** reveal the answer until they call the instructor/TA over and explain why the value deserves checking.
+
+### Instructor/TA clue
+
+Tell them:
+
+> You checked the original field sheet. The recorded measurement is **52 cm**. The value 85 is a transcription error in the CSV.
+
+Have them correct it in R:
+
+``` r
+plants[plants$height_cm == 85, "height_cm"] <- 52
+```
+
+Then rerun summaries, plot, and t-test.
+
+Before correction:
+
+- fertilizer mean is artificially inflated,
+- fertilizer variance is huge,
+- Welch p is around 0.17.
+
+After documented correction:
+
+- control mean = 50.0 cm,
+- fertilizer mean = 51.7 cm,
+- Welch p ≈ 0.001.
+
+Main concept:
+
+- A valid extreme point should not be removed merely because it affects significance.
+- A documented transcription error should be corrected.
+- Data inspection is part of analysis.
+
+# 42–48 min — Whole-class debrief
+
+Do not review all eight stations.
+
+Choose three contrasts.
+
+## Contrast 1: More data versus more replication
+
+Ask a group from Station 2:
+
+> Why were 48 fish not 48 independent treatment replicates?
+
+Then ask:
+
+> If I doubled the fish in each tank, what would change?
+
+Target idea:
+
+- precision within tank may improve;
+- number of independently treated tanks does not.
+
+## Contrast 2: Same data, different tests
+
+Use Station 4.
+
+Ask:
+
+> Welch said one thing and pooled said another. How did you decide which one to trust?
+
+Target idea:
+
+- assumptions/design, not p-value.
+
+## Contrast 3: Analysis starts before `t.test()`
+
+Use Station 8.
+
+Ask:
+
+> Why was checking the suspicious value not “cheating”?
+
+Target idea:
+
+- verifying data provenance is different from deleting valid values to obtain a desired result.
+
+Close with:
+
+> The most important statistical decision often happens before you ever type `t.test()`.
+
+# 48–50 min — Exit ticket
+
+1.  A treatment is applied to four tanks, with ten fish measured in each tank. What is the experimental unit?
+2.  You compare two independent groups and do not have a reason to assume equal population variances. Which version of the two-sample t-test would you generally use?
+3.  Give one example of a situation in which R could run a t-test but you should question whether the scientific inference is valid.
+
+# Suggested station priority
+
+If students ask where to go next, do not prescribe an exact sequence, but these give a good mix:
+
+- **Strong conceptual/design:** 2, 6, 7
+- **Strong statistical choice:** 1, 4
+- **Strong data/coding:** 3, 8
+- **Broad synthesis:** 5
+
+A student group that completes only four challenging stations and can explain them well has met the purpose of the activity.

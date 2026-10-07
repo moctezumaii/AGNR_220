@@ -1,0 +1,518 @@
+---
+title: "T-Test Challenge Stations"
+subtitle: "Decide first. Analyze second. Defend your choice."
+format:
+  pdf:
+    toc: false
+    geometry: margin=0.7in
+  html:
+    toc: true
+    embed-resources: true
+editor: visual
+---
+
+# How this works
+
+Work with your group and move between stations at your own pace.
+
+You are not expected to finish every station.
+
+At each station:
+
+1.  Read the entire scenario.
+2.  Discuss what you think is happening **before running any code**.
+3.  Decide what analysis or design conclusion you would defend.
+4.  Use R when the station asks for it.
+5.  Record your group's reasoning, not just the p-value.
+6.  If you are unsure, **ask the instructor or TA a specific question**.
+7.  Move to another open station once your group can explain and defend its answer.
+
+> **Important:** A computer can run a statistical test even when the test makes no scientific sense. Your job today is to decide whether the analysis is defensible.
+
+\newpage
+
+# Station 1
+
+An agency report says that the historical mean dissolved oxygen concentration in a stream was 7.0 mg/L
+
+A biologist samples the stream after restoration and asks:
+
+> Has mean dissolved oxygen changed from the historical condition?
+
+At first, one student proposes:
+
+``` r
+t.test(current_do, mu = 7)
+```
+
+However, you learn that **7.0 was not a fixed standard**. It was the mean of 12 historical sampling days, and the original historical observations are available.
+
+Use:
+
+`station1_dissolved_oxygen.csv`
+
+## Discuss before coding
+
+1.  Is 7.0 a known population value, or is it itself an estimate from a sample?
+2.  Does that change whether a one-sample t-test is the best analysis?
+3.  What are the two sources of sampling uncertainty in this study?
+4.  Which test would your group defend?
+
+## Explore the data
+
+``` r
+oxygen <- read.csv("station1_dissolved_oxygen.csv")
+
+aggregate(do_mg_L ~ period,
+          data = oxygen,
+          FUN = mean)
+
+aggregate(do_mg_L ~ period,
+          data = oxygen,
+          FUN = sd)
+```
+
+Run the test your group thinks is appropriate.
+
+If you choose to compare the two samples directly:
+
+``` r
+t.test(do_mg_L ~ period,
+       data = oxygen)
+```
+
+## Final challenge
+
+Suppose instead that **7.0 mg/L were a fixed regulatory threshold**, not an estimated historical mean.
+
+Would your choice of t-test change? Explain why.
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Station 2 
+
+A researcher tests whether a new diet increases fish growth.
+
+There are:
+
+- 4 control tanks
+- 4 treatment tanks
+- 6 fish in each tank
+
+The diet is assigned to the **tank**, and every fish in a tank receives the same diet.
+
+A student runs:
+
+``` r
+fish <- read.csv("station2_fish_tanks.csv")
+
+t.test(growth_g ~ diet,
+       data = fish)
+```
+
+and gets a very small p-value.
+
+## Your task
+
+Before accepting that result, discuss:
+
+1.  What received the treatment: each individual fish or each tank?
+2.  Are six fish from the same tank six independent treatment replicates?
+3.  What is the experimental unit?
+4.  How many independent treatment replicates are actually present?
+
+Now run the student's analysis.
+
+``` r
+fish <- read.csv("station2_fish_tanks.csv")
+
+t.test(growth_g ~ diet,
+       data = fish)
+```
+
+Then calculate one mean for each tank:
+
+``` r
+tank_means <- aggregate(growth_g ~ diet + tank,
+                        data = fish,
+                        FUN = mean)
+
+tank_means
+```
+
+Now analyze the tank means:
+
+``` r
+t.test(growth_g ~ diet,
+       data = tank_means)
+```
+
+## Discuss
+
+1.  Why are the two p-values so different?
+2.  Which analysis better matches how the treatment was actually replicated?
+3.  If the researcher had used 24 fish per tank instead of 6, would that create more independent treatment replicates?
+4.  What design change would actually increase replication?
+
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Station 3 
+
+A researcher measures plant biomass in the **same 12 plots** before and after a management treatment.
+
+Unfortunately, the "after" measurement is missing for one plot because a sample was lost.
+
+Use:
+
+`station3_paired_missing.csv`
+
+## Discuss first
+
+1.  What makes these data paired?
+2.  Can Plot 4's "before" value be paired with Plot 5's "after" value?
+3.  What should happen to the plot that has no matching "after" measurement?
+4.  Would treating all before and after observations as two independent groups preserve the study design?
+
+Look at the data:
+
+``` r
+plants <- read.csv("station3_paired_missing.csv")
+
+plants
+```
+
+Identify complete pairs:
+
+``` r
+complete <- complete.cases(plants$before_biomass_g,
+                           plants$after_biomass_g)
+
+plants_complete <- plants[complete, ]
+
+plants_complete
+```
+
+Run the paired analysis:
+
+``` r
+t.test(plants_complete$before_biomass_g,
+       plants_complete$after_biomass_g,
+       paired = TRUE)
+```
+
+Now, for comparison only, see what happens if someone incorrectly ignores the pairing:
+
+``` r
+t.test(plants$before_biomass_g,
+       plants$after_biomass_g)
+```
+
+## Final challenge
+
+Why can ignoring the pairing change the result so much?
+
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Station 4 
+
+Researchers compare nitrate concentration between a control group and a treatment group.
+
+The groups have different sample sizes, and no previous information tells you that the population variances should be equal.
+
+Use:
+
+`station4_variance_choice.csv`
+
+## Step 1: Examine the data
+
+``` r
+nitrate <- read.csv("station4_variance_choice.csv")
+
+aggregate(nitrate_mg_L ~ group,
+          data = nitrate,
+          FUN = mean)
+
+aggregate(nitrate_mg_L ~ group,
+          data = nitrate,
+          FUN = sd)
+
+table(nitrate$group)
+```
+
+Discuss:
+
+1.  Are the sample sizes equal?
+2.  Do the sample standard deviations look similar?
+3.  Were you given a scientific reason to assume equal population variances?
+
+## Step 2: Run both versions
+
+Welch:
+
+``` r
+t.test(nitrate_mg_L ~ group,
+       data = nitrate)
+```
+
+Pooled/equal variance:
+
+``` r
+t.test(nitrate_mg_L ~ group,
+       data = nitrate,
+       var.equal = TRUE)
+```
+
+## The important part
+
+The two versions do **not** give the same decision at (\alpha = 0.05).
+
+Discuss:
+
+1.  Which result should you report?
+2.  Is it acceptable to choose the version that gives the smaller p-value?
+3.  Is it acceptable to choose the version that gives the conclusion you expected?
+4.  What information should determine the test choice?
+
+### Information you may use
+
+- The pooled t-test assumes a common population variance.
+- Welch's t-test does not require the two population variances to be equal.
+- You have **not** been given a reason to assume equal variances.
+- In R, Welch's version is the default.
+
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Station 5 
+
+For each scenario, answer two different questions:
+
+1.  Could someone technically put these data into `t.test()`?
+2.  Would a t-test actually answer the scientific question appropriately?
+
+Do not worry about naming the alternative test if you have not learned it yet.
+
+## A
+
+Twenty independent irrigated plots and 20 independent non-irrigated plots are compared for **mean corn yield**.
+
+## B
+
+Researchers compare whether individual fish **survived or died** between two treatments.
+
+## C
+
+The same 18 deer are weighed immediately before and 30 days after a supplemental feeding program.
+
+## D
+
+Mean soil pH from 25 independently selected locations is compared with a fixed management target of 6.5.
+
+## E
+
+Researchers compare mean plant height among **four fertilizer treatments**.
+
+## F
+
+Researchers want to know whether water temperature changes as stream discharge increases.
+
+## G
+
+Twenty quadrats are sampled on one north-facing slope and 20 quadrats on one south-facing slope. The researcher wants to conclude that **slope aspect causes differences in plant biomass**.
+
+## H
+
+Twenty fish are measured from one restored stream and 20 from one unrestored stream. The researcher wants to conclude that **restoration causes fish to grow larger**.
+
+
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Station 6 
+
+A researcher wants to test whether a new fertilizer increases mean plant height.
+
+The response variable is quantitative, so a two-sample t-test seems reasonable.
+
+The experiment is arranged as follows:
+
+- 5 trays of fertilized plants are placed in Greenhouse A.
+- 5 trays of control plants are placed in Greenhouse B.
+- Each tray contains 20 plants.
+- Greenhouse A is about 4°C warmer.
+- Greenhouse A also receives more afternoon light.
+- Every plant is measured after six weeks.
+
+The fertilized plants are taller.
+
+## Your task
+
+1.  What are all the things that changed when fertilizer treatment changed?
+2.  If plants differ in height, what competing explanations exist?
+3.  Does having 100 plants in each treatment solve the problem?
+4.  Does having five trays in each greenhouse solve the problem if treatment is still completely separated by greenhouse?
+5.  What would you change in the design so that fertilizer is not completely mixed up with greenhouse conditions?
+
+## Harder question
+
+Suppose the researcher says:
+
+> "But I have 200 observations, so my sample size is huge."
+
+How would you explain why that statement does not solve the design problem?
+
+------------------------------------------------------------------------
+
+
+\newpage
+
+
+
+# Station 7 
+
+A field has a strong soil-moisture gradient from one end to the other.
+
+A researcher wants to test whether fertilizer increases crop yield.
+
+Instead of randomly placing six control plots at one end and six fertilized plots at the other, the researcher creates **six nearby pairs of plots** along the gradient.
+
+Within each pair:
+
+- the plots are similar in location and soil,
+- one is randomly assigned fertilizer,
+- the other is assigned control.
+
+Use:
+
+`station7_matched_plots.csv`
+
+## Discuss before coding
+
+1.  Why might plots within a pair be more similar than two randomly chosen plots from opposite ends of the field?
+2.  What source of variation is the pairing trying to control?
+3.  Are the control and fertilized observations truly unrelated?
+4.  Which t-test matches this design?
+
+Look at the data:
+
+``` r
+plots <- read.csv("station7_matched_plots.csv")
+
+plots
+```
+
+First, pretend you did **not** know about the matching:
+
+``` r
+t.test(plots$control_yield,
+       plots$fertilized_yield)
+```
+
+Now use the actual design:
+
+``` r
+t.test(plots$control_yield,
+       plots$fertilized_yield,
+       paired = TRUE)
+```
+
+Calculate the pair-by-pair differences:
+
+``` r
+plots$difference <- plots$fertilized_yield -
+                    plots$control_yield
+
+plots
+mean(plots$difference)
+sd(plots$difference)
+```
+
+## Final challenge
+
+Why is the paired analysis dramatically more informative here?
+
+What would have been lost if the researcher had failed to record which plots formed each pair?
+
+------------------------------------------------------------------------
+
+\newpage
+
+
+# Station 8 — The computer will analyze bad data too
+
+A researcher compares plant height between control and fertilizer treatments.
+
+Use:
+
+`station8_check_the_data.csv`
+
+A student immediately runs a t-test and reports the result.
+
+Your group should **not** begin with the t-test.
+
+## Step 1: Inspect the data
+
+``` r
+plants <- read.csv("station8_check_the_data.csv")
+
+plants
+
+aggregate(height_cm ~ treatment,
+          data = plants,
+          FUN = mean)
+
+aggregate(height_cm ~ treatment,
+          data = plants,
+          FUN = sd)
+```
+
+Make a quick plot:
+
+``` r
+stripchart(height_cm ~ treatment,
+           data = plants,
+           vertical = TRUE,
+           method = "jitter",
+           pch = 19)
+```
+
+## Discuss
+
+1.  Does anything look unusual?
+2.  What are some possible explanations for an unusual observation?
+3.  Should you simply delete an observation because it changes the result?
+4.  What should a researcher do **before** deciding whether a value should be corrected or removed?
+
+> If your group finds something that you think needs to be checked, call Dr. Molina or Tara
+
+**Do not change the dataset until you have checked with them.**
+
+## After resolving the data issue
+
+Run the analysis you think is appropriate:
+
+``` r
+t.test(height_cm ~ treatment,
+       data = plants)
+```
+
+## Final challenge
+
+Explain the difference between:
+
+- deleting a valid extreme observation because you do not like it, and
+- correcting a documented data-entry error.
+
+Why is one scientifically unacceptable while the other is necessary?

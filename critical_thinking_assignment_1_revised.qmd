@@ -499,7 +499,7 @@ You do not need to build a list of every song ever released. Choose a clear, man
 Make a worksheet called `Data` with exactly **three columns** and **24 data rows**, plus a header row:
 
 | Song | Genre | Length_seconds |
-|------------------|------------------|-------------------------------------|
+|------------------|------------------|-----------------------------------|
 | Title and artist of a selected song | Your genre name | Total seconds as a number |
 
 You can include the artist in the `Song` cell so the recording can be identified. Use consistent genre names. Do not add summary calculations to this worksheet.

@@ -13,7 +13,7 @@ editor: visual
 You will work with three datasets. For each dataset, you must:
 
 1.  Fit a linear model with the given response and explanatory variable(s). You need to identify which is which!
-2.  Interpret the model summary, identifying $\beta_0, \beta_1$ whether each is significant, the estimate of $\sigma$ , and $R^2$ (and interpret $R^2$ in context)
+2.  Interpret the model summary, identifying $\beta_0, \beta_1$ whether each is significant, the estimate of $\sigma$ , and $R^2$ (and interpret $R^2$ in context). For $R^2$ we will talk about it on Wednesday 11/18/2026
 3.  Use the four steps of NHST we covered in class, and see whether the explanatory variable has an effect on the response variable. Write a biological conclusion.
 4.  Repeat this full set of tasks for all three datasets.
 5.  All datasets (flowers, snails, wood are available on Canvas)
@@ -94,7 +94,7 @@ Here you have both rain and management type as potential explanatory variables..
 To run the model, first read the forest data file into an object called wood_df. Run a linear model using:
 
 ```{r eval=FALSE}
-modelwood<-lm(wood_production ~ temperature + management, data = wood_df)
+modelwood<-lm(wood_production ~ temperature + group, data = wood_df)
 ```
 
 And then, view the summary of the model. You know how to do this.
@@ -104,7 +104,7 @@ Then plot the model, but! Add color to differentiate between management types:
 ```{r eval=FALSE}
 library(ggplot2)
 ggplot(wood_df, aes(x = temperature, y = wood_production, color =
- management)) +
+ group)) +
   geom_point() +
   geom_smooth(method = "lm", se = TRUE) +
   labs(title = "Wood Production vs Temperature by Management Type",

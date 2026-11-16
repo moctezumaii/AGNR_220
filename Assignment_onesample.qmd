@@ -22,15 +22,15 @@ You can download the data from Canvas: `datatable.csv`
 
 You are testing whether the population mean body temperature differs from 98.6°F. Use a significance level of $\alpha = 0.05$.
 
-## Task 1 
+## Task 1
+
 #### Excel 💻 or by hand
 
-Write your null and alternative hypotheses. Define what $\mu$ represents.
-Write them in words and in symbols.
+Write your null and alternative hypotheses. Define what $\mu$ represents. Write them in words and in symbols.
 
 ## Task 2
-#### Excel 💻 or by hand
 
+#### Excel 💻 or by hand
 
 Calculate your t value! Use the following equation:
 
@@ -52,11 +52,11 @@ Here, $s$ is the sample standard deviation and $n$ is the sample size. In Excel,
 
 Report:
 
-- Sample size.
-- Sample mean.
-- Sample standard deviation.
-- Standard error.
-- t value.
+-   Sample size.
+-   Sample mean.
+-   Sample standard deviation.
+-   Standard error.
+-   t value.
 
 Keep several decimal places during your calculations. Round your final t value to three decimal places.
 
@@ -80,10 +80,10 @@ $$
 
 #### How to use the tables
 
-1. Calculate your degrees of freedom and open the matching tab.
-2. Find the absolute value of your t statistic, $|t|$. Use its distance from zero, regardless of whether it is positive or negative.
-3. Compare $|t|$ with the critical t values in the table.
-4. Read the corresponding **two-tailed probabilities**. If your value falls between two critical t values, your P-value falls between their probabilities.
+1.  Calculate your degrees of freedom and open the matching tab.
+2.  Find the absolute value of your t statistic, $|t|$. Use its distance from zero, regardless of whether it is positive or negative.
+3.  Compare $|t|$ with the critical t values in the table.
+4.  Read the corresponding **two-tailed probabilities**. If your value falls between two critical t values, your P-value falls between their probabilities.
 
 For example, if $|t|$ falls between the critical values for probabilities of 0.10 and 0.05, report:
 
@@ -104,8 +104,7 @@ Each graph shows the rejection regions for $\alpha = 0.05$. Each tail contains 0
 :::: {.callout-note collapse="true"}
 ## Show or hide the t-tables and graphs
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ```{r}
 #| echo: false
 #| results: asis
@@ -194,16 +193,16 @@ for (d in df_values) {
   cat("\n\n")
 }
 ```
-
 :::
 ::::
 
 ### Task 3.2 Exact P-value
-#### Excel 💻 
+
+#### Excel 💻
 
 In Excel, use:
 
-```text
+``` text
 =T.DIST.2T(ABS(t),df)
 ```
 
@@ -222,16 +221,16 @@ Make your statistical decision using $\alpha = 0.05$.
 Do you reject or fail to reject the null hypothesis? Explain what your decision means for the claim that the population mean body temperature is 98.6°F.
 
 ## Task 5
+
 #### 💻 Run this task in **R**
 
-::: {.callout-warning}
+::: callout-warning
 ## Download the data again before starting in R
 
 Re-download `datatable.csv` from Canvas and save it in your R project folder. **Do not use the file you modified in Excel**, as those changes can cause issues when reading and analyzing the data in R.
 :::
 
 First, read the data into an object called `res`. Make sure `datatable.csv` is in your project folder.
-
 
 ```{r}
 #| eval: false
@@ -245,8 +244,7 @@ names(res)
 head(res)
 ```
 
-
-::: {.callout-important}
+::: callout-important
 ## Calculate it step by step
 
 For this task, calculate the mean, standard deviation, standard error, t value, and P-value step by step. Do not use `t.test()` yet! You will use it in Task 5.1 to check your calculations.
@@ -280,6 +278,7 @@ Find the two-tailed P-value using:
 Compare your results with your earlier calculations.
 
 ### Task 5.1 Run the whole test in R
+
 #### 💻 Run this task in **R**.
 
 Run:
@@ -293,8 +292,8 @@ t.test(res$temperature, mu = 98.6, alternative = "two.sided")
 Find the t value, degrees of freedom, and P-value in the output. Do they match your calculations?
 
 ## Task 6
-#### 💻 Run this task in **R**.
 
+#### 💻 Run this task in **R**.
 
 Plot the t distribution, rejection regions, and your observed t value.
 

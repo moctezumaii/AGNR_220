@@ -11,7 +11,7 @@ categories:
 
 ## Learning Objectives
 
-By the end of this week, you should be able to:
+By the end of this week, you should be able to: 
 
 - Create and interpret a scatterplot for two continuous variables.
 - Define and calculate the Pearson correlation coefficient ($r$).
